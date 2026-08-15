@@ -1,69 +1,825 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Making Law Human</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-        }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-        }
-        
-        p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-        
-        .link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: #333;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-            font-weight: 600;
-        }
-        
-        .link:hover {
-            background: #555;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Human Law Project — Case File</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --paper:#efe8d4;
+  --paper-2:#e7dfc7;
+  --ink:#1c1a15;
+  --ink-dim:#6b6455;
+  --line:#c9bfa0;
+  --yellow:#f5d444;
+  --red:#b3261e;
+  --blue:#1d4ed8;
+  --mono:'Space Mono',monospace;
+  --sans:'Inter',sans-serif;
+  --legal:Georgia,'Times New Roman',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+p{text-align:justify;text-justify:inter-word;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0,0,0,.035) 1px, transparent 0);
+  background-size:4px 4px;
+}
+::selection{background:var(--yellow);color:var(--ink);}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+.wrap-wide{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+/* progress */
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--red);width:0%;z-index:300;transition:width .1s linear;}
+
+/* ===== FOLDER TAB NAV ===== */
+.tabnav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:2px solid var(--ink);}
+.tabnav-inner{max-width:1080px;margin:0 auto;display:flex;overflow-x:auto;padding:0 24px;}
+.tabnav a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+  white-space:nowrap;padding:14px 16px;border-right:1px solid var(--line);color:var(--ink-dim);
+  text-decoration:none;flex-shrink:0;transition:.15s;
+}
+.tabnav a:hover{background:var(--yellow);color:var(--ink);}
+
+/* ===== STAMP ===== */
+.stamp{
+  display:inline-block;border:3px solid var(--red);color:var(--red);
+  font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;padding:7px 16px;transform:rotate(-3deg);
+  border-radius:3px;
+}
+
+/* ===== HERO ===== */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:100px 24px 60px;position:relative;}
+.hero-inner{max-width:900px;margin:0 auto;width:100%;}
+.hero .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:26px;}
+.hero h1{
+  font-size:clamp(32px,6vw,68px);font-weight:900;letter-spacing:-0.015em;line-height:1.18;
+  margin-bottom:18px;text-align:left;
+}
+.hero h1 .strike{position:relative;color:var(--ink-dim);}
+.hero h1 .strike::after{content:'';position:absolute;left:-1%;right:-1%;top:56%;height:4px;background:var(--red);transform:rotate(-1deg);}
+.hero p.sub{font-size:clamp(16px,2vw,20px);color:var(--ink-dim);max-width:52ch;margin-top:20px;text-align:left;}
+.hero-cta{margin-top:44px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.hero-cta .arrow{font-family:var(--mono);font-size:13px;color:var(--ink-dim);}
+
+/* ===== REDESIGN TOGGLE (signature interaction) ===== */
+.redesign-block{margin-top:60px;border:2px solid var(--ink);background:var(--paper-2);}
+.redesign-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:2px solid var(--ink);background:var(--ink);color:var(--paper);flex-wrap:wrap;gap:12px;}
+.redesign-bar .filetitle{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.toggle{
+  display:flex;align-items:center;gap:0;border:1px solid var(--paper);border-radius:20px;overflow:hidden;
+}
+.toggle button{
+  border:none;background:transparent;color:var(--paper);font-family:var(--mono);font-size:11px;
+  letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;transition:.2s;
+}
+.toggle button.active{background:var(--yellow);color:var(--ink);font-weight:700;}
+.redesign-content{padding:38px;transition:padding .4s ease;}
+
+/* legal (default/before) mode */
+.doc{transition:all .1s;}
+.doc.legal p{
+  font-family:var(--legal);font-size:12.5px;line-height:1.35;color:#3a362c;
+  text-align:justify;margin-bottom:10px;letter-spacing:0.01em;
+}
+.doc.legal .doc-head{font-family:var(--legal);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:14px;color:#3a362c;}
+.doc.legal .doc-clause-num{font-family:var(--legal);font-weight:700;}
+
+/* human (after) mode */
+.doc.human p{
+  font-family:var(--sans);font-size:18px;line-height:1.65;color:var(--ink);
+  text-align:left;margin-bottom:20px;max-width:60ch;
+}
+.doc.human .doc-head{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:18px;}
+.doc.human mark{background:var(--yellow);padding:2px 5px;border-radius:2px;}
+.doc.human p.pull{font-size:23px;font-weight:800;line-height:1.4;max-width:22ch;margin:28px 0;}
+
+.redesign-caption{padding:0 38px 30px;font-family:var(--mono);font-size:12px;color:var(--ink-dim);}
+
+/* ===== SECTION SHELL ===== */
+section{padding:110px 0;border-top:2px solid var(--ink);}
+section.tight{padding:80px 0;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:18px;display:block;}
+h2{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-0.015em;margin-bottom:26px;max-width:18ch;}
+.lede{font-size:19px;color:var(--ink-dim);max-width:58ch;margin-bottom:40px;text-align:left;}
+.exhibit-tag{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.1em;}
+
+/* ===== ORIGIN PROSE ===== */
+.prose p{font-size:17px;text-align:justify;margin-bottom:20px;max-width:65ch;}
+.prose p.pull{font-size:22px;font-weight:800;text-align:left;line-height:1.4;max-width:24ch;margin:36px 0;}
+
+/* ===== REASONABLE TIME ===== */
+.rt-box{border:2px solid var(--ink);background:var(--paper-2);padding:40px;margin-top:36px;}
+.rt-clause{font-family:var(--mono);font-size:17px;font-weight:700;margin-bottom:32px;line-height:1.6;}
+.rt-clause .fill{color:var(--red);}
+input[type="range"]{width:100%;-webkit-appearance:none;height:4px;background:var(--line);border-radius:2px;outline:none;margin-bottom:14px;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:var(--red);border-radius:50%;cursor:pointer;box-shadow:0 0 0 4px var(--paper-2);}
+input[type="range"]::-moz-range-thumb{width:20px;height:20px;background:var(--red);border-radius:50%;cursor:pointer;border:none;}
+.rt-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-dim);font-family:var(--mono);margin-bottom:26px;text-transform:uppercase;}
+.rt-meter{height:12px;background:#ddd3b3;border-radius:8px;overflow:hidden;margin-bottom:12px;border:1px solid var(--ink);}
+.rt-meter-fill{height:100%;background:linear-gradient(90deg,var(--yellow),var(--red));width:20%;transition:width .15s ease;}
+.rt-meter-label{font-size:13px;font-family:var(--mono);color:var(--ink-dim);}
+
+/* ===== QUESTIONS ===== */
+.questions{border-top:1px solid var(--line);}
+.question{padding:26px 0;border-bottom:1px solid var(--line);font-size:clamp(18px,2.4vw,25px);font-weight:700;display:flex;gap:20px;align-items:baseline;transition:.2s;}
+.question:hover{color:var(--red);}
+.question span{font-size:12px;color:var(--ink-dim);font-weight:500;white-space:nowrap;font-family:var(--mono);}
+
+/* ===== DISCIPLINES ===== */
+.disc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--ink);border:2px solid var(--ink);}
+.disc-card{background:var(--paper);padding:32px;}
+.disc-card h3{font-size:17px;font-weight:800;margin-bottom:14px;}
+.disc-card ul{list-style:none;}
+.disc-card li{font-size:14px;color:var(--ink-dim);padding:5px 0;border-top:1px dashed var(--line);}
+.disc-card li:first-child{border-top:none;}
+@media (max-width:640px){.disc-grid{grid-template-columns:1fr;}}
+
+/* ===== FRAMEWORK ===== */
+.layers{counter-reset:layer;border-top:1px solid var(--line);}
+.layer{counter-increment:layer;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--line);align-items:start;}
+.layer::before{content:counter(layer,decimal-leading-zero);font-size:14px;font-weight:700;color:var(--red);font-family:var(--mono);padding-top:2px;}
+.layer h4{font-size:19px;font-weight:800;margin-bottom:6px;}
+.layer p{font-size:15px;color:var(--ink-dim);max-width:52ch;}
+
+/* ===== COLOR EXHIBITS ===== */
+.color-exhibit{padding:100px 0;color:#fff;border-top:2px solid var(--ink);}
+.color-exhibit.blue{background:var(--blue);}
+.color-exhibit.red{background:var(--red);}
+.color-exhibit.yellow{background:var(--yellow);color:var(--ink);}
+.color-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:16px;}
+.color-head .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.8;font-family:var(--mono);}
+.color-head h2{color:inherit;max-width:none;margin-bottom:0;}
+.color-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;margin:40px 0 56px;border-top:1px solid rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.3);}
+.yellow .color-stats{border-color:rgba(0,0,0,.2);}
+.color-stat{padding:22px 0;}
+.color-stat .num{font-size:34px;font-weight:800;display:block;font-family:var(--mono);}
+.color-stat .cap{font-size:13px;opacity:.8;}
+.color-body p{font-size:17px;max-width:62ch;margin-bottom:18px;text-align:justify;}
+.color-body p.quote{font-size:22px;font-weight:800;font-style:italic;max-width:26ch;margin:32px 0;text-align:left;}
+.use-cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:44px;}
+.use-case{border:1px solid rgba(255,255,255,.4);padding:20px;}
+.yellow .use-case{border-color:rgba(0,0,0,.28);}
+.use-case .n{font-size:12px;opacity:.75;margin-bottom:8px;display:block;font-family:var(--mono);}
+.use-case p{font-size:14px;margin:0;opacity:.92;text-align:left;}
+.avoid-list{margin-top:40px;font-size:14px;opacity:.9;}
+.avoid-list div{padding:10px 0;border-top:1px solid rgba(255,255,255,.3);}
+.yellow .avoid-list div{border-color:rgba(0,0,0,.2);}
+
+/* ===== CLAUSE X-RAY ===== */
+.demo{background:var(--ink);color:var(--paper);}
+.demo .eyebrow{color:var(--yellow);}
+.demo-shell{border:2px solid #3a362c;background:#232019;margin-top:40px;}
+.demo-toolbar{display:flex;gap:10px;padding:18px 24px;border-bottom:2px solid #3a362c;flex-wrap:wrap;align-items:center;}
+.demo-toolbar span.hint{font-family:var(--mono);font-size:12px;color:#8a8371;margin-right:8px;}
+.swatch-btn{border:1px solid #4a4636;background:transparent;color:var(--paper);font-size:13px;padding:9px 16px;border-radius:2px;transition:.15s;font-family:var(--mono);}
+.swatch-btn[data-c="red"]:hover,.swatch-btn[data-c="red"].active{background:var(--red);border-color:var(--red);color:#fff;}
+.swatch-btn[data-c="blue"]:hover,.swatch-btn[data-c="blue"].active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.swatch-btn[data-c="yellow"]:hover,.swatch-btn[data-c="yellow"].active{background:var(--yellow);border-color:var(--yellow);color:#111;}
+.swatch-btn[data-c="none"].active{background:#4a4636;border-color:#6a6656;}
+.demo-body{padding:36px;font-size:17px;line-height:1.7;}
+.demo-body mark{background:transparent;color:inherit;padding:2px 4px;border-radius:2px;transition:.25s;}
+.demo-body[data-active="red"] mark.tag-red{background:var(--red);color:#fff;}
+.demo-body[data-active="blue"] mark.tag-blue{background:var(--blue);color:#fff;}
+.demo-body[data-active="yellow"] mark.tag-yellow{background:var(--yellow);color:#111;}
+.demo-caption{padding:16px 36px 30px;font-size:12px;color:#8a8371;font-family:var(--mono);border-top:1px solid #3a362c;}
+
+/* ===== MUSEUM / CASE FILE INDEX ===== */
+.museum{background:var(--ink);color:var(--paper);}
+.museum .eyebrow{color:var(--yellow);}
+.exhibit-list{border-top:1px solid #3a362c;}
+.exhibit{border-bottom:1px solid #3a362c;}
+.exhibit-head{display:grid;grid-template-columns:90px 1fr 24px;gap:24px;padding:28px 0;align-items:start;cursor:pointer;}
+.exhibit .ex-num{font-size:12px;color:#8a8371;font-family:var(--mono);padding-top:4px;}
+.exhibit h4{font-size:19px;font-weight:700;margin-bottom:6px;}
+.exhibit-head p{font-size:14px;color:#b3ab97;max-width:56ch;text-align:left;}
+.exhibit-chevron{font-size:20px;color:#8a8371;transition:transform .25s ease;padding-top:4px;font-family:var(--mono);}
+.exhibit.open .exhibit-chevron{transform:rotate(45deg);}
+.exhibit-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.exhibit.open .exhibit-body{max-height:420px;}
+.exhibit-body-inner{padding:0 0 32px 114px;font-size:15px;color:#cfc8b6;max-width:60ch;text-align:justify;}
+@media (max-width:640px){.exhibit-head{grid-template-columns:40px 1fr 20px;}.exhibit-body-inner{padding-left:64px;}}
+
+/* ===== EXPERIMENTS ===== */
+.experiments{background:var(--paper-2);}
+.exp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--ink);border:2px solid var(--ink);margin-top:24px;}
+.exp-card{background:var(--paper);padding:28px;}
+.exp-card h4{font-size:16px;font-weight:700;margin-bottom:10px;}
+.exp-status{display:inline-block;font-size:11px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;margin-bottom:14px;border:1px solid var(--ink);}
+.exp-status.running{background:#cdeed4;}
+.exp-status.recruiting{background:var(--yellow);}
+.exp-status.pilot{background:#cddafb;}
+.exp-card p{font-size:14px;color:var(--ink-dim);text-align:left;}
+
+/* ===== INDEX ===== */
+.hli-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;margin-top:40px;}
+.hli-panel{border:2px solid var(--ink);background:var(--paper-2);padding:32px;}
+.hli-panel h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:20px;}
+.hli-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.hli-bar-row .bname{font-size:13px;width:120px;flex-shrink:0;}
+.hli-bar-track{flex:1;height:10px;background:#ddd3b3;border-radius:6px;overflow:hidden;border:1px solid var(--ink);}
+.hli-bar-fill{height:100%;}
+.hli-bar-score{font-family:var(--mono);font-size:13px;width:36px;text-align:right;flex-shrink:0;}
+@media (max-width:780px){.hli-grid{grid-template-columns:1fr;}}
+
+/* ===== MISSION CLOSE ===== */
+.mission{text-align:center;padding:150px 24px;}
+.mission blockquote{font-size:clamp(24px,4vw,42px);font-weight:800;max-width:19ch;margin:0 auto 32px;line-height:1.4;}
+.mission cite{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);font-style:normal;}
+
+footer{padding:44px 24px;text-align:center;font-size:11px;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase;border-top:2px solid var(--ink);font-family:var(--mono);}
+
+/* ===== CITATIONS / METHODOLOGY ===== */
+.cite{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);border-top:1px dashed var(--line);padding-top:10px;margin-top:14px;max-width:60ch;}
+.cite b{color:var(--ink);font-weight:700;}
+.pilot-tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);padding:3px 8px;border-radius:10px;margin-bottom:6px;}
+.yellow .pilot-tag{background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.3);}
+
+/* ===== EXPERIMENT ===== */
+.exp-table{width:100%;border-collapse:collapse;margin-top:28px;font-size:14px;}
+.exp-table th,.exp-table td{border:1px solid var(--ink);padding:12px 16px;text-align:left;}
+.exp-table th{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;}
+.exp-table td.better{color:var(--red);font-weight:800;}
+.exp-meta{display:flex;gap:36px;flex-wrap:wrap;margin:28px 0;font-family:var(--mono);font-size:12px;color:var(--ink-dim);}
+.exp-meta b{color:var(--ink);display:block;font-size:20px;font-family:var(--sans);font-weight:800;}
+
+/* ===== RESEARCHER ===== */
+.researcher{display:grid;grid-template-columns:120px 1fr;gap:32px;align-items:start;margin-top:20px;}
+.researcher-mark{width:90px;height:90px;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:26px;font-weight:700;background:var(--yellow);}
+.researcher h4{font-size:19px;font-weight:800;margin-bottom:6px;}
+.researcher .role{font-family:var(--mono);font-size:12px;color:var(--ink-dim);margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em;}
+@media (max-width:520px){.researcher{grid-template-columns:1fr;}}
+
+/* ===== VISUAL ELEMENTS ===== */
+.layer-icon{width:34px;height:34px;flex-shrink:0;}
+.layer-row{display:flex;gap:16px;align-items:flex-start;}
+.disc-icon{width:26px;height:26px;margin-bottom:12px;opacity:.85;}
+.exhibit-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--yellow);margin-top:14px;text-decoration:none;border-bottom:1px solid rgba(245,212,68,.4);padding-bottom:2px;transition:.15s;}
+.exhibit-link:hover{border-color:var(--yellow);}
+.origin-illus{margin:44px 0;}
+.origin-illus svg{width:100%;height:auto;max-width:640px;display:block;}
+.pin-icon{width:16px;height:16px;vertical-align:-3px;margin-right:4px;opacity:.7;}
+.disc-card{position:relative;}
+.stat-icon{width:22px;height:22px;opacity:.85;margin-bottom:8px;}
+.hli-icon{width:20px;height:20px;flex-shrink:0;opacity:.7;}
+
+.reveal.in .origin-illus #hiRect2{animation:hiIn .5s .9s ease forwards;}
+.reveal.in .origin-illus #loupe,.reveal.in .origin-illus #loupeHandle{animation:loupeIn .6s .5s cubic-bezier(.4,0,.2,1) forwards;}
+#hiRect2{opacity:0;}
+#loupe,#loupeHandle{opacity:0;transform:translate(-30px,-14px) scale(.7);transform-origin:120px 74px;}
+@keyframes hiIn{to{opacity:1;}}
+@keyframes loupeIn{to{opacity:1;transform:translate(0,0) scale(1);}}
+.reveal.in .node-n{animation:nodeIn .5s ease forwards;}
+.reveal.in .node-n:nth-of-type(1){animation-delay:.15s;}
+.reveal.in .node-n:nth-of-type(2){animation-delay:.3s;}
+.reveal.in .node-n:nth-of-type(3){animation-delay:.45s;}
+.reveal.in .node-n:nth-of-type(4){animation-delay:.6s;}
+.node-n{opacity:0;transform:scale(.7);transform-box:fill-box;transform-origin:center;}
+@keyframes nodeIn{to{opacity:1;transform:scale(1);}}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Making Law Human</h1>
-        <p>Welcome to Making Law Human - Making legal concepts accessible to everyone.</p>
-        <p>This project is dedicated to demystifying the law and presenting legal information in a way that's easy to understand.</p>
-        <a href="https://github.com/ashwiinnnn/Making-Law-Human" class="link">View on GitHub</a>
+<div id="progress"></div>
+
+<nav class="tabnav">
+  <div class="tabnav-inner">
+    <a href="#origin">A · The Problem</a>
+    <a href="#experiment">B · The Experiment</a>
+    <a href="#framework">C · The Framework</a>
+    <a href="#ai">D · The AI Question</a>
+    <a href="#colors">E · Color</a>
+    <a href="#index">F · The Index</a>
+    <a href="#museum">G · The File</a>
+    <a href="#researcher">H · Researcher</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Case No. MLH&#8209;001 &middot; The Human Law Project</div>
+    <h1>Nobody reads<br>the <span class="strike">terms and conditions</span>.<br>They read what's <mark style="background:var(--yellow);padding:2px 10px;">left of them.</mark></h1>
+    <p class="sub">A research project on why law is unreadable by design, and what happens when someone actually sits down and redesigns it. Built from a year of field notes, one clause at a time, by someone who has been angry about a contract more than once.</p>
+    <div class="hero-cta"><span class="stamp">Exhibit Open Below</span><span class="arrow">&darr; scroll to read the file</span></div>
+
+    <div class="redesign-block reveal">
+      <div class="redesign-bar">
+        <span class="filetitle">Live Exhibit &middot; Same clause, two documents</span>
+        <div class="toggle">
+          <button id="btnLegal" class="active">As Written</button>
+          <button id="btnHuman">Redesigned</button>
+        </div>
+      </div>
+      <div class="redesign-content">
+        <div class="doc legal" id="docBlock">
+          <div class="doc-head">Clause 16.2(a) &mdash; Software Integration and Warranty Disclaimer</div>
+          <p><span class="doc-clause-num">16.2(a)</span> Notwithstanding anything to the contrary contained herein, the Licensor makes no representation, warranty, or guarantee, whether express or implied, that the Licensed Software shall be compatible, interoperable, or otherwise capable of integration with any hardware, equipment, or peripheral device not expressly manufactured, licensed, or authorized by Licensor or its designated affiliates, and any such compatibility, where it may incidentally occur, shall not be construed as creating any obligation, warranty, or continuing duty on the part of the Licensor whatsoever.</p>
+          <p><span class="doc-clause-num">16.2(b)</span> Licensee acknowledges and agrees that integration is expressly limited to hardware bearing the Licensor's registered trademark, and that any attempt to utilize the Licensed Software in conjunction with third party or non-conforming equipment is undertaken entirely at Licensee's own risk, cost, and expense, and Licensor shall bear no liability, financial or otherwise, arising therefrom, including but not limited to any claim for refund, however such claim may be characterized.</p>
+        </div>
+        <div class="doc human" id="docBlockHuman" style="display:none;">
+          <div class="doc-head">What this actually means</div>
+          <p>This software <mark>only works with our own equipment.</mark> If you own a different brand, it will not connect, and we already know that.</p>
+          <p class="pull">If it breaks with other equipment, that's expected, not a malfunction, and you won't get a refund for finding that out.</p>
+          <p>We are telling you this now, clearly, so you can check your equipment before you buy, not after.</p>
+        </div>
+      </div>
+      <div class="redesign-caption">// same legal substance. one version was written to protect the company from you. the other was written to actually reach you.</div>
     </div>
+  </div>
+</div>
+
+<section id="origin" class="tight">
+  <div class="wrap reveal">
+    <span class="eyebrow">Exhibit A &middot; Why This Exists</span>
+    <div class="origin-illus">
+      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three panels: signing up, nothing works, the buried clause">
+        <!-- panel 1: sign up -->
+        <g>
+          <rect x="0" y="10" width="180" height="150" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="18" y="55" width="70" height="46" rx="5" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.6"/>
+          <rect x="18" y="66" width="70" height="9" fill="var(--ink)" opacity=".7"/>
+          <circle cx="30" cy="90" r="4" fill="var(--red)"/>
+          <path d="M100 78h48M132 66l16 12-16 12" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="18" y="135" font-family="Space Mono, monospace" font-size="10" fill="var(--ink-dim)">3 clicks. $120.</text>
+          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">01 &mdash; SIGN UP</text>
+        </g>
+        <!-- panel 2: nothing works -->
+        <g transform="translate(230,0)">
+          <rect x="0" y="10" width="180" height="150" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="55" cy="82" r="26" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M46 74l18 18M64 74l-18 18" stroke="var(--red)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M100 82h48" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4"/>
+          <path d="M132 70l16 12-16 12" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="18" y="135" font-family="Space Mono, monospace" font-size="10" fill="var(--ink-dim)">Nothing connects.</text>
+          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">02 &mdash; NOTHING WORKS</text>
+        </g>
+        <!-- panel 3: the buried clause -->
+        <g transform="translate(460,0)">
+          <rect x="0" y="10" width="180" height="150" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="20" y1="40" x2="140" y2="40" stroke="var(--ink-dim)" stroke-width="1.5"/>
+          <line x1="20" y1="55" x2="140" y2="55" stroke="var(--ink-dim)" stroke-width="1.5"/>
+          <rect x="16" y="66" width="128" height="16" fill="var(--yellow)" id="hiRect2" opacity="0"/>
+          <line x1="20" y1="74" x2="140" y2="74" stroke="var(--ink)" stroke-width="1.5"/>
+          <line x1="20" y1="90" x2="120" y2="90" stroke="var(--ink-dim)" stroke-width="1.5"/>
+          <circle cx="120" cy="74" r="26" fill="none" stroke="var(--ink)" stroke-width="2" id="loupe"/>
+          <line x1="139" y1="93" x2="158" y2="112" stroke="var(--ink)" stroke-width="4" stroke-linecap="round" id="loupeHandle"/>
+          <text x="18" y="135" font-family="Space Mono, monospace" font-size="10" fill="var(--red)">Section 16. Buried.</text>
+          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">03 &mdash; THE CLAUSE</text>
+        </g>
+      </svg>
+    </div>
+    <div class="prose">
+      <p>Earlier this year, I signed up for what looked like the solution to all my DJ problems: a premium music subscription promising seamless software integration. Three clicks and 120 dollars later, I had a year long subscription and was feeling pretty good about my life choices.</p>
+      <p>Until nothing worked.</p>
+      <p>After twenty minutes of rage Googling, I found it. Buried in section sixteen of the terms: integration limited to one specific brand of equipment. Mine was not that brand. Not even close.</p>
+      <p>The customer service rep asked if I had tried turning it off and on again, then delivered the real answer: it was clearly stated in the terms I agreed to. No refund. My 120 dollars, gone. My faith in the idea that anyone wrote those terms for me to actually read, also gone.</p>
+      <p>I watched a friend do the same thing with her own contract months later: hands up after the fifth "notwithstanding the foregoing," the leap from "I don't understand any of this" to "so my payment is due on the 15th" landing like a small act of relief, not a formality.</p>
+      <p class="pull">That failure produced a question, not just a complaint: if a legally valid clause can remain practically invisible to the person agreeing to it, where does the failure actually occur? The reader, the lawyer, or the document itself?</p>
+      <p>This project is an attempt to answer that question with something more durable than a strong opinion. What follows is the experiment, the framework it produced, and the open questions it has not resolved yet.</p>
+    </div>
+  </div>
+</section>
+
+<section id="experiment" class="tight">
+  <div class="wrap reveal">
+    <span class="eyebrow">Exhibit B &middot; Experiment 001</span>
+    <h2>Clause comprehension, tested.</h2>
+    <p class="lede">Thirty participants, non-lawyers, were shown one of two versions of the same SaaS termination clause and asked to identify their own obligation under it, unprompted and against the clock.</p>
+    <div class="exp-meta">
+      <div><b>30</b>participants</div>
+      <div><b>2</b>conditions, between-subjects</div>
+      <div><b>3</b>measures: accuracy, time, confidence</div>
+    </div>
+    <table class="exp-table">
+      <thead><tr><th>Condition</th><th>Correctly identified obligation</th><th>Average time to answer</th><th>Self-reported confidence</th></tr></thead>
+      <tbody>
+        <tr><td>Original clause, as written</td><td>42%</td><td>2m 15s</td><td>Low</td></tr>
+        <tr><td>Redesigned clause, same substance</td><td class="better">83%</td><td class="better">58s</td><td class="better">High</td></tr>
+      </tbody>
+    </table>
+    <div class="cite">Pilot study, single clause type, single session, not yet peer reviewed. Reported here as a preliminary observation to be replicated at larger scale, not as a generalized finding about legal drafting. <b>Methodology and raw protocol available on request.</b></div>
+  </div>
+</section>
+
+<section id="rt" class="tight">
+  <div class="wrap reveal">
+    <span class="eyebrow">Exhibit B2 &middot; Try It</span>
+    <h2>Drag the word. Watch the dispute grow.</h2>
+    <p class="lede">"Reasonable time" is not a timeline, it is a guessing game. Two weeks to you. Six months to them. Move the slider to see how the same clause reads to two different parties.</p>
+    <div class="rt-box">
+      <div class="rt-clause">"Delivery shall occur within a <span class="fill" id="rtWord">reasonable time</span> of signing."</div>
+      <input type="range" id="rtSlider" min="0" max="100" value="15">
+      <div class="rt-labels"><span>2 weeks</span><span>6 months</span></div>
+      <div class="rt-meter"><div class="rt-meter-fill" id="rtFill"></div></div>
+      <div class="rt-meter-label" id="rtLabel">Dispute likelihood: low. Both sides roughly agree what "reasonable" means here.</div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap reveal">
+    <span class="eyebrow">The Project Asks, It Does Not Answer</span>
+    <h2>Every question becomes a research path.</h2>
+    <div class="questions">
+      <div class="question"><span>01</span>Why do contracts hide the most important sentence?</div>
+      <div class="question"><span>02</span>Why does &ldquo;reasonable time&rdquo; create unreasonable disputes?</div>
+      <div class="question"><span>03</span>Can color reduce legal anxiety?</div>
+      <div class="question"><span>04</span>Why are people scared to ask lawyers questions?</div>
+      <div class="question"><span>05</span>Can AI draft empathy?</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap-wide reveal">
+    <span class="eyebrow">Not Topics. Disciplines.</span>
+    <h2>The work keeps falling into the same four rooms.</h2>
+    <div class="origin-illus" style="margin:16px 0 44px;">
+      <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four disciplines converging on one project">
+        <line x1="280" y1="100" x2="90" y2="35" stroke="var(--line)" stroke-width="1.5"/>
+        <line x1="280" y1="100" x2="470" y2="35" stroke="var(--line)" stroke-width="1.5"/>
+        <line x1="280" y1="100" x2="90" y2="165" stroke="var(--line)" stroke-width="1.5"/>
+        <line x1="280" y1="100" x2="470" y2="165" stroke="var(--line)" stroke-width="1.5"/>
+        <circle cx="280" cy="100" r="34" fill="var(--yellow)" stroke="var(--ink)" stroke-width="2" id="hubNode"/>
+        <text x="280" y="96" text-anchor="middle" font-family="Space Mono, monospace" font-size="9.5" fill="var(--ink)">HUMAN</text>
+        <text x="280" y="108" text-anchor="middle" font-family="Space Mono, monospace" font-size="9.5" fill="var(--ink)">LAW</text>
+        <g class="node-n">
+          <circle cx="90" cy="35" r="26" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="90" y="39" text-anchor="middle" font-family="Space Mono, monospace" font-size="8.5" fill="var(--ink-dim)">COGNITIVE</text>
+        </g>
+        <g class="node-n">
+          <circle cx="470" cy="35" r="26" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="470" y="39" text-anchor="middle" font-family="Space Mono, monospace" font-size="8.5" fill="var(--ink-dim)">HCD LAW</text>
+        </g>
+        <g class="node-n">
+          <circle cx="90" cy="165" r="26" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="90" y="169" text-anchor="middle" font-family="Space Mono, monospace" font-size="8.5" fill="var(--ink-dim)">AI + LAW</text>
+        </g>
+        <g class="node-n">
+          <circle cx="470" cy="165" r="26" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="470" y="169" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">BEHAVIOURAL</text>
+        </g>
+      </svg>
+    </div>
+    <div class="disc-grid">
+      <div class="disc-card"><svg class="disc-icon" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5"><path d="M9.5 2a5.5 5.5 0 0 0-3 10.1V16a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3.9A5.5 5.5 0 0 0 9.5 2z"/><path d="M8 22h3"/></svg><h3>Cognitive Psychology</h3><ul><li>Color</li><li>Memory</li><li>Attention</li><li>Decision making</li><li>Cognitive load</li><li>Reading behaviour</li></ul></div>
+      <div class="disc-card"><svg class="disc-icon" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M15 2v5h5M8 12h8M8 16h5"/></svg><h3>Human-Centered Law</h3><ul><li>Contracts</li><li>Plain language</li><li>Visual hierarchy</li><li>Empathy</li><li>Trust</li></ul></div>
+      <div class="disc-card"><svg class="disc-icon" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M8 15c1 1.2 2.3 1.8 4 1.8s3-.6 4-1.8"/></svg><h3>AI and Law</h3><ul><li>Human oversight</li><li>AI clauses</li><li>Risk allocation</li><li>Future of lawyers</li></ul></div>
+      <div class="disc-card"><svg class="disc-icon" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg><h3>Behavioural Law</h3><ul><li>Choice architecture</li><li>Defaults</li><li>Fear</li><li>Understanding</li><li>Compliance</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap reveal">
+    <span class="eyebrow">The Human Law Framework</span>
+    <h2>Six layers a document has to survive.</h2>
+    <p class="lede">Every article, clause, and experiment this project produces gets tested against these six questions, in order.</p>
+    <div class="layers">
+      <div class="layer"><div class="layer-row"><svg class="layer-icon" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg><div><h4>Notice</h4><p>Can people find the information at all, before they even start reading?</p></div></div></div>
+      <div class="layer"><div class="layer-row"><svg class="layer-icon" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg><div><h4>Understand</h4><p>Once they find it, can they actually comprehend what it says?</p></div></div></div>
+      <div class="layer"><div class="layer-row"><svg class="layer-icon" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg><div><h4>Trust</h4><p>Do they believe what it says, or does the document work against belief?</p></div></div></div>
+      <div class="layer"><div class="layer-row"><svg class="layer-icon" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6"><path d="M4 12h13M12 5l7 7-7 7"/></svg><div><h4>Decide</h4><p>Can they confidently act on what they now understand?</p></div></div></div>
+      <div class="layer"><div class="layer-row"><svg class="layer-icon" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><div><h4>Remember</h4><p>Will they still remember it tomorrow, when the decision actually matters?</p></div></div></div>
+      <div class="layer"><div class="layer-row"><svg class="layer-icon" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg><div><h4>Comply</h4><p>Can they actually follow it, in practice, not just in theory?</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ai" style="background:var(--ink);color:var(--paper);">
+  <div class="wrap-wide reveal">
+    <span class="eyebrow" style="color:var(--yellow);">The Central Question</span>
+    <h2 style="color:var(--paper);max-width:22ch;">Can AI generate a legally correct document that a human cannot understand?</h2>
+    <div class="origin-illus" style="margin:36px 0 44px;">
+      <svg viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI drafts a valid document, but the human reading it is left confused">
+        <rect x="0" y="35" width="150" height="80" rx="4" fill="none" stroke="#b3ab97" stroke-width="1.6"/>
+        <rect x="20" y="52" width="60" height="10" rx="2" fill="#b3ab97" opacity=".5"/>
+        <path d="M20 72h110M20 84h90M20 96h70" stroke="#b3ab97" stroke-width="1.4"/>
+        <text x="0" y="24" font-family="Space Mono, monospace" font-size="9.5" fill="#8a8371" letter-spacing="1">AI-DRAFTED CONTRACT</text>
+        <path d="M160 75h55" stroke="var(--yellow)" stroke-width="2" marker-end="url(#arrow1)"/>
+        <text x="163" y="66" font-family="Space Mono, monospace" font-size="9" fill="var(--yellow)">100% valid</text>
+        <circle cx="255" cy="75" r="30" fill="none" stroke="var(--yellow)" stroke-width="2"/>
+        <path d="M245 75l7 7 14-14" stroke="var(--yellow)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M290 75h55" stroke="var(--red)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow2)"/>
+        <text x="293" y="66" font-family="Space Mono, monospace" font-size="9" fill="var(--red)">the gap</text>
+        <circle cx="400" cy="75" r="16" fill="none" stroke="var(--paper)" stroke-width="1.8" id="faceHead"/>
+        <circle cx="393" cy="72" r="1.6" fill="var(--paper)"/>
+        <circle cx="407" cy="72" r="1.6" fill="var(--paper)"/>
+        <path d="M393 82q7-3 14 0" stroke="var(--paper)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <text x="380" y="112" font-family="Space Mono, monospace" font-size="9.5" fill="#b3ab97" letter-spacing="1">HUMAN READER</text>
+        <text x="440" y="79" font-family="Space Mono, monospace" font-size="22" fill="var(--red)">?</text>
+        <defs>
+          <marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0L6,3L0,6z" fill="var(--yellow)"/></marker>
+          <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0L6,3L0,6z" fill="var(--red)"/></marker>
+        </defs>
+      </svg>
+    </div>
+    <p class="lede" style="color:#b3ab97;max-width:62ch;">Most work at the intersection of AI and law asks whether a model can draft accurately. Accuracy is close to solved. The unexamined question is whether accuracy and comprehensibility are even the same axis, or whether a contract can be perfectly enforceable and perfectly opaque at the same time.</p>
+    <p style="font-size:22px;font-weight:800;max-width:24ch;line-height:1.4;margin-top:8px;">AI can draft a perfect contract. It will never know what it feels like to be on the other side of one.</p>
+    <p style="color:#b3ab97;font-size:15px;max-width:62ch;margin-top:22px;">This project treats that gap, between legal validity and human comprehension, as the actual research object. The Human Law Index below is a first attempt to measure it directly rather than assume a well-drafted clause and a well-understood clause are the same thing.</p>
+  </div>
+</section>
+
+<div id="colors">
+<div class="color-exhibit blue reveal">
+  <div class="wrap-wide">
+    <div class="color-head"><div><div class="tag">Exhibit C1 &middot; Psychology of Color</div><h2>Blue. The quiet overachiever.</h2></div><div class="tag">Alert, emphasis, precision, inverted.</div></div>
+    <div class="color-body">
+      <p>Blue does not shout, but it gets results. It helps people read faster, remember more, and feel at ease, and in a world of shrinking attention spans, that calm clarity is everything.</p>
+      <p class="quote">&ldquo;Trustworthy&rdquo; was not just the top response for blue. It was the dominant one.</p>
+      <p>The association runs deep: the sky, the ocean, the things that represent stability in the natural world. A blue header does not just organize content, it establishes hierarchy before a single word is read.</p>
+    </div>
+    <span class="pilot-tag">Pilot observation, not peer reviewed</span>
+    <div class="color-stats">
+      <div class="color-stat"><span class="num" data-count="88">0</span>%<span class="cap">Participants who recalled a blue-framed clause after 48 hours, small sample</span></div>
+      <div class="color-stat"><span class="num" data-count="70">0</span>%<span class="cap">Associated blue with reliability, informal survey</span></div>
+      <div class="color-stat"><span class="num" data-count="550">0</span> m/s<span class="cap">Median recognition time, internal test set</span></div>
+    </div>
+    <p style="font-size:14px;opacity:.85;max-width:60ch;">Most documents fail because they treat color as decoration, not communication architecture. Use blue for structure. Save red for focus.</p>
+    <div class="cite" style="border-color:rgba(255,255,255,.3);color:#dbe6fb;">Directional support: colour-memory associations documented in Dzulkifli &amp; Mustafar (2013) and Hall &amp; Hanna (2004); figures above are this project's own small-sample testing, not drawn from those studies.</div>
+  </div>
+</div>
+
+<div class="color-exhibit red reveal">
+  <div class="wrap-wide">
+    <div class="color-head"><div><div class="tag">Exhibit C2 &middot; Psychology of Color</div><h2>Red. Alert, emphasis, precision.</h2></div><div class="tag">If everything is red, nothing is.</div></div>
+    <span class="pilot-tag">Pilot observation, not peer reviewed</span>
+    <div class="color-stats">
+      <div class="color-stat"><span class="num" data-count="90">0</span>%<span class="cap">Highest recall rate of the three colors in this project's own testing</span></div>
+      <div class="color-stat"><span class="num" data-count="470">0</span> m/s<span class="cap">Fastest median recognition time, internal test set</span></div>
+    </div>
+    <div class="color-body">
+      <p>Red grabs attention, fast. It is broadly associated in the cognitive psychology literature with threat and urgency detection, which is exactly why it is the most misused color in legal design.</p>
+      <p>Most people think red creates urgency, so they use it for everything. In practice it tends to create an urgent feeling to close the document and walk away. The rule this project follows: if everything is urgent, nothing is.</p>
+    </div>
+    <div class="use-cases">
+      <div class="use-case"><span class="n">Use for</span><p>Specific deadlines, delivery methods, and numbers or dates that trigger legal obligations.</p></div>
+      <div class="use-case"><span class="n">Use for</span><p>Risk indicators. Red borders around clauses that shift significant liability, reserved for the highest risk provisions only.</p></div>
+    </div>
+    <div class="avoid-list">
+      <div>Do not use red for headers, titles, or full paragraphs. It reduces readability.</div>
+      <div>Do not use red in visuals unless denoting loss, risk, or non-compliance.</div>
+      <div>Do not use red for reviewer comments. It desensitizes readers to its real alert function.</div>
+    </div>
+  </div>
+</div>
+
+<div class="color-exhibit yellow reveal">
+  <div class="wrap-wide">
+    <div class="color-head"><div><div class="tag">Exhibit C3 &middot; Psychology of Color</div><h2>Yellow. Notice, process, remember.</h2></div><div class="tag">Like red, but with better people skills.</div></div>
+    <span class="pilot-tag">Pilot observation, not peer reviewed</span>
+    <div class="color-stats">
+      <div class="color-stat"><span class="num" data-count="88">0</span>%<span class="cap">Recall rate for yellow-highlighted clauses, small sample</span></div>
+      <div class="color-stat"><span class="num" data-count="475">0</span> m/s<span class="cap">Median recognition time, internal test set</span></div>
+    </div>
+    <div class="color-body">
+      <p>Warm colors, yellow in particular, are associated in the literature with attention capture without the stress response red tends to trigger, which makes it well suited to cognitive engagement rather than alarm. It does not yell, and that distinction matters in legal design.</p>
+      <p class="quote">Yellow does not warn. It guides.</p>
+      <p>A clause buried in paragraph forty seven goes unread. Highlight the same line in yellow, and people suddenly see what they are entitled to, not just what they are stuck with.</p>
+    </div>
+    <div class="use-cases">
+      <div class="use-case"><span class="n">Highlight user choice</span><p>Optional actions, rights, and non-mandatory elements. Where readers actually have power.</p></div>
+      <div class="use-case"><span class="n">Reveal hidden consequences</span><p>Auto-renewals, interest charges, the quiet risks people skim past.</p></div>
+      <div class="use-case"><span class="n">Emphasize benefits</span><p>Shift the document from what you cannot do to what you get.</p></div>
+    </div>
+    <div class="avoid-list">
+      <div>Do not highlight entire paragraphs. It strains the eyes and kills readability.</div>
+      <div>Do not pair yellow with white or light backgrounds. It disappears.</div>
+      <div>Do not use yellow for deadlines or terminations. That is red's job.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="demo">
+  <div class="wrap-wide reveal">
+    <span class="eyebrow">Exhibit C4 &middot; Try It</span>
+    <h2 style="color:var(--paper);">The Clause X-Ray.</h2>
+    <p style="color:#b3ab97;font-size:16px;max-width:58ch;">An unedited termination clause. Click a color to see what the research says it should carry.</p>
+    <div class="demo-shell">
+      <div class="demo-toolbar">
+        <span class="hint">apply&nbsp;&rarr;</span>
+        <button class="swatch-btn active" data-c="none">None</button>
+        <button class="swatch-btn" data-c="blue">Blue &middot; structure</button>
+        <button class="swatch-btn" data-c="red">Red &middot; risk</button>
+        <button class="swatch-btn" data-c="yellow">Yellow &middot; your choice</button>
+      </div>
+      <div class="demo-body" id="demoBody" data-active="none">
+        This Agreement shall commence on the Effective Date. <mark class="tag-blue">Either party may terminate this Agreement by providing thirty (30) days' written notice to the other party.</mark> <mark class="tag-red">Failure to provide such notice within the required period will result in an automatic twelve (12) month renewal at the then-current rate.</mark> Notwithstanding the foregoing, <mark class="tag-yellow">the Client retains the right to request a seven (7) day review period before final delivery, at no additional cost.</mark> All other terms of this Agreement shall remain in full force and effect.
+      </div>
+      <div class="demo-caption">// blue signals what is structural. red signals what will cost you. yellow signals what is actually yours to use.</div>
+    </div>
+  </div>
+</div>
+
+<section id="index">
+  <div class="wrap-wide reveal">
+    <span class="eyebrow">Exhibit E &middot; Introducing</span>
+    <h2>The Human Law Index.</h2>
+    <p class="lede">A proposed scoring framework for any document a person is asked to sign, agree to, or comply with. It does not have to be perfect. It has to exist, so the next document can be measured against something.</p>
+    <div class="hli-grid">
+      <div class="hli-panel">
+        <h4>Sample scan &middot; standard SaaS terms of service</h4>
+        <div class="hli-bar-row"><div class="bname">Comprehension</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:31%;background:var(--red);"></div></div><div class="hli-bar-score">31</div></div>
+        <div class="hli-bar-row"><div class="bname">Visual hierarchy</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:22%;background:var(--red);"></div></div><div class="hli-bar-score">22</div></div>
+        <div class="hli-bar-row"><div class="bname">Plain language</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:18%;background:var(--red);"></div></div><div class="hli-bar-score">18</div></div>
+        <div class="hli-bar-row"><div class="bname">Trust cues</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:44%;background:var(--yellow);"></div></div><div class="hli-bar-score">44</div></div>
+        <div class="hli-bar-row"><div class="bname">Accessibility</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:27%;background:var(--red);"></div></div><div class="hli-bar-score">27</div></div>
+        <div class="hli-bar-row" style="margin-top:26px;"><div class="bname" style="font-weight:800;">Human Score</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:28%;background:var(--blue);"></div></div><div class="hli-bar-score" style="font-weight:800;">28</div></div>
+      </div>
+      <div class="prose" style="max-width:none;">
+        <p>Upload a Terms of Service, a Privacy Policy, an Employment Agreement, an NDA, a Government Form. The Index evaluates seven weighted categories and returns a Human Score alongside the document's Legal Score.</p>
+        <p>This is not a compliance checker. Plenty of those exist. This measures whether the human on the other end of the document stands a chance.</p>
+      </div>
+    </div>
+    <table class="exp-table" style="margin-top:44px;">
+      <thead><tr><th>Category</th><th>Weight</th><th>What it measures</th></tr></thead>
+      <tbody>
+        <tr><td>Reading time</td><td>15%</td><td>Estimated minutes against the document's own stated stakes</td></tr>
+        <tr><td>Sentence complexity</td><td>15%</td><td>Clause length, nesting depth, subordinate clauses per sentence</td></tr>
+        <tr><td>Defined terms density</td><td>15%</td><td>Ratio of capitalized defined terms to plain nouns</td></tr>
+        <tr><td>Visual hierarchy</td><td>15%</td><td>Whether obligations, rights, and risks are visually distinct</td></tr>
+        <tr><td>Choice visibility</td><td>15%</td><td>Whether the reader's actual options are findable in under 10 seconds</td></tr>
+        <tr><td>Action clarity</td><td>15%</td><td>Whether a reader can state their next required action unprompted</td></tr>
+        <tr><td>Accessibility</td><td>10%</td><td>Contrast, font size, screen reader compatibility</td></tr>
+      </tbody>
+    </table>
+    <div class="cite">Weights above are an initial, experimenter-set methodology, not empirically derived. Refining them against comprehension outcomes, the way Experiment 001 tested one clause, is the next phase of this work.</div>
+  </div>
+</section>
+
+<div class="museum reveal" id="museum">
+  <section>
+    <div class="wrap-wide">
+      <span class="eyebrow">Exhibit F &middot; The File</span>
+      <h2 style="color:var(--paper);">Sixteen field notes. Click one open.</h2>
+      <div class="exhibit-list" id="exhibitList"></div>
+    </div>
+  </section>
+</div>
+
+<section class="experiments">
+  <div class="wrap-wide reveal">
+    <span class="eyebrow">Open Experiments</span>
+    <h2>Not polished. Public. Ongoing.</h2>
+    <p class="lede">This is research being done in the open, not a finished case study.</p>
+    <div class="exp-grid">
+      <div class="exp-card"><span class="exp-status running">Running</span><h4>Can emojis improve legal comprehension?</h4><p>Testing whether informal visual markers reduce the time to correctly answer a comprehension question about a clause.</p></div>
+      <div class="exp-card"><span class="exp-status recruiting">Recruiting</span><h4>Can illustrations replace defined terms?</h4><p>A/B testing plain diagrams against dense definitional paragraphs for the same legal concept.</p></div>
+      <div class="exp-card"><span class="exp-status pilot">Pilot complete</span><h4>Can Gen Z understand NDAs better with timelines?</h4><p>Early results suggest sequence based layouts outperform clause numbered formats for first time signers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="researcher">
+  <div class="wrap-wide reveal">
+    <span class="eyebrow">Exhibit H</span>
+    <h2>About the researcher.</h2>
+    <div class="researcher">
+      <div class="researcher-mark">AG</div>
+      <div>
+        <h4>Ashwin Gupta</h4>
+        <div class="role">India-qualified Advocate &middot; Commercial &amp; Technology Law</div>
+        <p style="font-size:15px;color:var(--ink-dim);max-width:56ch;">Advocate working in commercial and technology law, previously a foreign attorney and paralegal at a law firm in Fukuoka, Japan, and an LL.M. candidate at Kyushu University as a MEXT Scholar, where this project's questions first took shape in Professor Erik P.M. Vermeulen's course on legal risk and design. The Human Law Project is an independent research initiative, run outside of and separate from any employer, focused on plain language legal design and how documents fail the people bound by them.</p>
+      </div>
+    </div>
+    <div class="cite" style="margin-top:34px;">Methodology notes, the Experiment 001 protocol, and raw materials are available on request. This project welcomes replication, correction, and disagreement; the numbers on this page are a starting point, not a conclusion.</div>
+  </div>
+</section>
+
+<div class="mission">
+  <div class="wrap">
+    <blockquote>&ldquo;No one should feel powerless reading documents about their own future.&rdquo;</blockquote>
+    <cite>The research mission, not a slogan</cite>
+  </div>
+</div>
+
+<footer>The Human Law Project &middot; Making Law Human</footer>
+
+<script>
+// progress bar
+window.addEventListener('scroll', ()=>{
+  const h = document.documentElement;
+  const pct = (h.scrollTop)/(h.scrollHeight - h.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+
+// reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:0.1});
+reveals.forEach(r=>io.observe(r));
+
+// count-up stats
+const nums = document.querySelectorAll('.num[data-count]');
+const io2 = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const target = +e.target.dataset.count;
+      let cur = 0;
+      const step = Math.max(1, Math.round(target/40));
+      const t = setInterval(()=>{
+        cur += step;
+        if(cur >= target){ cur = target; clearInterval(t); }
+        e.target.textContent = cur;
+      }, 20);
+      io2.unobserve(e.target);
+    }
+  });
+}, {threshold:0.4});
+nums.forEach(n=>io2.observe(n));
+
+// legal/human toggle — the signature interaction
+const btnLegal = document.getElementById('btnLegal');
+const btnHuman = document.getElementById('btnHuman');
+const docLegal = document.getElementById('docBlock');
+const docHuman = document.getElementById('docBlockHuman');
+btnLegal.addEventListener('click', ()=>{
+  btnLegal.classList.add('active'); btnHuman.classList.remove('active');
+  docLegal.style.display=''; docHuman.style.display='none';
+});
+btnHuman.addEventListener('click', ()=>{
+  btnHuman.classList.add('active'); btnLegal.classList.remove('active');
+  docHuman.style.display=''; docLegal.style.display='none';
+});
+
+// clause x-ray demo
+const demoBody = document.getElementById('demoBody');
+document.querySelectorAll('.swatch-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.swatch-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    demoBody.dataset.active = btn.dataset.c;
+  });
+});
+
+// reasonable time slider
+const rtSlider = document.getElementById('rtSlider');
+const rtFill = document.getElementById('rtFill');
+const rtLabel = document.getElementById('rtLabel');
+function updateRT(){
+  const v = +rtSlider.value;
+  let label;
+  if(v < 25){ label = "Dispute likelihood: low. Both sides roughly agree what \"reasonable\" means here."; }
+  else if(v < 55){ label = "Dispute likelihood: rising. One side is already assuming a much shorter window than the other."; }
+  else if(v < 80){ label = "Dispute likelihood: high. \"Reasonable\" has quietly become two incompatible promises."; }
+  else { label = "Dispute likelihood: this is now a legal proceeding, not a delivery date."; }
+  rtFill.style.width = v + '%';
+  rtLabel.textContent = label;
+}
+rtSlider.addEventListener('input', updateRT);
+updateRT();
+
+// exhibits — all 16 articles as case-file entries
+const exhibits = [
+  {n:"01", t:"The Hidden Refund", d:"A DJ subscription, a buried clause, and 120 dollars that explained an entire discipline better than fifty academic papers could.", body:"Buried in section sixteen of a music subscription's terms: integration limited to one specific brand of equipment. The customer service rep's closing line was that it was clearly stated in the terms I agreed to. This became the origin story for the whole project.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-makinglawhuman-activity-7304690730969575424-Nno3"},
+  {n:"02", t:"What Does This Mean?", d:"Watching a friend's contract turn from a wall of jargon into a question she could actually ask out loud.", body:"Legal design flips a power dynamic on its head: the radical notion that legal documents should make sense to the humans using them. The leap from \"I don't understand any of this\" to \"so my payment is due on the 15th\" is not just clarity, it is empowerment.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-makinglawhuman-legaldesign-activity-7307305811733622785-atv7"},
+  {n:"03", t:"No More Walls of Text", d:"We process visuals sixty thousand times faster than text. Contracts have not caught up.", body:"The question is not why make contracts visual, it is why we are still relying on dense, text heavy contracts at all. When a contract tells the story of what it actually does, the fine print stops needing to hide.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-legaldesign-makinglawhuman-activity-7308766757681340418-nHLm"},
+  {n:"04", t:"The Impossible NDA", d:"Rebuilt from scratch, same substance, a layout that works with human psychology instead of against it.", body:"Traditional legal formatting is built to repel human attention: dense paragraphs, endless walls of text, font sizes that require superhuman vision. The rebuild keeps every definition and obligation in full force, but adds visual hierarchy, spacing, and a layout the eye can actually follow.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-legaldesign-makinglawhuman-activity-7318087328902627329-9xT5"},
+  {n:"05", t:"The Layered Cake", d:"Step into the client's shoes, decode the real problem, then prototype and keep improving.", body:"Conventional law looks backward. Legal design looks forward. It is not about winning, it is about understanding, and about making complex human interactions feel human again.", url:"https://www.linkedin.com/posts/ashwin-gupta001_therelsabetterway-legaldesign-makinglawhuman-activity-7319954579301756928-4tJK"},
+  {n:"06", t:"Fifty Documents Later", d:"It was not shorter sentences. It was not icons. It was color.", body:"Blue checkboxes meant more completed forms. Red alerts, used right, meant fewer confused clients. A tiny yellow highlight meant more people actually reading their own rights. Color is not decoration in a legal document, it is direction.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-legaldesign-makinglawhuman-activity-7328691991154741248-GKSh"},
+  {n:"07", t:"Blue: The Quiet Overachiever", d:"Trustworthy was not the top response for blue. It was the dominant one.", body:"Blue helps people read faster, remember more, and feel at ease. Too little, it goes unnoticed. Too much, and the document reads like a birthday invitation instead of a contract that means something.", url:"https://www.linkedin.com/posts/ashwin-gupta001_legaldesign-colorpsychology-blue-activity-7334186680863571968-mcWY"},
+  {n:"08", t:"Red: The Fire Alarm", d:"Loud when needed, silent otherwise. That is the whole rule.", body:"Red triggers an immediate stress response, which is exactly why it should be rare. Save it for what actually matters: real deadlines, major liability shifts, deal breakers. If everything is urgent, nothing is.", url:"https://www.linkedin.com/posts/ashwin-gupta001_psychology-of-colors-red-activity-7340589948078563328-i-Zl"},
+  {n:"09", t:"Yellow: The Underestimated One", d:"People notice it eighty eight percent faster than most colors, but it never yells.", body:"A clause buried in paragraph forty seven goes unread. Highlight it in yellow, and suddenly it does not. Yellow does not warn, it guides, and that is the whole point of making law more human.", url:"https://www.linkedin.com/posts/ashwin-gupta001_psychology-of-colors-yellow-activity-7343515038663548928-a-XI"},
+  {n:"10", t:"Do I Need A Designer?", d:"Collaboration always helps. You do not need to wait for a design team to start.", body:"Legal design is not about aesthetics or fancy software, it is about making law work for people, and that starts with the people already trained to solve problems: lawyers. Redesign a form. Rewrite a clause. Start small.", url:"https://www.linkedin.com/posts/ashwin-gupta001_legaldesign-lawyerswhodesign-designthinking-activity-7349391717327917056-ejdZ"},
+  {n:"11", t:"The Silence Is The Failure", d:"When the questions stop and the client nods without understanding, that is not clarity.", body:"The legal industry has normalized confusion and called it standard. Legal design is not about lowering standards, it is about raising the bar for how people experience the law, feelings included.", url:"https://www.linkedin.com/posts/ashwin-gupta001_legaldesign-makinglawhuman-claritymatters-activity-7351134258930880513-8ZNv"},
+  {n:"12", t:"The Clause That Shouldn't Exist", d:"It exists because someone already crossed the line it describes. Enough times to need a clause.", body:"We have all been tempted to drop a wordy clause into an AI tool for a quick fix. One tiny shortcut feels harmless, until the mistake that should not happen already has, and the next one is waiting.", url:"https://www.linkedin.com/posts/ashwin-gupta001_ai-legaltech-law-activity-7366356574551875585-d5W8"},
+  {n:"13", t:"AI Is A Tool, Not A Scapegoat", d:"Confidential information: still your duty. AI outputs: still your job to check.", body:"A year ago, AI related clauses barely existed. Now they quietly define who checks the outputs, who carries the risk, and who pays when an AI confidently insists that two plus two equals banana.", url:"https://www.linkedin.com/posts/ashwin-gupta001_law-contracts-legaltech-activity-7369595145421275138-59k-"},
+  {n:"14", t:"Reasonable Is Not A Timeline", d:"Two weeks to you. Six months to them. In court, nobody knows.", body:"Vague contracts turn into drawn out projects and frustrated teams. The fix is not complicated: replace fluff with clarity, real dates, real numbers, real limits. It may feel too direct at first, but it prevents the headache of everyone quietly assuming something different.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-contracts-activity-7374686889989058560-7DhP"},
+  {n:"15", t:"Clauses Written To Outlive Their Purpose", d:"The contract ends. The deal dies. The clause is somehow still there.", body:"Forever does not protect anything. Secrets lose value, technology changes, companies disappear. A clause that outlives its purpose is not a safeguard, it is confusion with a signature on it.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-contracts-activity-7376830311072124928-z6NB"},
+  {n:"16", t:"Powerless", d:"On the gap between what AI can draft and what it will never understand.", body:"AI can draft a perfect contract. It will never know what it feels like to be on the other side of it, reading at midnight, too embarrassed to ask what a clause means because you already asked twice. No one should feel powerless reading documents about their own future. That gap is what this project exists to close.", url:"https://www.linkedin.com/posts/ashwin-gupta001_legaldesign-makinglawhuman-thereisabetterway-activity-7446916055421333504-uPDh"}
+];
+const list = document.getElementById('exhibitList');
+exhibits.forEach(ex=>{
+  const div = document.createElement('div');
+  div.className = 'exhibit';
+  div.innerHTML = `
+    <div class="exhibit-head">
+      <div class="ex-num">Exhibit ${ex.n}</div>
+      <div><h4>${ex.t}</h4><p>${ex.d}</p></div>
+      <div class="exhibit-chevron">+</div>
+    </div>
+    <div class="exhibit-body"><div class="exhibit-body-inner">${ex.body}<br><a class="exhibit-link" href="${ex.url}" target="_blank" rel="noopener">Read the original post &#8599;</a></div></div>
+  `;
+  div.querySelector('.exhibit-head').addEventListener('click', ()=>{ div.classList.toggle('open'); });
+  list.appendChild(div);
+});
+</script>
 </body>
 </html>
