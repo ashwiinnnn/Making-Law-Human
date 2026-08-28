@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Human Law Project</title>
+<title>Making Law Human</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600&display=swap');
 
@@ -56,10 +55,8 @@ img,video{max-width:100%;}
 .wrap{max-width:var(--container);margin:0 auto;padding:0 28px;}
 .wrap-wide{max-width:var(--container-wide);margin:0 auto;padding:0 28px;}
 
-/* progress */
 #progress{position:fixed;top:0;left:0;height:2px;background:var(--red);width:0%;z-index:300;transition:width .1s linear;}
 
-/* ===== NAV ===== */
 .tabnav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
 .tabnav-inner{max-width:var(--container-wide);margin:0 auto;display:flex;align-items:stretch;padding:0 28px;}
 .brand-mark{display:flex;align-items:center;flex-shrink:0;padding:0 20px 0 0;margin-right:12px;text-decoration:none;}
@@ -72,10 +69,11 @@ img,video{max-width:100%;}
   text-decoration:none;flex-shrink:0;transition:color .15s ease;position:relative;
 }
 .tabnav-links a:hover{color:var(--ink);}
+.tabnav-links a.current{color:var(--ink);}
+.tabnav-links a.current::after{transform:scaleX(1);}
 .tabnav-links a::after{content:'';position:absolute;left:15px;right:15px;bottom:0;height:2px;background:var(--red);transform:scaleX(0);transition:transform .18s ease;transform-origin:left;}
 .tabnav-links a:hover::after{transform:scaleX(1);}
 
-/* ===== HERO — big, quiet, the logo has the whole room ===== */
 .hero{
   min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:100px 24px 0;position:relative;text-align:center;overflow:hidden;background:#0a0a0a;
@@ -84,20 +82,47 @@ img,video{max-width:100%;}
 }
 .hero-jargon{position:absolute;inset:0;z-index:0;pointer-events:none;}
 .hero-jargon span{
-  position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.09em;
-  color:rgba(255,255,255,.22);text-transform:uppercase;white-space:nowrap;
-  transition:opacity .5s ease,filter .5s ease;filter:blur(0px);
+  position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.09em;
+  color:rgba(255,255,255,.14);text-transform:uppercase;white-space:nowrap;
+  transition:opacity .5s ease,filter .5s ease,color .3s ease;filter:blur(0px);
+  pointer-events:auto;cursor:pointer;
 }
+.hero-jargon span:hover{color:rgba(255,255,255,.5);}
+.hero-jargon span.humanized{
+  color:var(--orange) !important;text-decoration:line-through;text-decoration-thickness:1px;
+  opacity:.5 !important;filter:none !important;cursor:default;
+}
+.jargon-tip{
+  position:absolute;left:50%;top:100%;transform:translateX(-50%) translateY(-4px);margin-top:5px;
+  background:#fff;color:var(--ink);font-family:var(--sans);font-weight:600;font-size:10px;
+  letter-spacing:0;text-transform:none;padding:4px 9px;border-radius:3px;white-space:nowrap;
+  opacity:0;animation:tipPop .35s ease forwards;pointer-events:none;z-index:2;
+}
+@keyframes tipPop{to{opacity:1;transform:translateX(-50%) translateY(0);}}
+.hero-counter{
+  position:relative;z-index:1;font-family:var(--mono);font-size:10.5px;color:#6a6864;
+  letter-spacing:.06em;text-transform:uppercase;margin-top:8px;
+}
+.hero-counter span{color:var(--orange);font-weight:700;}
 
-.hero-eyebrow{position:relative;z-index:1;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8c8a84;margin-bottom:44px;}
-.hero-logo-stage{position:relative;z-index:1;width:100%;max-width:1360px;margin:0 auto;perspective:1400px;}
+.hero-eyebrow{position:relative;z-index:1;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8c8a84;margin-bottom:18px;}
+.hero-tags{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:40px;}
+.hero-tags span{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#a6a49d;border:1px solid #2a2926;padding:6px 13px;border-radius:12px;}
+.hero-logo-stage{position:relative;z-index:1;width:100%;max-width:1360px;margin:0 auto;perspective:1400px;pointer-events:none;}
 .hero-logo-video-wrap{width:100%;transform-style:preserve-3d;will-change:transform;transition:transform .25s cubic-bezier(.2,.7,.3,1);}
 .hero-logo-video-wrap video{display:block;width:100%;height:auto;}
 .hero-logo-video-wrap.reveal{opacity:0;transform:scale(.9);filter:blur(14px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1);}
 .hero-logo-video-wrap.reveal.in{opacity:1;transform:scale(1);filter:blur(0px);}
 .hero-logo-text{display:flex;flex-direction:column;align-items:center;line-height:.92;}
 .hero-logo-text .hlt-line1{font-family:var(--sans);font-weight:900;font-size:clamp(46px,10vw,120px);letter-spacing:-0.04em;color:#fff;}
-.hero-logo-text .hlt-line2{font-family:var(--sans);font-weight:900;font-size:clamp(46px,10vw,120px);letter-spacing:-0.04em;color:var(--orange);}
+.hero-logo-text .hlt-line2{
+  font-family:var(--sans);font-weight:900;font-size:clamp(46px,10vw,120px);letter-spacing:-0.04em;
+  background:linear-gradient(100deg,var(--orange) 30%,#ffb27a 45%,var(--orange) 60%);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:logoShimmer 5s ease-in-out .8s infinite;
+}
+@keyframes logoShimmer{0%{background-position:100% 0;}50%{background-position:0% 0;}100%{background-position:100% 0;}}
+@media (prefers-reduced-motion: reduce){.hero-logo-text .hlt-line2{animation:none;}}
 .hero-subline{
   position:relative;z-index:1;font-size:clamp(18px,2.3vw,24px);color:#b0aea8;margin-top:32px;
   letter-spacing:-0.005em;max-width:42ch;text-align:center;
@@ -105,18 +130,6 @@ img,video{max-width:100%;}
 .hero-subline strong{color:#fff;font-weight:600;}
 .hero-subline .w{display:inline-block;opacity:0;transform:translateY(10px);filter:blur(3px);transition:opacity .5s ease,transform .5s ease,filter .5s ease;}
 .hero-subline.in .w{opacity:1;transform:translateY(0);filter:blur(0);}
-.hero-marquee{
-  position:relative;z-index:1;width:100%;overflow:hidden;border-top:1px solid #2a2926;margin-top:52px;
-  padding:16px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-}
-.hero-marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite;}
-.hero-marquee-track span{
-  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8c8a84;
-  padding:0 22px;white-space:nowrap;display:flex;align-items:center;gap:22px;
-}
-.hero-marquee-track span::after{content:'\2014';color:var(--orange);}
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .hero-scroll-cue{
   position:relative;z-index:1;padding:24px 0 30px;
   display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;
@@ -127,8 +140,7 @@ img,video{max-width:100%;}
 .hero-scroll-cue svg{width:14px;height:14px;animation:scrollBob 2s ease-in-out infinite;}
 @keyframes scrollBob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
 
-/* ===== INTRO ===== */
-.intro{padding:0 24px 96px;}
+.intro{padding:120px 24px 96px;}
 .intro-inner{max-width:var(--container);margin:0 auto;width:100%;}
 .intro .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:22px;}
 .intro h1{
@@ -146,7 +158,6 @@ img,video{max-width:100%;}
 }
 .intro-cta a.start-link:hover{color:var(--red);border-color:var(--red);}
 
-/* ===== REDESIGN TOGGLE (signature interaction) ===== */
 .redesign-block{margin-top:64px;border:1px solid var(--line);}
 .redesign-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--line);background:var(--paper-2);flex-wrap:wrap;gap:12px;}
 .redesign-bar .filetitle{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);}
@@ -176,7 +187,6 @@ img,video{max-width:100%;}
 
 .redesign-caption{padding:0 40px 32px;font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);line-height:1.6;}
 
-/* ===== SECTION SHELL — consistent left-aligned rhythm ===== */
 section{padding:120px 0;border-top:1px solid var(--line);}
 #origin{background:var(--gold-tint);border-top:none;}
 #rt{background:var(--red-tint);border-top:none;}
@@ -190,13 +200,11 @@ section.tight{padding:88px 0;}
 h2{font-family:var(--display);font-size:clamp(30px,3.8vw,46px);font-weight:800;letter-spacing:-0.02em;margin-bottom:24px;max-width:20ch;line-height:1.14;text-align:left;}
 .lede{font-family:var(--sans);font-size:17px;color:var(--ink-dim);max-width:60ch;margin-bottom:44px;text-align:justify;line-height:1.75;}
 
-/* ===== ORIGIN PROSE ===== */
 .prose p{font-size:17px;margin-bottom:20px;max-width:66ch;line-height:1.75;}
 .prose p.pull{font-family:var(--display);font-size:24px;font-weight:500;font-style:italic;text-align:left;line-height:1.45;max-width:26ch;margin:40px 0;}
 .origin-illus{margin:48px 0;display:flex;justify-content:center;}
 .origin-illus svg{width:100%;height:auto;max-width:640px;display:block;}
 
-/* ===== REASONABLE TIME ===== */
 .rt-box{border:1px solid var(--line);background:var(--paper-2);padding:40px;margin-top:40px;}
 .rt-clause{font-family:var(--display);font-size:19px;font-style:italic;font-weight:500;margin-bottom:32px;line-height:1.6;}
 .rt-clause .fill{color:var(--red);font-style:normal;font-family:var(--mono);font-size:16px;}
@@ -208,34 +216,35 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .rt-meter-fill{height:100%;background:linear-gradient(90deg,var(--red-tint),var(--red));width:20%;transition:width .15s ease;}
 .rt-meter-label{font-size:13px;font-family:var(--mono);color:var(--ink-dim);}
 
-/* ===== QUESTIONS ===== */
 .questions{border-top:1px solid var(--line);}
 .question{padding:28px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-size:clamp(19px,2.4vw,26px);font-weight:500;display:flex;gap:24px;align-items:baseline;transition:.2s;text-align:left;}
 .question:hover{color:var(--red);}
 .question span{font-size:12px;color:var(--ink-dim);font-weight:500;white-space:nowrap;font-family:var(--mono);}
 
-/* ===== DISCIPLINES ===== */
-/* ===== ROOMS DIAGRAM (four rooms, self-expanding, single component) ===== */
-.rooms-diagram{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--ink);border:3px solid var(--ink);margin:36px auto 8px;max-width:640px;}
-.room{background:var(--paper);padding:24px;cursor:pointer;transition:grid-column .3s ease,background .2s ease;--card-c:var(--red);}
-.room:nth-child(1){--card-c:var(--red);}
-.room:nth-child(2){--card-c:var(--gold);}
-.room:nth-child(3){--card-c:var(--orange);}
-.room:nth-child(4){--card-c:var(--gold);}
-.room.open{grid-column:1 / -1;background:var(--paper-2);}
-.room-head{display:flex;align-items:center;gap:16px;}
-.room-head svg{width:26px;height:26px;color:var(--card-c);flex-shrink:0;transition:transform .3s cubic-bezier(.2,.8,.3,1);}
-.room.open .room-head svg{transform:scale(1.15) rotate(-6deg);}
-.room-label{font-family:var(--display);font-weight:800;font-size:clamp(14px,2vw,18px);flex:1;letter-spacing:-0.01em;}
-.room-plus{font-size:22px;color:var(--card-c);font-weight:300;transition:transform .3s ease;flex-shrink:0;}
-.room.open .room-plus{transform:rotate(45deg);}
-.room-tags{max-height:0;overflow:hidden;transition:max-height .35s ease;display:flex;flex-wrap:wrap;gap:8px;}
-.room.open .room-tags{max-height:120px;margin-top:16px;}
-.room-tags span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-dim);border:1px solid var(--line);padding:5px 11px;border-radius:12px;background:var(--paper);}
-@media (max-width:640px){.rooms-diagram{grid-template-columns:1fr;}.room.open{grid-column:1;}}
+.rooms-intro{max-width:70ch;}
+.rooms-intro p{font-size:17px;line-height:1.75;margin-bottom:18px;color:var(--ink-dim);}
+.venn-wrap{max-width:620px;margin:40px auto 0;}
+.venn-svg{width:100%;height:auto;display:block;overflow:visible;}
+.venn-c{
+  fill-opacity:.55;stroke-width:2;cursor:pointer;mix-blend-mode:multiply;
+  transition:fill-opacity .3s ease,transform .3s cubic-bezier(.2,.8,.3,1);
+  transform-box:fill-box;transform-origin:center;
+}
+.venn-c[data-i="0"]{fill:var(--red);stroke:var(--red);}
+.venn-c[data-i="1"]{fill:var(--gold);stroke:var(--gold);}
+.venn-c[data-i="2"]{fill:var(--orange);stroke:var(--orange);}
+.venn-c[data-i="3"]{fill:var(--blue);stroke:var(--blue);}
+.venn-c:hover,.venn-c.active{fill-opacity:.8;transform:scale(1.03);}
+.venn-label{font-family:var(--mono);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;fill:var(--ink-dim);text-anchor:middle;cursor:pointer;transition:fill .2s ease;}
+.venn-label:hover,.venn-label.active{fill:var(--ink);}
+.venn-center{font-family:var(--display);font-size:17px;font-weight:800;fill:#fff;text-anchor:middle;pointer-events:none;}
+.venn-detail{margin-top:8px;max-width:520px;margin-left:auto;margin-right:auto;}
+.venn-detail-panel{display:none;text-align:center;padding:24px 0 0;}
+.venn-detail-panel.active{display:block;}
+.venn-detail-panel h4{font-family:var(--display);font-weight:800;font-size:20px;margin-bottom:14px;}
+.venn-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.venn-tags span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-dim);border:1px solid var(--line);padding:5px 11px;border-radius:12px;}
 
-/* ===== FRAMEWORK ===== */
-/* ===== FRAMEWORK STAIRCASE (interactive diagram) ===== */
 .stair-diagram{display:flex;align-items:flex-end;gap:2px;margin:44px 0 8px;border-bottom:2px solid var(--ink);}
 .stair-step{
   flex:1;height:var(--h);background:var(--paper-2);border:1px solid var(--line);border-bottom:none;
@@ -273,7 +282,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .layer h4{font-family:var(--display);font-size:19px;font-weight:600;margin-bottom:6px;}
 .layer p{font-size:17px;color:var(--ink-dim);max-width:52ch;line-height:1.75;}
 
-/* ===== AI SECTION (dark) ===== */
 #ai{background:var(--ink);color:var(--paper-2);border-top:none;position:relative;overflow:hidden;}
 #ai::before{
   content:'';position:absolute;top:-20%;right:-10%;width:520px;height:520px;border-radius:50%;
@@ -284,7 +292,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 #ai h2{color:var(--paper);}
 #ai .lede{color:#a6a49d;}
 
-/* ===== COLOR PSYCHOLOGY (full-bleed color, content-accurate) ===== */
 .color-section{padding:100px 0;border-top:1px solid var(--line);}
 .color-section.blue{background:var(--content-blue);color:#fff;border-top:none;}
 .color-section.red{background:var(--red);color:#fff;border-top:none;}
@@ -349,7 +356,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .cite{font-family:var(--mono);font-size:11px;color:var(--ink-dim);border-top:1px dashed var(--line);padding-top:12px;margin-top:18px;max-width:64ch;line-height:1.7;}
 .cite b{color:var(--ink);font-weight:700;}
 
-/* ===== CLAUSE X-RAY DEMO ===== */
 .demo{background:var(--ink);color:var(--paper-2);padding:120px 0;border-top:1px solid var(--line);position:relative;overflow:hidden;}
 .demo::before{
   content:'';position:absolute;top:10%;right:-12%;width:440px;height:440px;border-radius:50%;
@@ -374,10 +380,8 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .demo-body[data-active="yellow"] mark.tag-yellow{background:var(--content-yellow);color:#111;}
 .demo-caption{padding:16px 38px 32px;font-size:11.5px;color:#8c8a84;font-family:var(--mono);border-top:1px solid #333230;line-height:1.6;}
 
-/* ===== HUMAN LAW INDEX ===== */
-.hli-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:start;margin-top:44px;}
+.hli-tool{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:start;margin-top:44px;}
 
-/* ===== DOCUMENT UPLOADER (real, client-side) ===== */
 .uploader-drop{
   border:1.5px dashed var(--line);padding:26px 20px;text-align:center;cursor:pointer;
   transition:border-color .2s ease,background .2s ease;color:var(--ink-dim);
@@ -388,7 +392,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .uploader-drop strong{color:var(--ink);}
 #uploaderText{
   width:100%;margin-top:14px;padding:16px;border:1px solid var(--line);background:var(--paper-2);
-  font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink);min-height:120px;resize:vertical;
+  font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink);min-height:160px;resize:vertical;
 }
 #uploaderText:focus{outline:none;border-color:var(--red);}
 .uploader-btn{
@@ -397,39 +401,36 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
   transition:background .2s ease,color .2s ease;
 }
 .uploader-btn:hover{background:var(--red);border-color:var(--red);}
-.uploader-result{display:none;margin-top:22px;padding-top:22px;border-top:1px solid var(--line);}
-.uploader-result.show{display:block;}
-.uploader-score{display:flex;align-items:baseline;gap:10px;margin-bottom:18px;}
-.uploader-score span:first-child{font-family:var(--display);font-size:52px;font-weight:800;color:var(--red);line-height:1;}
-.uploader-score-label{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;line-height:1.4;}
-.uploader-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:18px;}
-.uploader-stats div{background:var(--paper);padding:14px 10px;text-align:center;}
-.uploader-stats span{display:block;font-family:var(--mono);font-weight:700;font-size:18px;color:var(--ink);}
-.uploader-stats label{font-family:var(--mono);font-size:9.5px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.04em;}
-.uploader-note{font-size:14px;color:var(--ink-dim);line-height:1.6;}
 .uploader-caveat{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);margin-top:16px;line-height:1.6;}
-.hli-panel{border:1px solid var(--line);background:var(--paper-2);padding:36px;}
-.hli-panel h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:24px;}
-.hli-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:4px 6px;margin-left:-6px;border-radius:3px;transition:background .15s ease;cursor:default;}
+
+.hli-output{border:1px solid var(--line);background:var(--paper-2);padding:28px 32px;}
+.hli-score-big{display:flex;align-items:baseline;gap:10px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line);}
+.hli-score-big span:first-child{font-family:var(--display);font-size:52px;font-weight:800;color:var(--red);line-height:1;transition:color .3s ease;}
+.hli-score-label{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;line-height:1.4;}
+.hli-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:8px;margin-left:6px;vertical-align:1px;background:var(--line);color:var(--ink-dim);}
+.hli-tag.live{background:var(--red);color:#fff;}
+.hli-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:4px 6px;margin-left:-6px;border-radius:3px;transition:background .15s ease;cursor:default;}
 .hli-bar-row:hover{background:var(--paper);}
-.hli-bar-row:hover .hli-bar-fill{filter:brightness(.85);}
-.hli-bar-row:hover .hli-bar-score{color:var(--red);}
-.hli-bar-row .bname{font-size:13px;width:130px;flex-shrink:0;}
+.hli-bar-row .bname{font-size:13px;width:190px;flex-shrink:0;}
 .hli-bar-track{flex:1;height:8px;background:var(--line);border-radius:6px;overflow:hidden;}
 .hli-bar-fill{height:100%;transition:width .5s cubic-bezier(.2,.8,.2,1);}
-.hli-bar-score{font-family:var(--mono);font-size:13px;width:32px;text-align:right;flex-shrink:0;transition:color .15s ease;}
-.radar-wrap{margin-top:32px;padding-top:28px;border-top:1px solid var(--line);}
+.hli-bar-score{font-family:var(--mono);font-size:13px;width:32px;text-align:right;flex-shrink:0;}
+.hli-bar-row.na{opacity:.45;}
+.hli-bar-row.na .hli-bar-track{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 8px);}
+.radar-wrap{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);}
 .radar-wrap h5{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:16px;}
-.radar-wrap svg{width:100%;max-width:230px;display:block;margin:0 auto;}
-.radar-data{stroke-dasharray:320;stroke-dashoffset:320;opacity:0;transform-origin:90px 90px;}
-.reveal.in .radar-data{animation:radarDraw 1.1s .2s cubic-bezier(.2,.7,.2,1) forwards;}
-@keyframes radarDraw{0%{stroke-dashoffset:320;opacity:0;transform:scale(.85);}20%{opacity:1;}100%{stroke-dashoffset:0;opacity:1;transform:scale(1);}}
-#hubNode,#loupe{transition:transform .3s cubic-bezier(.3,.8,.3,1);transform-box:fill-box;transform-origin:center;cursor:pointer;}
-#hubNode:hover,#loupe:hover{transform:scale(1.15);}
-@media (max-width:780px){.hli-grid{grid-template-columns:1fr;gap:40px;}}
+.radar-wrap svg{width:100%;max-width:200px;display:block;margin:0 auto;}
+.radar-data{transition:points .4s ease;}
+.hli-verdict{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);}
+.hli-verdict-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px;}
+.hli-verdict-text{font-family:var(--display);font-weight:600;font-style:italic;font-size:19px;line-height:1.45;color:var(--ink);}
+.hli-verdict-text b{font-style:normal;font-weight:800;color:var(--red);}
+.hli-verdict-stats{display:flex;gap:22px;margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--ink-dim);flex-wrap:wrap;}
+.hli-verdict-stats b{display:block;font-family:var(--display);font-size:20px;font-weight:800;color:var(--ink);}
+@media (max-width:780px){.hli-tool{grid-template-columns:1fr;gap:40px;}}
 
-/* ===== NAV GRID (where to start) ===== */
-/* ===== FLIP CARDS (Where To Start — single interactive nav) ===== */
+.board-meta{display:flex;gap:40px;flex-wrap:wrap;margin:8px 0 8px;padding-bottom:36px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--ink-dim);}
+.board-meta b{display:block;font-family:var(--display);font-size:26px;font-weight:800;color:var(--ink);}
 .flip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
 .flip-card{perspective:900px;text-decoration:none;color:inherit;display:block;aspect-ratio:1;}
 .flip-inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d;}
@@ -447,7 +448,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 @media (max-width:780px){.flip-grid{grid-template-columns:repeat(2,1fr);}}
 @media (hover:none){.flip-inner{transition:none;}.flip-card:active .flip-inner{transform:rotateY(180deg);}}
 
-/* ===== POSTS (dark) ===== */
 .museum{background:var(--ink);color:var(--paper-2);border-top:none;position:relative;overflow:hidden;}
 .museum::before{
   content:'';position:absolute;bottom:-15%;left:-8%;width:480px;height:480px;border-radius:50%;
@@ -471,7 +471,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .exhibit-link:hover{border-color:var(--red);}
 @media (max-width:640px){.exhibit-head{grid-template-columns:34px 1fr 20px;}.exhibit-body-inner{padding-left:46px;}}
 
-/* ===== EXPERIMENTS ===== */
 .experiments{background:var(--paper-2);}
 .exp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px;}
 .exp-card{background:var(--paper);padding:30px;transition:transform .2s ease,box-shadow .2s ease;position:relative;z-index:1;}
@@ -484,7 +483,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .exp-status.pilot::before{background:var(--ink);}
 .exp-card p{font-size:17px;color:var(--ink-dim);line-height:1.75;}
 
-/* ===== EXPERIMENT TABLE ===== */
 .exp-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px;}
 .exp-table th,.exp-table td{border:1px solid var(--line);padding:14px 18px;text-align:left;}
 .exp-table th{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:400;}
@@ -492,7 +490,11 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .exp-meta{display:flex;gap:40px;flex-wrap:wrap;margin:32px 0;font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);}
 .exp-meta b{color:var(--ink);display:block;font-size:22px;font-family:var(--display);font-weight:600;}
 
-/* ===== RESEARCHER ===== */
+.about-teaser{display:grid;grid-template-columns:100px 1fr;gap:32px;align-items:start;margin-top:32px;}
+.about-teaser h4{font-family:var(--display);font-size:19px;font-weight:800;margin-bottom:6px;}
+.about-teaser .role{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-bottom:14px;text-transform:uppercase;letter-spacing:.03em;}
+.about-teaser p{font-size:16px;color:var(--ink-dim);max-width:60ch;line-height:1.7;margin-bottom:16px;}
+@media (max-width:520px){.about-teaser{grid-template-columns:1fr;}}
 .researcher{display:grid;grid-template-columns:110px 1fr;gap:36px;align-items:start;margin-top:24px;}
 .researcher-mark{width:84px;height:84px;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:26px;font-weight:600;background:var(--paper);}
 .researcher h4{font-family:var(--display);font-size:20px;font-weight:600;margin-bottom:6px;}
@@ -502,7 +504,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .rbadge svg{width:13px;height:13px;flex-shrink:0;opacity:.75;}
 @media (max-width:520px){.researcher{grid-template-columns:1fr;}}
 
-/* ===== MISSION CLOSE ===== */
 .mission{
   text-align:center;padding:170px 24px;background:#0a0a0a;position:relative;overflow:hidden;
   background-image:radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
@@ -515,6 +516,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .mission:hover .mission-spotlight{opacity:1;}
 .mission-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;}
 .mission blockquote{font-family:var(--display);font-size:clamp(30px,5.4vw,58px);font-weight:800;letter-spacing:-0.02em;max-width:16ch;margin:0 auto 32px;line-height:1.18;color:#fff;}
+.mission-mark-text{background:var(--yellow);color:var(--ink);padding:0 6px;border-radius:2px;font-style:normal;}
 .mission blockquote .w{display:inline-block;opacity:0;transform:translateY(14px);filter:blur(4px);transition:opacity .6s ease,transform .6s ease,filter .6s ease;}
 .mission.in blockquote .w{opacity:1;transform:translateY(0);filter:blur(0);}
 .mission cite{position:relative;z-index:1;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8c8a84;font-style:normal;}
@@ -534,7 +536,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
 
 <nav class="tabnav">
   <div class="tabnav-inner">
-    <a href="#top" class="brand-mark" aria-label="Making Law Human — home"><span class="brand-mark-text">making law <em>human</em></span></a>
+    <a href="#top" class="brand-mark" aria-label="Making Law Human home"><span class="brand-mark-text">making law <em>human</em></span></a>
     <div class="tabnav-links">
     <a href="#origin">The Problem</a>
     <a href="#experiment">The Experiment</a>
@@ -550,38 +552,21 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
 
 <div class="hero" id="top">
   <div class="hero-jargon" id="heroJargon">
-    <span style="left:6%;top:12%;">Notwithstanding</span>
-    <span style="left:91%;top:10%;">Whereas</span>
-    <span style="left:16%;top:5%;">Party of the First Part</span>
-    <span style="left:74%;top:5%;">Subject to Section 4.2(b)</span>
-    <span style="left:2%;top:38%;">Aforesaid</span>
-    <span style="left:96%;top:40%;">Force Majeure</span>
-    <span style="left:9%;top:76%;">Heretofore</span>
-    <span style="left:88%;top:74%;">Indemnify</span>
-    <span style="left:22%;top:93%;">In Perpetuity</span>
-    <span style="left:72%;top:93%;">Severability</span>
-    <span style="left:38%;top:4%;">Hereinafter</span>
-    <span style="left:58%;top:96%;">Pursuant to Clause 9</span>
-    <span style="left:2%;top:62%;">Sole Discretion</span>
-    <span style="left:95%;top:62%;">Governing Law</span>
-    <span style="left:32%;top:97%;">Without Prejudice</span>
-    <span style="left:64%;top:4%;">Joint and Several</span>
-    <span style="left:1%;top:20%;">Time Is of the Essence</span>
-    <span style="left:97%;top:22%;">Null and Void</span>
+    <span style="left:6%;top:20%;" data-plain="Because">Whereas</span>
+    <span style="left:10%;top:68%;" data-plain="Act of God">Force Majeure</span>
+    <span style="left:88%;top:28%;" data-plain="Cancelled">Null and Void</span>
+    <span style="left:84%;top:76%;" data-plain="Not allowed to do that">Ultra Vires</span>
+    <span style="left:46%;top:12%;" data-plain="Until now">Heretofore</span>
+    <span style="left:50%;top:88%;" data-plain="Cover the cost if it goes wrong">Indemnify</span>
+    <span style="left:18%;top:44%;" data-plain="Fair pay for work done">Quantum Meruit</span>
+    <span style="left:76%;top:52%;" data-plain="Don't be late">Time Is of the Essence</span>
   </div>
-  <div class="hero-eyebrow reveal">The Human Law Project</div>
   <div class="hero-logo-stage" id="heroStage">
   <div class="hero-logo-video-wrap reveal" id="heroLogoWrap">
-      <div class="hero-logo-text"><span class="hlt-line1">making law</span><span class="hlt-line2">human</span></div>
+      <div class="hero-logo-text"><span class="hlt-line1" id="hltLine1">making law</span><span class="hlt-line2" id="hltLine2">human</span></div>
   </div>
   </div>
-  <p class="hero-subline reveal" id="heroSubline"><span class="w">A</span> <span class="w">research</span> <span class="w">project</span> <span class="w">on</span> <span class="w">making</span> <span class="w">the</span> <span class="w">law</span> <span class="w"><strong>legible</strong></span> <span class="w">&mdash;</span> <span class="w">starting</span> <span class="w">with</span> <span class="w">the</span> <span class="w">fine</span> <span class="w">print</span> <span class="w">nobody</span> <span class="w">reads.</span></p>
-  <div class="hero-marquee reveal">
-    <div class="hero-marquee-track">
-      <span>Legal Design</span><span>Plain Language</span><span>Human Comprehension</span><span>Clause By Clause</span><span>Making Law Human</span>
-      <span>Legal Design</span><span>Plain Language</span><span>Human Comprehension</span><span>Clause By Clause</span><span>Making Law Human</span>
-    </div>
-  </div>
+  <p class="hero-subline reveal" id="heroSubline"><span class="w">A</span> <span class="w">research</span> <span class="w">project</span> <span class="w">on</span> <span class="w">making</span> <span class="w">the</span> <span class="w">law</span> <span class="w"><strong>legible</strong></span> <span class="w">starting</span> <span class="w">with</span> <span class="w">the</span> <span class="w">fine</span> <span class="w">print</span> <span class="w">nobody</span> <span class="w">reads.</span></p>
   <div class="hero-scroll-cue">
     <span>Scroll</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v15M6 13l6 6 6-6"/></svg>
@@ -590,7 +575,6 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
 
 <div class="intro">
   <div class="intro-inner">
-    <div class="kicker reveal">Legal Design Research</div>
     <h1 class="reveal">Nobody reads<br>the <span class="strike">terms and conditions</span>.<br>They read what's <mark>left of them.</mark></h1>
     <p class="sub reveal">A research project on why law is unreadable by design, and what happens when someone actually sits down and redesigns it. Built from a year of field notes, one clause at a time, by someone who has been angry about a contract more than once.</p>
     <div class="intro-cta reveal"><a href="#origin" class="start-link">Start reading &rarr;</a></div>
@@ -605,7 +589,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
       </div>
       <div class="redesign-content">
         <div class="doc legal" id="docBlock">
-          <div class="doc-head">Clause 16.2(a) &mdash; Software Integration and Warranty Disclaimer</div>
+          <div class="doc-head">Clause 16.2(a) Software Integration and Warranty Disclaimer</div>
           <p><span class="doc-clause-num">16.2(a)</span> Notwithstanding anything to the contrary contained herein, the Licensor makes no representation, warranty, or guarantee, whether express or implied, that the Licensed Software shall be compatible, interoperable, or otherwise capable of integration with any hardware, equipment, or peripheral device not expressly manufactured, licensed, or authorized by Licensor or its designated affiliates, and any such compatibility, where it may incidentally occur, shall not be construed as creating any obligation, warranty, or continuing duty on the part of the Licensor whatsoever.</p>
           <p><span class="doc-clause-num">16.2(b)</span> Licensee acknowledges and agrees that integration is expressly limited to hardware bearing the Licensor's registered trademark, and that any attempt to utilize the Licensed Software in conjunction with third party or non-conforming equipment is undertaken entirely at Licensee's own risk, cost, and expense, and Licensor shall bear no liability, financial or otherwise, arising therefrom, including but not limited to any claim for refund, however such claim may be characterized.</p>
         </div>
@@ -625,7 +609,13 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   <div class="wrap-wide">
     <span class="eyebrow">Where To Start</span>
     <h2>Eight ways into the same project.</h2>
-    <p class="lede">Pick a thread. Each one leads back to the same origin story, just from a different angle.</p>
+    <p class="lede">Pick a thread. Each one leads back to the same origin story, just from a different angle. There's no required order here, the site is built to be read in fragments, the way most people actually read anything.</p>
+    <div class="board-meta">
+      <div><b>17</b>posts published</div>
+      <div><b>1</b>formal experiment run</div>
+      <div><b>4</b>disciplines involved</div>
+      <div><b>0</b>required reading order</div>
+    </div>
     <div class="flip-grid">
       <a href="#origin" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">01</span><span class="flip-title">The Problem</span></div><div class="flip-back"><span class="flip-desc">Origin story</span><span class="flip-arrow">&rarr;</span></div></div></a>
       <a href="#experiment" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">02</span><span class="flip-title">The Experiment</span></div><div class="flip-back"><span class="flip-desc">30 readers, one clause</span><span class="flip-arrow">&rarr;</span></div></div></a>
@@ -644,7 +634,6 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     <span class="eyebrow">Origin</span>
     <div class="origin-illus">
       <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three panels: signing up, nothing works, the buried clause">
-        <!-- panel 1: sign up -->
         <g>
           <rect x="0" y="10" width="180" height="150" fill="none" stroke="var(--ink)" stroke-width="2"/>
           <rect x="18" y="55" width="70" height="46" rx="5" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.6"/>
@@ -652,9 +641,8 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
           <circle cx="30" cy="90" r="4" fill="var(--red)"/>
           <path d="M100 78h48M132 66l16 12-16 12" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           <text x="18" y="135" font-family="Space Mono, monospace" font-size="10" fill="var(--ink-dim)">3 clicks. $120.</text>
-          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">01 &mdash; SIGN UP</text>
+          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">01 SIGN UP</text>
         </g>
-        <!-- panel 2: nothing works -->
         <g transform="translate(230,0)">
           <rect x="0" y="10" width="180" height="150" fill="none" stroke="var(--ink)" stroke-width="2"/>
           <circle cx="55" cy="82" r="26" fill="none" stroke="var(--ink)" stroke-width="2"/>
@@ -662,9 +650,8 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
           <path d="M100 82h48" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4"/>
           <path d="M132 70l16 12-16 12" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           <text x="18" y="135" font-family="Space Mono, monospace" font-size="10" fill="var(--ink-dim)">Nothing connects.</text>
-          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">02 &mdash; NOTHING WORKS</text>
+          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">02 NOTHING WORKS</text>
         </g>
-        <!-- panel 3: the buried clause -->
         <g transform="translate(460,0)">
           <rect x="0" y="10" width="180" height="150" fill="none" stroke="var(--ink)" stroke-width="2"/>
           <line x1="20" y1="40" x2="140" y2="40" stroke="var(--ink-dim)" stroke-width="1.5"/>
@@ -675,7 +662,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
           <circle cx="120" cy="74" r="26" fill="none" stroke="var(--ink)" stroke-width="2" id="loupe"/>
           <line x1="139" y1="93" x2="158" y2="112" stroke="var(--ink)" stroke-width="4" stroke-linecap="round" id="loupeHandle"/>
           <text x="18" y="135" font-family="Space Mono, monospace" font-size="10" fill="var(--red)">Section 16. Buried.</text>
-          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">03 &mdash; THE CLAUSE</text>
+          <text x="18" y="26" font-family="Space Mono, monospace" font-size="9" fill="var(--ink-dim)" letter-spacing="1">03 THE CLAUSE</text>
         </g>
       </svg>
     </div>
@@ -745,39 +732,39 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   <div class="wrap-wide reveal">
     <span class="eyebrow">Not Topics. Disciplines.</span>
     <h2>The work keeps falling into the same four rooms.</h2>
-    <p class="lede">Every experiment on this page belongs to one of four fields at once. Click a room to open it.</p>
-    <div class="rooms-diagram" id="roomsDiagram">
-      <div class="room open" data-i="0">
-        <div class="room-head">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2a5.5 5.5 0 0 0-3 10.1V16a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3.9A5.5 5.5 0 0 0 9.5 2z"/><path d="M8 22h3"/></svg>
-          <span class="room-label">Cognitive Psychology</span>
-          <span class="room-plus">+</span>
-        </div>
-        <div class="room-tags"><span>Color</span><span>Memory</span><span>Attention</span><span>Decision making</span><span>Cognitive load</span><span>Reading behaviour</span></div>
+    <p class="lede">Every experiment on this page belongs to one of four fields at once, usually all four. Click a circle.</p>
+    <div class="rooms-intro">
+      <p>None of these were chosen in advance. They are just where the questions this project keeps asking happen to already have names, literatures, and decades of prior work attached to them. Most legal design writing picks one field and stays there. The premise here is that a document fails or succeeds at the intersection of all four, not inside any single one of them, which is why the diagram below overlaps instead of separates.</p>
+    </div>
+    <div class="venn-wrap">
+      <svg viewBox="0 0 640 480" class="venn-svg" id="vennSvg">
+        <circle class="venn-c" data-i="0" cx="250" cy="180" r="135"/>
+        <circle class="venn-c" data-i="1" cx="410" cy="180" r="135"/>
+        <circle class="venn-c" data-i="2" cx="250" cy="320" r="135"/>
+        <circle class="venn-c" data-i="3" cx="410" cy="320" r="135"/>
+        <text class="venn-label" data-i="0" x="130" y="100">Cognitive<tspan x="130" dy="18">Psychology</tspan></text>
+        <text class="venn-label" data-i="1" x="530" y="100">Human-Centered<tspan x="530" dy="18">Law</tspan></text>
+        <text class="venn-label" data-i="2" x="130" y="430">AI and Law</text>
+        <text class="venn-label" data-i="3" x="530" y="430">Behavioural<tspan x="530" dy="18">Law</tspan></text>
+        <text class="venn-center" x="330" y="255">This<tspan x="330" dy="19">project</tspan></text>
+      </svg>
+    </div>
+    <div class="venn-detail" id="vennDetail">
+      <div class="venn-detail-panel active" data-i="0">
+        <h4>Cognitive Psychology</h4>
+        <div class="venn-tags"><span>Color</span><span>Memory</span><span>Attention</span><span>Decision making</span><span>Cognitive load</span><span>Reading behaviour</span></div>
       </div>
-      <div class="room" data-i="1">
-        <div class="room-head">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M15 2v5h5M8 12h8M8 16h5"/></svg>
-          <span class="room-label">Human-Centered Law</span>
-          <span class="room-plus">+</span>
-        </div>
-        <div class="room-tags"><span>Contracts</span><span>Plain language</span><span>Visual hierarchy</span><span>Empathy</span><span>Trust</span></div>
+      <div class="venn-detail-panel" data-i="1">
+        <h4>Human-Centered Law</h4>
+        <div class="venn-tags"><span>Contracts</span><span>Plain language</span><span>Visual hierarchy</span><span>Empathy</span><span>Trust</span></div>
       </div>
-      <div class="room" data-i="2">
-        <div class="room-head">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M8 15c1 1.2 2.3 1.8 4 1.8s3-.6 4-1.8"/></svg>
-          <span class="room-label">AI and Law</span>
-          <span class="room-plus">+</span>
-        </div>
-        <div class="room-tags"><span>Human oversight</span><span>AI clauses</span><span>Risk allocation</span><span>Future of lawyers</span></div>
+      <div class="venn-detail-panel" data-i="2">
+        <h4>AI and Law</h4>
+        <div class="venn-tags"><span>Human oversight</span><span>AI clauses</span><span>Risk allocation</span><span>Future of lawyers</span></div>
       </div>
-      <div class="room" data-i="3">
-        <div class="room-head">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg>
-          <span class="room-label">Behavioural Law</span>
-          <span class="room-plus">+</span>
-        </div>
-        <div class="room-tags"><span>Choice architecture</span><span>Defaults</span><span>Fear</span><span>Understanding</span><span>Compliance</span></div>
+      <div class="venn-detail-panel" data-i="3">
+        <h4>Behavioural Law</h4>
+        <div class="venn-tags"><span>Choice architecture</span><span>Defaults</span><span>Fear</span><span>Understanding</span><span>Compliance</span></div>
       </div>
     </div>
   </div>
@@ -845,7 +832,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   <div class="wrap-wide">
     <span class="eyebrow">Psychology of Color</span>
     <h2>Blue. The quiet overachiever.</h2>
-    <p class="lede">Alert, emphasis, precision &mdash; inverted. Blue does the opposite of what people expect a "loud" color to do.</p>
+    <p class="lede">Alert, emphasis, precision, inverted. Blue does the opposite of what people expect a "loud" color to do.</p>
     <div class="color-swatch"><span class="chip blue"></span><span class="lbl">Blue</span></div>
     <span class="pilot-tag">Pilot observation, not peer reviewed</span>
     <div class="color-body">
@@ -926,7 +913,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     <p class="lede" style="color:#a6a49d;">An unedited termination clause. Click a color to see what the research says it should carry.</p>
     <div class="demo-shell">
       <div class="demo-toolbar">
-        <span class="hint">apply&nbsp;&rarr;</span>
+        <span class="hint">apply &rarr;</span>
         <button class="swatch-btn active" data-c="none">None</button>
         <button class="swatch-btn" data-c="blue">Blue &middot; structure</button>
         <button class="swatch-btn" data-c="red">Red &middot; risk</button>
@@ -944,38 +931,9 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   <div class="wrap-wide reveal">
     <span class="eyebrow">Introducing</span>
     <h2>The Human Law Index.</h2>
-    <p class="lede">A proposed scoring framework for any document a person is asked to sign, agree to, or comply with. It does not have to be perfect. It has to exist, so the next document can be measured against something.</p>
-    <div class="hli-grid">
-      <div class="hli-panel">
-        <h4>Sample scan &middot; standard SaaS terms of service</h4>
-        <div class="hli-bar-row"><div class="bname">Comprehension</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:31%;background:var(--ink-dim);"></div></div><div class="hli-bar-score">31</div></div>
-        <div class="hli-bar-row"><div class="bname">Visual hierarchy</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:22%;background:var(--ink-dim);"></div></div><div class="hli-bar-score">22</div></div>
-        <div class="hli-bar-row"><div class="bname">Plain language</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:18%;background:var(--ink-dim);"></div></div><div class="hli-bar-score">18</div></div>
-        <div class="hli-bar-row"><div class="bname">Trust cues</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:44%;background:var(--ink-dim);"></div></div><div class="hli-bar-score">44</div></div>
-        <div class="hli-bar-row"><div class="bname">Accessibility</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:27%;background:var(--ink-dim);"></div></div><div class="hli-bar-score">27</div></div>
-        <div class="hli-bar-row" style="margin-top:26px;"><div class="bname" style="font-weight:800;">Human Score</div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:28%;background:var(--red);"></div></div><div class="hli-bar-score" style="font-weight:800;">28</div></div>
-        <div class="radar-wrap">
-          <h5>Score shape &middot; same five categories</h5>
-          <svg viewBox="0 0 180 165" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Radar chart of five Human Law Index categories, showing a small, lopsided shape">
-            <polygon points="90,20 156.57,68.37 131.16,146.63 48.84,146.63 23.43,68.37" fill="none" stroke="var(--line)" stroke-width="1"/>
-            <polygon points="90,37.5 139.93,73.78 120.87,132.47 59.13,132.47 40.07,73.78" fill="none" stroke="var(--line)" stroke-width="1"/>
-            <polygon points="90,55 123.29,79.18 110.58,118.32 69.42,118.32 56.71,79.18" fill="none" stroke="var(--line)" stroke-width="1"/>
-            <polygon points="90,72.5 106.64,84.59 100.29,104.16 79.71,104.16 73.36,84.59" fill="none" stroke="var(--line)" stroke-width="1"/>
-            <line x1="90" y1="90" x2="90" y2="20" stroke="var(--line)" stroke-width="1"/>
-            <line x1="90" y1="90" x2="156.57" y2="68.37" stroke="var(--line)" stroke-width="1"/>
-            <line x1="90" y1="90" x2="131.16" y2="146.63" stroke="var(--line)" stroke-width="1"/>
-            <line x1="90" y1="90" x2="48.84" y2="146.63" stroke="var(--line)" stroke-width="1"/>
-            <line x1="90" y1="90" x2="23.43" y2="68.37" stroke="var(--line)" stroke-width="1"/>
-            <polygon class="radar-data" points="90,68.3 104.65,85.24 97.41,100.19 71.89,114.92 72.03,84.16" fill="var(--red)" fill-opacity=".28" stroke="var(--red)" stroke-width="2"/>
-            <text x="90" y="12" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">COMPREHENSION</text>
-            <text x="163" y="66" text-anchor="start" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">VISUAL</text>
-            <text x="137" y="156" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">PLAIN LANG.</text>
-            <text x="43" y="156" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">TRUST</text>
-            <text x="17" y="66" text-anchor="end" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">ACCESS.</text>
-          </svg>
-        </div>
-      </div>
-      <div class="uploader" id="uploader">
+    <p class="lede">A proposed scoring framework for any document a person is asked to sign, agree to, or comply with. Paste a clause below and three of the seven categories will score live, computed from the actual text in your browser. The other four need the real formatted document, not just its words, that limit is explained below, not hidden.</p>
+    <div class="hli-tool">
+      <div class="hli-input">
         <div class="uploader-drop" id="uploaderDrop">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12M7 8l5-5 5 5M5 21h14"/></svg>
           <p><strong>Drop a .txt file</strong>, or paste text into the box below.</p>
@@ -983,31 +941,66 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
         </div>
         <textarea id="uploaderText" spellcheck="false">Notwithstanding anything to the contrary contained herein, the Licensor makes no representation, warranty, or guarantee, whether express or implied, that the Licensed Software shall be compatible, interoperable, or otherwise capable of integration with any hardware, equipment, or peripheral device not expressly manufactured, licensed, or authorized by Licensor or its designated affiliates.</textarea>
         <button class="uploader-btn" id="uploaderScan">Score this text &rarr;</button>
-        <div class="uploader-result" id="uploaderResult">
-          <div class="uploader-score"><span id="uploaderScoreNum">&mdash;</span><span class="uploader-score-label">/ 100<br>Human Score</span></div>
-          <div class="uploader-stats">
-            <div><span id="statWords">&mdash;</span><label>words</label></div>
-            <div><span id="statSentence">&mdash;</span><label>words / sentence</label></div>
-            <div><span id="statReadTime">&mdash;</span><label>min to read</label></div>
+        <p class="uploader-caveat">Nothing is uploaded anywhere, this runs entirely in your browser. Illustrative, not a substitute for the real model this project is building toward.</p>
+      </div>
+      <div class="hli-output">
+        <div class="hli-score-big"><span id="hliScoreNum">n/a</span><span class="hli-score-label">/ 100<br>text-only score</span></div>
+        <div class="hli-bars" id="hliBars">
+          <div class="hli-bar-row" data-cat="reading">
+            <div class="bname">Reading time <span class="hli-tag live">live</span></div>
+            <div class="hli-bar-track"><div class="hli-bar-fill" id="barReading" style="width:0%;background:var(--red);"></div></div>
+            <div class="hli-bar-score" id="scoreReading">n/a</div>
           </div>
-          <p class="uploader-note" id="uploaderNote"></p>
+          <div class="hli-bar-row" data-cat="sentence">
+            <div class="bname">Sentence complexity <span class="hli-tag live">live</span></div>
+            <div class="hli-bar-track"><div class="hli-bar-fill" id="barSentence" style="width:0%;background:var(--red);"></div></div>
+            <div class="hli-bar-score" id="scoreSentence">n/a</div>
+          </div>
+          <div class="hli-bar-row" data-cat="defined">
+            <div class="bname">Defined terms density <span class="hli-tag live">live</span></div>
+            <div class="hli-bar-track"><div class="hli-bar-fill" id="barDefined" style="width:0%;background:var(--red);"></div></div>
+            <div class="hli-bar-score" id="scoreDefined">n/a</div>
+          </div>
+          <div class="hli-bar-row na"><div class="bname">Visual hierarchy <span class="hli-tag">n/a</span></div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:0%;"></div></div><div class="hli-bar-score">n/a</div></div>
+          <div class="hli-bar-row na"><div class="bname">Choice visibility <span class="hli-tag">n/a</span></div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:0%;"></div></div><div class="hli-bar-score">n/a</div></div>
+          <div class="hli-bar-row na"><div class="bname">Action clarity <span class="hli-tag">n/a</span></div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:0%;"></div></div><div class="hli-bar-score">n/a</div></div>
+          <div class="hli-bar-row na"><div class="bname">Accessibility <span class="hli-tag">n/a</span></div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:0%;"></div></div><div class="hli-bar-score">n/a</div></div>
         </div>
-        <p class="uploader-caveat">A simple client-side heuristic &mdash; sentence length and defined-term density, computed live in your browser. Nothing is uploaded anywhere. Illustrative, not a substitute for the real model this project is building toward.</p>
+        <div class="radar-wrap">
+          <h5>Score shape, the three live categories</h5>
+          <svg viewBox="-8 0 196 165" id="radarSvg" role="img" aria-label="Radar chart of the three text-computable categories">
+            <polygon points="90,25 146.3,122.5 33.7,122.5" fill="none" stroke="var(--line)" stroke-width="1"/>
+            <polygon points="90,41.25 125.2,114.4 54.8,114.4" fill="none" stroke="var(--line)" stroke-width="1"/>
+            <polygon points="90,57.5 104.1,106.2 75.9,106.2" fill="none" stroke="var(--line)" stroke-width="1"/>
+            <line x1="90" y1="90" x2="90" y2="25" stroke="var(--line)" stroke-width="1"/>
+            <line x1="90" y1="90" x2="146.3" y2="122.5" stroke="var(--line)" stroke-width="1"/>
+            <line x1="90" y1="90" x2="33.7" y2="122.5" stroke="var(--line)" stroke-width="1"/>
+            <polygon id="radarData" class="radar-data" points="90,90 90,90 90,90" fill="var(--red)" fill-opacity=".28" stroke="var(--red)" stroke-width="2"/>
+            <text x="90" y="13" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">READING TIME</text>
+            <text x="146" y="137" text-anchor="start" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">SENTENCE</text>
+            <text x="34" y="137" text-anchor="end" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">TERMS</text>
+          </svg>
+        </div>
+        <div class="hli-verdict" id="hliVerdict">
+          <div class="hli-verdict-label">Verdict</div>
+          <p class="hli-verdict-text" id="hliVerdictText">Paste a clause and click &ldquo;Score this text&rdquo; above.</p>
+          <div class="hli-verdict-stats" id="hliVerdictStats"></div>
+        </div>
       </div>
     </div>
     <table class="exp-table" style="margin-top:44px;">
       <thead><tr><th>Category</th><th>Weight</th><th>What it measures</th></tr></thead>
       <tbody>
-        <tr><td>Reading time</td><td>15%</td><td>Estimated minutes against the document's own stated stakes</td></tr>
-        <tr><td>Sentence complexity</td><td>15%</td><td>Clause length, nesting depth, subordinate clauses per sentence</td></tr>
-        <tr><td>Defined terms density</td><td>15%</td><td>Ratio of capitalized defined terms to plain nouns</td></tr>
-        <tr><td>Visual hierarchy</td><td>15%</td><td>Whether obligations, rights, and risks are visually distinct</td></tr>
-        <tr><td>Choice visibility</td><td>15%</td><td>Whether the reader's actual options are findable in under 10 seconds</td></tr>
-        <tr><td>Action clarity</td><td>15%</td><td>Whether a reader can state their next required action unprompted</td></tr>
-        <tr><td>Accessibility</td><td>10%</td><td>Contrast, font size, screen reader compatibility</td></tr>
+        <tr><td>Reading time <span class="hli-tag live">live</span></td><td>15%</td><td>Estimated minutes against the document's own stated stakes</td></tr>
+        <tr><td>Sentence complexity <span class="hli-tag live">live</span></td><td>15%</td><td>Clause length, nesting depth, subordinate clauses per sentence</td></tr>
+        <tr><td>Defined terms density <span class="hli-tag live">live</span></td><td>15%</td><td>Ratio of capitalized defined terms to plain nouns</td></tr>
+        <tr><td>Visual hierarchy <span class="hli-tag">n/a</span></td><td>15%</td><td>Whether obligations, rights, and risks are visually distinct</td></tr>
+        <tr><td>Choice visibility <span class="hli-tag">n/a</span></td><td>15%</td><td>Whether the reader's actual options are findable in under 10 seconds</td></tr>
+        <tr><td>Action clarity <span class="hli-tag">n/a</span></td><td>15%</td><td>Whether a reader can state their next required action unprompted</td></tr>
+        <tr><td>Accessibility <span class="hli-tag">n/a</span></td><td>10%</td><td>Contrast, font size, screen reader compatibility</td></tr>
       </tbody>
     </table>
-    <div class="cite">Weights above are an initial, experimenter-set methodology, not empirically derived. Refining them against comprehension outcomes, the way Experiment 001 tested one clause, is the next phase of this work.</div>
+    <div class="cite">Weights above are an initial, experimenter-set methodology, not empirically derived. The three &ldquo;live&rdquo; rows are the only ones plain text can actually carry, the rest need the real, formatted document, which is the next phase of this tool, not a hidden shortcut in this one.</div>
   </div>
 </section>
 
@@ -1044,7 +1037,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
       <div>
         <h4>Ashwin Gupta</h4>
         <div class="role">India-qualified Advocate &middot; Commercial &amp; Technology Law</div>
-        <p style="font-size:15px;color:var(--ink-dim);max-width:56ch;">Advocate working in commercial and technology law, previously a foreign attorney and paralegal at a law firm in Fukuoka, Japan, and an LL.M. candidate at Kyushu University as a MEXT Scholar, where this project's questions first took shape in Professor Erik P.M. Vermeulen's course on legal risk and design. The Human Law Project is an independent research initiative, run outside of and separate from any employer, focused on plain language legal design and how documents fail the people bound by them.</p>
+        <p style="font-size:15px;color:var(--ink-dim);max-width:56ch;">Advocate working in commercial and technology law, previously a foreign attorney and paralegal at a law firm in Fukuoka, Japan, and an LL.M. candidate at Kyushu University as a MEXT Scholar, where these questions first took shape in Professor Erik P.M. Vermeulen's course on legal risk and design. This is an independent research initiative, run outside of and separate from any employer, focused on plain language legal design and how documents fail the people bound by them.</p>
         <div class="researcher-badges">
           <span class="rbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M15 2v5h5M8 12h8M8 16h5"/></svg>Advocate</span>
           <span class="rbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>LL.M., Kyushu University</span>
@@ -1058,17 +1051,47 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
 
 <div class="mission reveal pattern-dots">
   <div class="wrap">
-    <blockquote>&ldquo;No one should feel powerless reading documents about their own future.&rdquo;</blockquote>
+    <blockquote>&ldquo;No one should feel <mark class="mission-mark-text">powerless</mark> reading documents about their own future.&rdquo;</blockquote>
     <cite>The research mission, not a slogan</cite>
     <div class="mission-note">This is an ongoing project. Replication and disagreement are welcome.</div>
   </div>
 </div>
 
-<footer>The Human Law Project &middot; Making Law Human</footer>
+<footer>Making Law Human</footer>
 
 <script>
-// hero: mouse-tilt on the logo, staggered word reveal, click-to-scroll cue
 (function(){
+  function scrambleIn(el, delay){
+    if(!el) return;
+    const final = el.textContent;
+    const chars = 'XQZVWJK§¶†‡#%&0123456789';
+    const len = final.length;
+    const duration = 900;
+    const startAt = performance.now() + delay;
+    function frame(now){
+      const elapsed = now - startAt;
+      if(elapsed < 0){ requestAnimationFrame(frame); return; }
+      const progress = Math.min(1, elapsed / duration);
+      let out = '';
+      for(let i=0;i<len;i++){
+        const c = final[i];
+        if(c === ' '){ out += ' '; continue; }
+        const lockAt = (i/len) * 0.65 + 0.2;
+        if(progress >= lockAt){
+          out += c;
+        } else {
+          out += chars[Math.floor(Math.random()*chars.length)];
+        }
+      }
+      el.textContent = out;
+      if(progress < 1){ requestAnimationFrame(frame); }
+      else { el.textContent = final; }
+    }
+    requestAnimationFrame(frame);
+  }
+  scrambleIn(document.getElementById('hltLine1'), 250);
+  scrambleIn(document.getElementById('hltLine2'), 550);
+
   const stage = document.getElementById('heroStage');
   const wrap = document.getElementById('heroLogoWrap');
   const hero = document.getElementById('top');
@@ -1083,7 +1106,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
         const threshold = 220;
         if(dist < threshold){
           const t = 1 - dist / threshold;
-          el.style.opacity = (0.22 * (1 - t));
+          el.style.opacity = (0.14 * (1 - t));
           el.style.filter = 'blur(' + (t * 5) + 'px)';
         } else {
           el.style.opacity = '';
@@ -1093,6 +1116,23 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     });
     hero.addEventListener('mouseleave', ()=>{
       jargon.forEach(el=>{ el.style.opacity = ''; el.style.filter = ''; });
+      wrap.style.transform = '';
+    });
+    jargon.forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        if(el.classList.contains('humanized')) return;
+        el.classList.add('humanized');
+        el.style.opacity = '';
+        el.style.filter = '';
+        const plain = el.dataset.plain;
+        if(plain){
+          const tip = document.createElement('span');
+          tip.className = 'jargon-tip';
+          tip.textContent = plain;
+          el.appendChild(tip);
+        }
+      });
     });
   }
   if(stage && wrap){
@@ -1102,13 +1142,12 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
         wrap.removeEventListener('transitionend', onEntranceDone);
       }
     });
-    stage.addEventListener('mousemove', (e)=>{
+    hero.addEventListener('mousemove', (e)=>{
       const r = stage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
       wrap.style.transform = `scale(1) rotateY(${x*7}deg) rotateX(${-y*7}deg)`;
     });
-    stage.addEventListener('mouseleave', ()=>{ wrap.style.transform = ''; });
   }
   document.querySelectorAll('.hero-subline .w').forEach((el,i)=>{
     el.style.transitionDelay = (0.35 + i*0.032) + 's';
@@ -1121,25 +1160,24 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   }
 })();
 
-// rooms diagram — single self-contained interactive component
 (function(){
-  const rooms = document.querySelectorAll('.room');
-  rooms.forEach(room=>{
-    room.querySelector('.room-head').addEventListener('click', ()=>{
-      const wasOpen = room.classList.contains('open');
-      rooms.forEach(r=>r.classList.remove('open'));
-      if(!wasOpen) room.classList.add('open');
-    });
-  });
+  const circles = document.querySelectorAll('.venn-c');
+  const labels = document.querySelectorAll('.venn-label');
+  const panels = document.querySelectorAll('.venn-detail-panel');
+  function select(i){
+    circles.forEach(x=>x.classList.toggle('active', x.dataset.i===i));
+    labels.forEach(x=>x.classList.toggle('active', x.dataset.i===i));
+    panels.forEach(p=>p.classList.toggle('active', p.dataset.i===i));
+  }
+  circles.forEach(c=> c.addEventListener('click', ()=> select(c.dataset.i)));
+  labels.forEach(l=> l.addEventListener('click', ()=> select(l.dataset.i)));
 })();
 
-// document uploader / real client-side scorer
 (function(){
   const drop = document.getElementById('uploaderDrop');
   const fileInput = document.getElementById('uploaderFile');
   const textarea = document.getElementById('uploaderText');
   const btn = document.getElementById('uploaderScan');
-  const result = document.getElementById('uploaderResult');
   if(!drop || !btn) return;
 
   function readFile(file){
@@ -1160,37 +1198,58 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     if(file) readFile(file);
   });
 
-  btn.addEventListener('click', ()=>{
+  function radarPoint(score, axisIndex){
+    const angles = [-90, 30, 150];
+    const rad = angles[axisIndex] * Math.PI/180;
+    const r = Math.max(2, (score/100) * 65);
+    const x = 90 + r*Math.cos(rad);
+    const y = 90 + r*Math.sin(rad);
+    return x.toFixed(1)+','+y.toFixed(1);
+  }
+
+  function score_it(){
     const text = textarea.value.trim();
     if(!text) return;
     const words = text.split(/\s+/).filter(Boolean);
     const sentences = text.split(/[.!?]+/).map(s=>s.trim()).filter(s=>s.length > 3);
-    const avgSentLen = sentences.length ? words.length / sentences.length : words.length;
+    const sentCount = Math.max(1, sentences.length);
+    const avgSentLen = words.length / sentCount;
     const definedTerms = (text.match(/\b[A-Z][a-zA-Z]*(?:\s+[A-Z][a-zA-Z]*){1,3}\b/g) || []).length;
     const definedDensity = words.length ? definedTerms / words.length : 0;
     const readMin = Math.max(1, Math.round(words.length / 200));
 
-    let score = 100;
-    score -= Math.max(0, avgSentLen - 14) * 2.4;
-    score -= definedDensity * 170;
-    score = Math.max(4, Math.min(96, Math.round(score)));
+    const sentenceScore = Math.max(4, Math.min(96, Math.round(100 - Math.max(0, avgSentLen - 14) * 2.4)));
+    const definedScore = Math.max(4, Math.min(96, Math.round(100 - definedDensity * 170)));
+    const readingScore = Math.max(4, Math.min(96, Math.round(100 - Math.max(0, readMin - 1) * 12)));
+    const overall = Math.round((sentenceScore + definedScore + readingScore) / 3);
 
-    document.getElementById('statWords').textContent = words.length;
-    document.getElementById('statSentence').textContent = avgSentLen.toFixed(1);
-    document.getElementById('statReadTime').textContent = readMin;
-    document.getElementById('uploaderScoreNum').textContent = score;
+    document.getElementById('barReading').style.width = readingScore + '%';
+    document.getElementById('scoreReading').textContent = readingScore;
+    document.getElementById('barSentence').style.width = sentenceScore + '%';
+    document.getElementById('scoreSentence').textContent = sentenceScore;
+    document.getElementById('barDefined').style.width = definedScore + '%';
+    document.getElementById('scoreDefined').textContent = definedScore;
+    document.getElementById('hliScoreNum').textContent = overall;
+    document.getElementById('hliScoreNum').style.color = overall >= 70 ? '#1a8a4a' : (overall >= 40 ? 'var(--gold)' : 'var(--red)');
 
-    let note;
-    if(score >= 70) note = 'Short sentences, low jargon density. This reads like it was written for a person, not just a court.';
-    else if(score >= 40) note = 'Workable, but sentence length and defined-term density are already working against the reader.';
-    else note = 'Long sentences, heavy defined-term density. Most readers would skim past this, not read it.';
-    document.getElementById('uploaderNote').textContent = note;
+    const pts = [radarPoint(readingScore,0), radarPoint(sentenceScore,1), radarPoint(definedScore,2)].join(' ');
+    document.getElementById('radarData').setAttribute('points', pts);
 
-    result.classList.add('show');
-  });
+    let verdict;
+    if(overall >= 70) verdict = "Reads like it was written for a person, not a court.";
+    else if(overall >= 40) verdict = "Workable, but sentence length and jargon density are already <b>working against the reader</b>.";
+    else verdict = "Most readers would <b>skim past this, not read it</b>.";
+    document.getElementById('hliVerdictText').innerHTML = verdict;
+    document.getElementById('hliVerdictStats').innerHTML =
+      '<div><b>' + words.length + '</b>words</div>' +
+      '<div><b>' + avgSentLen.toFixed(1) + '</b>words / sentence</div>' +
+      '<div><b>' + readMin + 'm</b>read time</div>';
+  }
+
+  btn.addEventListener('click', score_it);
+  score_it();
 })();
 
-// framework staircase <-> layer list linking
 (function(){
   const steps = document.querySelectorAll('.stair-step');
   const layers = document.querySelectorAll('.layer');
@@ -1208,21 +1267,18 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   });
 })();
 
-// progress bar
 window.addEventListener('scroll', ()=>{
   const h = document.documentElement;
   const pct = (h.scrollTop)/(h.scrollHeight - h.clientHeight) * 100;
   document.getElementById('progress').style.width = pct + '%';
 });
 
-// reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold:0.1});
 reveals.forEach(r=>io.observe(r));
 
-// count-up stats
 const nums = document.querySelectorAll('.num[data-count]');
 const io2 = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
@@ -1241,7 +1297,6 @@ const io2 = new IntersectionObserver((entries)=>{
 }, {threshold:0.4});
 nums.forEach(n=>io2.observe(n));
 
-// legal/human toggle — the signature interaction
 const btnLegal = document.getElementById('btnLegal');
 const btnHuman = document.getElementById('btnHuman');
 const docLegal = document.getElementById('docBlock');
@@ -1255,7 +1310,6 @@ btnHuman.addEventListener('click', ()=>{
   docHuman.style.display=''; docLegal.style.display='none';
 });
 
-// clause x-ray demo
 const demoBody = document.getElementById('demoBody');
 document.querySelectorAll('.swatch-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -1265,7 +1319,6 @@ document.querySelectorAll('.swatch-btn').forEach(btn=>{
   });
 });
 
-// reasonable time slider
 const rtSlider = document.getElementById('rtSlider');
 const rtFill = document.getElementById('rtFill');
 const rtLabel = document.getElementById('rtLabel');
@@ -1282,7 +1335,6 @@ function updateRT(){
 rtSlider.addEventListener('input', updateRT);
 updateRT();
 
-// exhibits — all 16 articles as case-file entries
 const exhibits = [
   {n:"01", t:"The Hidden Refund", d:"A DJ subscription, a buried clause, and 120 dollars that explained an entire discipline better than fifty academic papers could.", body:"Buried in section sixteen of a music subscription's terms: integration limited to one specific brand of equipment. The customer service rep's closing line was that it was clearly stated in the terms I agreed to. This became the origin story for the whole project.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-makinglawhuman-activity-7304690730969575424-Nno3"},
   {n:"02", t:"What Does This Mean?", d:"Watching a friend's contract turn from a wall of jargon into a question she could actually ask out loud.", body:"Legal design flips a power dynamic on its head: the radical notion that legal documents should make sense to the humans using them. The leap from \"I don't understand any of this\" to \"so my payment is due on the 15th\" is not just clarity, it is empowerment.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-makinglawhuman-legaldesign-activity-7307305811733622785-atv7"},
@@ -1300,7 +1352,7 @@ const exhibits = [
   {n:"14", t:"Reasonable Is Not A Timeline", d:"Two weeks to you. Six months to them. In court, nobody knows.", body:"Vague contracts turn into drawn out projects and frustrated teams. The fix is not complicated: replace fluff with clarity, real dates, real numbers, real limits. It may feel too direct at first, but it prevents the headache of everyone quietly assuming something different.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-contracts-activity-7374686889989058560-7DhP"},
   {n:"15", t:"Clauses Written To Outlive Their Purpose", d:"The contract ends. The deal dies. The clause is somehow still there.", body:"Forever does not protect anything. Secrets lose value, technology changes, companies disappear. A clause that outlives its purpose is not a safeguard, it is confusion with a signature on it.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-contracts-activity-7376830311072124928-z6NB"},
   {n:"16", t:"Powerless", d:"On the gap between what AI can draft and what it will never understand.", body:"AI can draft a perfect contract. It will never know what it feels like to be on the other side of it, reading at midnight, too embarrassed to ask what a clause means because you already asked twice. No one should feel powerless reading documents about their own future. That gap is what this project exists to close.", url:"https://www.linkedin.com/posts/ashwin-gupta001_legaldesign-makinglawhuman-thereisabetterway-activity-7446916055421333504-uPDh"},
-  {n:"17", t:"The Emoji Clause", d:"A single glyph next to a clause did what three paragraphs of defined terms could not: made a reader actually stop and look.", body:"Legal writing has one register, formal and allergic to shortcuts, but readers do not process a document in that register, they skim it. A ⚠️ next to a liability clause or a ✅ next to what someone is actually free to do changes reading behaviour before a single word is parsed. This is not about being casual with the law. It is about using every honest signal available, informal ones included, to get a reader to actually read. The open experiment on this page is testing exactly that, one clause at a time.", url:"https://www.linkedin.com/feed/update/urn:li:activity:7494995283693490176/"}
+  {n:"17", t:"The Emoji Clause", d:"A single glyph next to a clause did what three paragraphs of defined terms could not: made a reader actually stop and look.", body:"Legal writing has one register, formal and allergic to shortcuts, but readers do not process a document in that register, they skim it. A warning symbol next to a liability clause or a checkmark next to what someone is actually free to do changes reading behaviour before a single word is parsed. This is not about being casual with the law. It is about using every honest signal available, informal ones included, to get a reader to actually read. The open experiment on this page is testing exactly that, one clause at a time.", url:"https://www.linkedin.com/feed/update/urn:li:activity:7494995283693490176/"}
 ];
 const list = document.getElementById('exhibitList');
 exhibits.forEach(ex=>{
