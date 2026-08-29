@@ -237,7 +237,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .venn-c:hover,.venn-c.active{fill-opacity:.8;transform:scale(1.03);}
 .venn-label{font-family:var(--mono);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;fill:var(--ink-dim);text-anchor:middle;cursor:pointer;transition:fill .2s ease;}
 .venn-label:hover,.venn-label.active{fill:var(--ink);}
-.venn-center{font-family:var(--display);font-size:17px;font-weight:800;fill:#fff;text-anchor:middle;pointer-events:none;}
+.venn-center{font-family:var(--mono);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;fill:#fff;text-anchor:middle;pointer-events:none;}
 .venn-detail{margin-top:8px;max-width:520px;margin-left:auto;margin-right:auto;}
 .venn-detail-panel{display:none;text-align:center;padding:24px 0 0;}
 .venn-detail-panel.active{display:block;}
@@ -404,19 +404,38 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .uploader-caveat{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);margin-top:16px;line-height:1.6;}
 
 .hli-output{border:1px solid var(--line);background:var(--paper-2);padding:28px 32px;}
-.hli-score-big{display:flex;align-items:baseline;gap:10px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line);}
-.hli-score-big span:first-child{font-family:var(--display);font-size:52px;font-weight:800;color:var(--red);line-height:1;transition:color .3s ease;}
+.hli-score-big{display:flex;align-items:flex-start;flex-direction:column;gap:2px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line);}
+.hli-score-row{display:flex;align-items:baseline;gap:10px;}
+.hli-score-row span:first-child{font-family:var(--display);font-size:52px;font-weight:800;line-height:1;transition:color .3s ease;}
 .hli-score-label{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;line-height:1.4;}
+.hli-score-tagline{font-family:var(--display);font-style:italic;font-weight:600;font-size:16px;margin-top:8px;color:var(--ink);}
+.hli-dominant-stat{font-family:var(--mono);font-size:13px;color:var(--ink-dim);margin-top:6px;}
+.hli-dominant-stat b{font-family:var(--display);font-weight:800;font-size:20px;color:var(--red);font-style:normal;}
+.hli-mode-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--line);padding:3px 9px;border-radius:10px;margin-top:10px;display:inline-block;}
 .hli-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:8px;margin-left:6px;vertical-align:1px;background:var(--line);color:var(--ink-dim);}
 .hli-tag.live{background:var(--red);color:#fff;}
-.hli-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:4px 6px;margin-left:-6px;border-radius:3px;transition:background .15s ease;cursor:default;}
-.hli-bar-row:hover{background:var(--paper);}
-.hli-bar-row .bname{font-size:13px;width:190px;flex-shrink:0;}
-.hli-bar-track{flex:1;height:8px;background:var(--line);border-radius:6px;overflow:hidden;}
-.hli-bar-fill{height:100%;transition:width .5s cubic-bezier(.2,.8,.2,1);}
-.hli-bar-score{font-family:var(--mono);font-size:13px;width:32px;text-align:right;flex-shrink:0;}
-.hli-bar-row.na{opacity:.45;}
-.hli-bar-row.na .hli-bar-track{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 8px);}
+
+.hli-why{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);}
+.hli-why h5{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:14px;}
+.hli-waterfall{font-family:var(--mono);font-size:12.5px;}
+.hli-wf-row{display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);}
+.hli-wf-row:last-child{border-bottom:none;padding-top:12px;margin-top:4px;border-top:1px solid var(--ink);font-weight:700;}
+.hli-wf-val{width:52px;flex-shrink:0;text-align:right;}
+.hli-wf-val.neg{color:var(--red);}
+.hli-wf-label{color:var(--ink-dim);}
+.hli-wf-row:last-child .hli-wf-label{color:var(--ink);}
+
+.hli-cat-groups{margin-top:36px;}
+.hli-cat-group{margin-bottom:28px;}
+.hli-cat-group h6{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px;}
+.hli-cat-group .frac{color:var(--red);font-weight:700;}
+
+.hli-textonly-banner{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);border:1px dashed var(--line);
+  padding:6px 12px;margin-bottom:22px;
+}
+
 .radar-wrap{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);}
 .radar-wrap h5{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:16px;}
 .radar-wrap svg{width:100%;max-width:200px;display:block;margin:0 auto;}
@@ -483,7 +502,8 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .exp-status.pilot::before{background:var(--ink);}
 .exp-card p{font-size:17px;color:var(--ink-dim);line-height:1.75;}
 
-.exp-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px;}
+.exp-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.exp-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px;min-width:520px;}
 .exp-table th,.exp-table td{border:1px solid var(--line);padding:14px 18px;text-align:left;}
 .exp-table th{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:400;}
 .exp-table td.better{color:var(--red);font-weight:700;}
@@ -529,6 +549,121 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+/* ============ MOBILE ============ */
+@media (max-width:640px){
+  .wrap,.wrap-wide{padding:0 18px;}
+  p{text-align:left;}
+
+  .tabnav-inner{padding:0 14px;}
+  .brand-mark{padding-right:10px;margin-right:6px;}
+  .brand-mark-text{font-size:11.5px;}
+  .tabnav-links a{padding:14px 11px;font-size:9.5px;}
+
+  .hero{padding:80px 16px 0;min-height:92vh;}
+  .hero-jargon span{display:none;}
+  .hero-logo-text .hlt-line1,.hero-logo-text .hlt-line2{font-size:clamp(38px,15vw,64px);}
+  .hero-subline{font-size:16px;max-width:30ch;margin-top:22px;}
+  .hero-scroll-cue{padding:20px 0 22px;}
+
+  .intro{padding:64px 16px 56px;}
+  .intro h1{font-size:clamp(28px,8vw,38px);line-height:1.18;}
+  .intro p.sub{font-size:15px;}
+  .intro-cta{margin-top:26px;}
+
+  .redesign-block{margin-top:36px;}
+  .redesign-bar{padding:12px 16px;flex-direction:column;align-items:flex-start;gap:10px;}
+  .redesign-content{padding:20px 18px;}
+  .doc.legal p,.doc.human p{font-size:15px;}
+  .doc.human p.pull{font-size:19px;max-width:none;}
+  .redesign-caption{padding:0 18px 20px;font-size:10.5px;}
+
+  section{padding:64px 0;}
+  section.tight{padding:52px 0;}
+  .eyebrow{font-size:10px;margin-bottom:14px;}
+  h2{font-size:clamp(24px,7.5vw,32px);max-width:none;margin-bottom:16px;}
+  .lede{font-size:15px;margin-bottom:30px;text-align:left;}
+
+  .board-meta{gap:22px 28px;padding-bottom:24px;}
+  .board-meta b{font-size:20px;}
+  .flip-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .flip-title{font-size:13px;}
+  .flip-num{font-size:11px;margin-bottom:8px;}
+
+  .origin-illus svg{max-width:100%;}
+  .prose p{font-size:15px;max-width:none;}
+  .prose p.pull{font-size:19px;max-width:none;}
+
+  .rt-box{padding:22px 18px;margin-top:26px;}
+  .rt-clause{font-size:16px;}
+
+  .question{font-size:17px;padding:20px 0;gap:14px;}
+
+  .venn-wrap{max-width:100%;}
+  .venn-label{font-size:9.5px;}
+  .venn-center{font-size:9.5px;}
+  .venn-detail-panel h4{font-size:17px;}
+  .venn-tags span{font-size:10px;padding:4px 9px;}
+
+  .stair-diagram{overflow-x:auto;}
+  .stair-label{font-size:10.5px;}
+  .stair-n{font-size:9.5px;}
+  .layer{grid-template-columns:36px 1fr;gap:14px;padding:22px 0;}
+  .layer.linked,.layer:hover{padding-left:8px;}
+  .layers::before{left:17px;}
+  .layer h4{font-size:17px;}
+  .layer p{font-size:15px;max-width:none;}
+  .layer-icon{width:24px;height:24px;}
+
+  #ai h2{max-width:none;}
+  #ai .lede{font-size:15px;}
+
+  .color-stats{grid-template-columns:1fr 1fr;}
+  .color-stat{padding:16px 14px;}
+  .color-stat .num{font-size:24px;}
+  .use-cases{grid-template-columns:1fr;}
+  .color-body p.quote{font-size:19px;max-width:none;}
+
+  .demo-body{padding:22px 16px;font-size:15px;}
+  .demo-toolbar{padding:14px 16px;}
+  .swatch-btn{font-size:11px;padding:7px 12px;}
+  .demo-caption{padding:14px 16px 22px;}
+
+  .hli-tool{grid-template-columns:1fr;gap:30px;margin-top:30px;}
+  .hli-output{padding:20px;}
+  .hli-score-row span:first-child{font-size:40px;}
+  .hli-score-tagline{font-size:14.5px;}
+  .hli-verdict-text{font-size:16px;}
+  .hli-verdict-stats{gap:16px;}
+  .redesign-bar,.uploader-drop{padding:18px 14px;}
+  #uploaderText{font-size:11.5px;padding:12px;}
+
+  .exp-table{font-size:12px;}
+  .exp-table th,.exp-table td{padding:10px 10px;}
+  .exp-grid{grid-template-columns:1fr;}
+  .exp-meta{gap:22px;}
+
+  .about-teaser,.researcher{grid-template-columns:1fr;gap:16px;}
+  .researcher-mark{width:60px;height:60px;font-size:19px;}
+  .researcher h4{font-size:18px;}
+
+  .exhibit-head{grid-template-columns:28px 1fr 18px;gap:14px;padding:20px 0;}
+  .exhibit h4{font-size:16px;}
+  .exhibit-head p{font-size:14.5px;}
+  .exhibit-body-inner{padding-left:42px;font-size:14.5px;}
+  .exhibit-chevron{font-size:17px;}
+
+  .mission{padding:96px 18px;}
+  .mission blockquote{font-size:clamp(24px,8vw,34px);max-width:14ch;}
+
+  .cite{font-size:10.5px;}
+}
+
+@media (max-width:400px){
+  .flip-grid{grid-template-columns:1fr 1fr;}
+  .color-stats{grid-template-columns:1fr;}
+  .hero-logo-text .hlt-line1,.hero-logo-text .hlt-line2{font-size:clamp(32px,13vw,48px);}
+}
 </style>
 </head>
 <body>
@@ -688,13 +823,13 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
       <div><b>2</b>conditions, between-subjects</div>
       <div><b>3</b>measures: accuracy, time, confidence</div>
     </div>
-    <table class="exp-table">
+    <div class="exp-table-wrap"><table class="exp-table">
       <thead><tr><th>Condition</th><th>Correctly identified obligation</th><th>Average time to answer</th><th>Self-reported confidence</th></tr></thead>
       <tbody>
         <tr><td>Original clause, as written</td><td>42%</td><td>2m 15s</td><td>Low</td></tr>
         <tr><td>Redesigned clause, same substance</td><td class="better">83%</td><td class="better">58s</td><td class="better">High</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="cite">Pilot study, single clause type, single session, not yet peer reviewed. Reported here as a preliminary observation to be replicated at larger scale, not as a generalized finding about legal drafting. <b>Methodology and raw protocol available on request.</b></div>
   </div>
 </section>
@@ -746,7 +881,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
         <text class="venn-label" data-i="1" x="530" y="100">Human-Centered<tspan x="530" dy="18">Law</tspan></text>
         <text class="venn-label" data-i="2" x="130" y="430">AI and Law</text>
         <text class="venn-label" data-i="3" x="530" y="430">Behavioural<tspan x="530" dy="18">Law</tspan></text>
-        <text class="venn-center" x="330" y="255">This<tspan x="330" dy="19">project</tspan></text>
+        <text class="venn-center" x="330" y="252">THIS<tspan x="330" dy="17">PROJECT</tspan></text>
       </svg>
     </div>
     <div class="venn-detail" id="vennDetail">
@@ -931,7 +1066,8 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   <div class="wrap-wide reveal">
     <span class="eyebrow">Introducing</span>
     <h2>The Human Law Index.</h2>
-    <p class="lede">A proposed scoring framework for any document a person is asked to sign, agree to, or comply with. Paste a clause below and three of the seven categories will score live, computed from the actual text in your browser. The other four need the real formatted document, not just its words, that limit is explained below, not hidden.</p>
+    <p class="lede">A document can be legally correct and still be terrible to read. The Human Law Index is an experimental way of measuring how much friction a legal document puts between a person and the thing they actually need to know. Paste a clause. Drop a .txt. See what the words are doing.</p>
+
     <div class="hli-tool">
       <div class="hli-input">
         <div class="uploader-drop" id="uploaderDrop">
@@ -943,31 +1079,27 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
         <button class="uploader-btn" id="uploaderScan">Score this text &rarr;</button>
         <p class="uploader-caveat">Nothing is uploaded anywhere, this runs entirely in your browser. Illustrative, not a substitute for the real model this project is building toward.</p>
       </div>
+
       <div class="hli-output">
-        <div class="hli-score-big"><span id="hliScoreNum">n/a</span><span class="hli-score-label">/ 100<br>text-only score</span></div>
-        <div class="hli-bars" id="hliBars">
-          <div class="hli-bar-row" data-cat="reading">
-            <div class="bname">Reading time <span class="hli-tag live">live</span></div>
-            <div class="hli-bar-track"><div class="hli-bar-fill" id="barReading" style="width:0%;background:var(--red);"></div></div>
-            <div class="hli-bar-score" id="scoreReading">n/a</div>
+        <span class="hli-textonly-banner">Text-only assessment</span>
+
+        <div class="hli-score-big">
+          <div class="hli-score-row">
+            <span id="hliScoreNum">100</span>
+            <span class="hli-score-label">/ 100<br>starts here, friction subtracts</span>
           </div>
-          <div class="hli-bar-row" data-cat="sentence">
-            <div class="bname">Sentence complexity <span class="hli-tag live">live</span></div>
-            <div class="hli-bar-track"><div class="hli-bar-fill" id="barSentence" style="width:0%;background:var(--red);"></div></div>
-            <div class="hli-bar-score" id="scoreSentence">n/a</div>
-          </div>
-          <div class="hli-bar-row" data-cat="defined">
-            <div class="bname">Defined terms density <span class="hli-tag live">live</span></div>
-            <div class="hli-bar-track"><div class="hli-bar-fill" id="barDefined" style="width:0%;background:var(--red);"></div></div>
-            <div class="hli-bar-score" id="scoreDefined">n/a</div>
-          </div>
-          <div class="hli-bar-row na"><div class="bname">Visual hierarchy <span class="hli-tag">n/a</span></div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:0%;"></div></div><div class="hli-bar-score">n/a</div></div>
-          <div class="hli-bar-row na"><div class="bname">Choice visibility <span class="hli-tag">n/a</span></div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:0%;"></div></div><div class="hli-bar-score">n/a</div></div>
-          <div class="hli-bar-row na"><div class="bname">Action clarity <span class="hli-tag">n/a</span></div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:0%;"></div></div><div class="hli-bar-score">n/a</div></div>
-          <div class="hli-bar-row na"><div class="bname">Accessibility <span class="hli-tag">n/a</span></div><div class="hli-bar-track"><div class="hli-bar-fill" style="width:0%;"></div></div><div class="hli-bar-score">n/a</div></div>
+          <div class="hli-score-tagline" id="hliTagline">Paste a clause and click &ldquo;Score this text.&rdquo;</div>
+          <div class="hli-dominant-stat" id="hliDominantStat"></div>
+          <span class="hli-mode-tag">3 of 7 categories measured from text alone</span>
         </div>
+
+        <div class="hli-why">
+          <h5>Why this score?</h5>
+          <div class="hli-waterfall" id="hliWaterfall"></div>
+        </div>
+
         <div class="radar-wrap">
-          <h5>Score shape, the three live categories</h5>
+          <h5>Score shape, the three text-computable categories</h5>
           <svg viewBox="-8 0 196 165" id="radarSvg" role="img" aria-label="Radar chart of the three text-computable categories">
             <polygon points="90,25 146.3,122.5 33.7,122.5" fill="none" stroke="var(--line)" stroke-width="1"/>
             <polygon points="90,41.25 125.2,114.4 54.8,114.4" fill="none" stroke="var(--line)" stroke-width="1"/>
@@ -976,31 +1108,45 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
             <line x1="90" y1="90" x2="146.3" y2="122.5" stroke="var(--line)" stroke-width="1"/>
             <line x1="90" y1="90" x2="33.7" y2="122.5" stroke="var(--line)" stroke-width="1"/>
             <polygon id="radarData" class="radar-data" points="90,90 90,90 90,90" fill="var(--red)" fill-opacity=".28" stroke="var(--red)" stroke-width="2"/>
-            <text x="90" y="13" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">READING TIME</text>
+            <text x="90" y="13" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">READING BURDEN</text>
             <text x="146" y="137" text-anchor="start" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">SENTENCE</text>
-            <text x="34" y="137" text-anchor="end" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">TERMS</text>
+            <text x="34" y="137" text-anchor="end" font-family="Space Mono, monospace" font-size="8" fill="var(--ink-dim)">DEFINITIONS</text>
           </svg>
         </div>
+
         <div class="hli-verdict" id="hliVerdict">
           <div class="hli-verdict-label">Verdict</div>
-          <p class="hli-verdict-text" id="hliVerdictText">Paste a clause and click &ldquo;Score this text&rdquo; above.</p>
+          <p class="hli-verdict-text" id="hliVerdictText">&mdash;</p>
           <div class="hli-verdict-stats" id="hliVerdictStats"></div>
         </div>
       </div>
     </div>
-    <table class="exp-table" style="margin-top:44px;">
-      <thead><tr><th>Category</th><th>Weight</th><th>What it measures</th></tr></thead>
-      <tbody>
-        <tr><td>Reading time <span class="hli-tag live">live</span></td><td>15%</td><td>Estimated minutes against the document's own stated stakes</td></tr>
-        <tr><td>Sentence complexity <span class="hli-tag live">live</span></td><td>15%</td><td>Clause length, nesting depth, subordinate clauses per sentence</td></tr>
-        <tr><td>Defined terms density <span class="hli-tag live">live</span></td><td>15%</td><td>Ratio of capitalized defined terms to plain nouns</td></tr>
-        <tr><td>Visual hierarchy <span class="hli-tag">n/a</span></td><td>15%</td><td>Whether obligations, rights, and risks are visually distinct</td></tr>
-        <tr><td>Choice visibility <span class="hli-tag">n/a</span></td><td>15%</td><td>Whether the reader's actual options are findable in under 10 seconds</td></tr>
-        <tr><td>Action clarity <span class="hli-tag">n/a</span></td><td>15%</td><td>Whether a reader can state their next required action unprompted</td></tr>
-        <tr><td>Accessibility <span class="hli-tag">n/a</span></td><td>10%</td><td>Contrast, font size, screen reader compatibility</td></tr>
-      </tbody>
-    </table>
-    <div class="cite">Weights above are an initial, experimenter-set methodology, not empirically derived. The three &ldquo;live&rdquo; rows are the only ones plain text can actually carry, the rest need the real, formatted document, which is the next phase of this tool, not a hidden shortcut in this one.</div>
+
+    <div class="hli-cat-groups">
+      <div class="hli-cat-group">
+        <h6>What words can tell us <span class="frac">3 / 7 measurable from text</span></h6>
+        <div class="exp-table-wrap"><table class="exp-table">
+          <tbody>
+            <tr><td>01 &middot; Reading burden <span class="hli-tag live">live</span></td><td>How much time and attention the document demands</td></tr>
+            <tr><td>02 &middot; Sentence complexity <span class="hli-tag live">live</span></td><td>How much information the reader has to hold together at once</td></tr>
+            <tr><td>03 &middot; Definition burden <span class="hli-tag live">live</span></td><td>How often ordinary reading turns into legal vocabulary management</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="hli-cat-group">
+        <h6>What the document itself can tell us <span class="frac">4 / 7 require the actual document</span></h6>
+        <div class="exp-table-wrap"><table class="exp-table">
+          <tbody>
+            <tr><td>04 &middot; Visual hierarchy <span class="hli-tag">n/a</span></td><td>Can the reader see what matters?</td></tr>
+            <tr><td>05 &middot; Choice visibility <span class="hli-tag">n/a</span></td><td>Can they find their options?</td></tr>
+            <tr><td>06 &middot; Action clarity <span class="hli-tag">n/a</span></td><td>Can they tell what they need to do?</td></tr>
+            <tr><td>07 &middot; Accessibility <span class="hli-tag">n/a</span></td><td>Can different readers actually access the information?</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="cite" style="margin-top:24px;">This scan only assesses the words. A .txt file has no typography, hierarchy, colour, navigation, or accessibility information, so this score deliberately does not pretend to measure them. The full Human Law Index is designed for the document itself. This isn't a final formula, it's a measuring stick: the weights are experimenter-set and will change as the project tests them against actual readers.</div>
   </div>
 </section>
 
@@ -1198,48 +1344,102 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     if(file) readFile(file);
   });
 
-  function radarPoint(score, axisIndex){
+  function radarPoint(score01, axisIndex){
     const angles = [-90, 30, 150];
     const rad = angles[axisIndex] * Math.PI/180;
-    const r = Math.max(2, (score/100) * 65);
+    const r = Math.max(2, score01 * 65);
     const x = 90 + r*Math.cos(rad);
     const y = 90 + r*Math.sin(rad);
     return x.toFixed(1)+','+y.toFixed(1);
   }
 
+  function progressivePenalty(value, bands){
+    for(const [thresh, pen] of bands){
+      if(value <= thresh) return pen;
+    }
+    return bands[bands.length-1][1];
+  }
+
   function score_it(){
     const text = textarea.value.trim();
     if(!text) return;
+
     const words = text.split(/\s+/).filter(Boolean);
     const sentences = text.split(/[.!?]+/).map(s=>s.trim()).filter(s=>s.length > 3);
     const sentCount = Math.max(1, sentences.length);
     const avgSentLen = words.length / sentCount;
+
     const definedTerms = (text.match(/\b[A-Z][a-zA-Z]*(?:\s+[A-Z][a-zA-Z]*){1,3}\b/g) || []).length;
-    const definedDensity = words.length ? definedTerms / words.length : 0;
-    const readMin = Math.max(1, Math.round(words.length / 200));
+    const definedDensity = words.length ? (definedTerms / words.length) * 100 : 0;
 
-    const sentenceScore = Math.max(4, Math.min(96, Math.round(100 - Math.max(0, avgSentLen - 14) * 2.4)));
-    const definedScore = Math.max(4, Math.min(96, Math.round(100 - definedDensity * 170)));
-    const readingScore = Math.max(4, Math.min(96, Math.round(100 - Math.max(0, readMin - 1) * 12)));
-    const overall = Math.round((sentenceScore + definedScore + readingScore) / 3);
+    const commaCount = (text.match(/,/g) || []).length;
+    const avgCommasPerSentence = commaCount / sentCount;
 
-    document.getElementById('barReading').style.width = readingScore + '%';
-    document.getElementById('scoreReading').textContent = readingScore;
-    document.getElementById('barSentence').style.width = sentenceScore + '%';
-    document.getElementById('scoreSentence').textContent = sentenceScore;
-    document.getElementById('barDefined').style.width = definedScore + '%';
-    document.getElementById('scoreDefined').textContent = definedScore;
-    document.getElementById('hliScoreNum').textContent = overall;
-    document.getElementById('hliScoreNum').style.color = overall >= 70 ? '#1a8a4a' : (overall >= 40 ? 'var(--gold)' : 'var(--red)');
+    const paragraphs = text.split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean);
+    const paragraphCount = Math.max(1, paragraphs.length);
 
-    const pts = [radarPoint(readingScore,0), radarPoint(sentenceScore,1), radarPoint(definedScore,2)].join(' ');
+    const sentencePenalty = progressivePenalty(avgSentLen, [
+      [20,-2],[30,-8],[40,-16],[55,-24],[70,-32],[90,-40],[Infinity,-50]
+    ]);
+    const structuralPenalty = progressivePenalty(avgCommasPerSentence, [
+      [2,-2],[4,-8],[6,-16],[9,-24],[Infinity,-32]
+    ]);
+    const definitionPenalty = progressivePenalty(definedDensity, [
+      [2,-2],[4,-8],[6,-16],[9,-24],[Infinity,-32]
+    ]);
+    const readingPenalty = progressivePenalty(words.length, [
+      [50,-2],[150,-6],[300,-12],[500,-18],[700,-24],[Infinity,-30]
+    ]);
+    let wallOfTextPenalty = 0;
+    if(paragraphCount <= 1 && words.length > 150){
+      wallOfTextPenalty = -10;
+    }
+
+    const totalPenalty = sentencePenalty + structuralPenalty + definitionPenalty + readingPenalty + wallOfTextPenalty;
+    const overall = 100 + totalPenalty;
+
+    const scoreEl = document.getElementById('hliScoreNum');
+    scoreEl.textContent = overall;
+    scoreEl.style.color = overall >= 70 ? '#1a8a4a' : (overall >= 40 ? 'var(--gold)' : 'var(--red)');
+
+    let tagline;
+    if(overall >= 70) tagline = "The document respects its reader.";
+    else if(overall >= 40) tagline = "Workable, but the reader is doing extra work.";
+    else if(overall >= 0) tagline = "The document is fighting its reader.";
+    else tagline = "The document is actively creating unnecessary friction.";
+    document.getElementById('hliTagline').textContent = tagline;
+
+    document.getElementById('hliDominantStat').innerHTML =
+      '<b>' + avgSentLen.toFixed(1) + '</b> words / sentence';
+
+    const wf = document.getElementById('hliWaterfall');
+    const rows = [
+      ['100','Starting point',''],
+      [sentencePenalty,'Sentence length','neg'],
+      [structuralPenalty,'Structural complexity','neg'],
+      [definitionPenalty,'Definition burden','neg'],
+      [readingPenalty,'Reading burden','neg'],
+    ];
+    if(wallOfTextPenalty !== 0) rows.push([wallOfTextPenalty,'Wall-of-text penalty','neg']);
+    rows.push([overall,'Final text-only score','']);
+    wf.innerHTML = rows.map(([val,label,cls])=>
+      `<div class="hli-wf-row"><span class="hli-wf-val ${cls}">${val}</span><span class="hli-wf-label">${label}</span></div>`
+    ).join('');
+
+    const sentSeverity = Math.min(1, Math.abs(sentencePenalty) / 50);
+    const readSeverity = Math.min(1, Math.abs(readingPenalty) / 30);
+    const defSeverity  = Math.min(1, Math.abs(definitionPenalty) / 32);
+    const pts = [radarPoint(readSeverity,0), radarPoint(sentSeverity,1), radarPoint(defSeverity,2)].join(' ');
     document.getElementById('radarData').setAttribute('points', pts);
 
     let verdict;
     if(overall >= 70) verdict = "Reads like it was written for a person, not a court.";
-    else if(overall >= 40) verdict = "Workable, but sentence length and jargon density are already <b>working against the reader</b>.";
-    else verdict = "Most readers would <b>skim past this, not read it</b>.";
+    else if(overall >= 40) verdict = "Sentence length and jargon density are already <b>working against the reader</b>.";
+    else if(overall >= 0) verdict = "Most readers would <b>skim past this, not read it</b>.";
+    else verdict = "This isn't unclear, it's <b>hostile by design</b>.";
     document.getElementById('hliVerdictText').innerHTML = verdict;
+
+    const readMin = Math.max(1, Math.round(words.length / 200));
     document.getElementById('hliVerdictStats').innerHTML =
       '<div><b>' + words.length + '</b>words</div>' +
       '<div><b>' + avgSentLen.toFixed(1) + '</b>words / sentence</div>' +
