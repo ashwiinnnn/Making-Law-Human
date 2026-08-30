@@ -97,13 +97,6 @@ img,video{max-width:100%;}
   color:var(--jc,var(--orange)) !important;text-decoration:line-through;text-decoration-thickness:1.5px;
   text-decoration-color:var(--jc,var(--orange));opacity:.8 !important;cursor:default;
 }
-.jargon-tip{
-  position:absolute;left:50%;top:100%;transform:translateX(-50%) translateY(-4px);margin-top:5px;
-  background:var(--ink);color:#fff;font-family:var(--sans);font-weight:600;font-size:10px;
-  letter-spacing:0;text-transform:none;padding:4px 9px;border-radius:3px;white-space:nowrap;
-  opacity:0;animation:tipPop .35s ease forwards;pointer-events:none;z-index:2;
-}
-@keyframes tipPop{to{opacity:1;transform:translateX(-50%) translateY(0);}}
 .hero-counter{
   position:relative;z-index:2;font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);
   letter-spacing:.06em;text-transform:uppercase;margin-top:8px;
@@ -701,7 +694,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   .tabnav-links a{padding:14px 11px;font-size:9.5px;}
 
   .hero{padding:80px 16px 0;min-height:92vh;}
-  .hero-jargon span{display:none;}
+  .hero-jargon span{font-size:8px;letter-spacing:.05em;padding:2px;}
   .hero-logo-text .hlt-line1,.hero-logo-text .hlt-line2{font-size:clamp(38px,15vw,64px);}
   .hero-subline{font-size:16px;max-width:30ch;margin-top:22px;}
   .hero-scroll-cue{padding:20px 0 22px;}
@@ -841,26 +834,26 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
 <div class="hero" id="top">
   <div class="hero-noise"></div>
   <div class="hero-jargon" id="heroJargon">
-    <span style="left:5%;top:14%;" data-plain="Because">Whereas</span>
-    <span style="left:87%;top:12%;" data-plain="Cancelled">Null and Void</span>
-    <span style="left:14%;top:80%;" data-plain="Act of God">Force Majeure</span>
-    <span style="left:80%;top:82%;" data-plain="Not allowed to do that">Ultra Vires</span>
-    <span style="left:38%;top:8%;" data-plain="Until now">Heretofore</span>
-    <span style="left:55%;top:92%;" data-plain="Cover the cost if it goes wrong">Indemnify</span>
-    <span style="left:6%;top:46%;" data-plain="Fair pay for work done">Quantum Meruit</span>
-    <span style="left:90%;top:46%;" data-plain="Don't be late">Time Is of the Essence</span>
-    <span style="left:22%;top:26%;" data-plain="With necessary changes">Mutatis Mutandis</span>
-    <span style="left:70%;top:24%;" data-plain="Genuine">Bona Fide</span>
-    <span style="left:30%;top:66%;" data-plain="Following">Pursuant To</span>
-    <span style="left:62%;top:68%;" data-plain="In this document">Herein</span>
-    <span style="left:11%;top:60%;" data-plain="Mentioned earlier">Aforementioned</span>
-    <span style="left:82%;top:62%;" data-plain="Despite">Notwithstanding</span>
-    <span style="left:46%;top:18%;" data-plain="Forever">In Perpetuity</span>
-    <span style="left:48%;top:80%;" data-plain="One of a kind">Sui Generis</span>
-    <span style="left:3%;top:30%;" data-plain="Can't go back on your word">Estoppel</span>
-    <span style="left:93%;top:30%;" data-plain="In practice">De Facto</span>
-    <span style="left:26%;top:92%;" data-plain="At first glance">Prima Facie</span>
-    <span style="left:66%;top:10%;" data-plain="Buyer beware">Caveat Emptor</span>
+    <span style="left:5%;top:14%;" data-plain="Because" data-def="Used to introduce the reason a contract exists at all, right before the actual terms.">Whereas</span>
+    <span style="left:87%;top:12%;" data-plain="Cancelled" data-def="Treated as if it never legally existed in the first place.">Null and Void</span>
+    <span style="left:14%;top:80%;" data-plain="Act of God" data-def="An event outside anyone's control, like a flood or war, that excuses a party from performing.">Force Majeure</span>
+    <span style="left:80%;top:82%;" data-plain="Not allowed to do that" data-def="An act taken beyond the legal power granted to the person or entity doing it.">Ultra Vires</span>
+    <span style="left:38%;top:8%;" data-plain="Until now" data-def="Refers to everything that happened before this point in the document.">Heretofore</span>
+    <span style="left:55%;top:92%;" data-plain="Cover the cost if it goes wrong" data-def="A promise to compensate someone for loss or damage caused by a specified event.">Indemnify</span>
+    <span style="left:6%;top:46%;" data-plain="Fair pay for work done" data-def="Payment owed for services rendered, even without a formal contract price.">Quantum Meruit</span>
+    <span style="left:90%;top:46%;" data-plain="Don't be late" data-def="A deadline treated as strict; missing it can void the whole agreement.">Time Is of the Essence</span>
+    <span style="left:22%;top:26%;" data-plain="With necessary changes" data-def="Apply the same rule elsewhere, adjusting only what obviously needs to change.">Mutatis Mutandis</span>
+    <span style="left:70%;top:24%;" data-plain="Genuine" data-def="Done honestly and in good faith, without intent to deceive.">Bona Fide</span>
+    <span style="left:30%;top:66%;" data-plain="Following" data-def="Acting in accordance with a specific law, clause, or rule.">Pursuant To</span>
+    <span style="left:62%;top:68%;" data-plain="In this document" data-def="Refers back to this same contract or section, not any outside document.">Herein</span>
+    <span style="left:11%;top:60%;" data-plain="Mentioned earlier" data-def="Refers to something already defined or named earlier in the text.">Aforementioned</span>
+    <span style="left:82%;top:62%;" data-plain="Despite" data-def="This clause overrides any conflicting term written elsewhere in the document.">Notwithstanding</span>
+    <span style="left:46%;top:18%;" data-plain="Forever" data-def="An obligation or right with no fixed end date, it just keeps going.">In Perpetuity</span>
+    <span style="left:48%;top:80%;" data-plain="One of a kind" data-def="So unique that no existing legal category fully covers it.">Sui Generis</span>
+    <span style="left:3%;top:30%;" data-plain="Can't go back on your word" data-def="You're legally barred from contradicting something you already said or did.">Estoppel</span>
+    <span style="left:93%;top:30%;" data-plain="In practice" data-def="True by conduct and outcome, even without formal legal recognition.">De Facto</span>
+    <span style="left:26%;top:92%;" data-plain="At first glance" data-def="Enough evidence to support a claim unless someone proves otherwise.">Prima Facie</span>
+    <span style="left:66%;top:10%;" data-plain="Buyer beware" data-def="The buyer takes the risk; the seller has no duty to point out defects.">Caveat Emptor</span>
   </div>
   <div class="hero-logo-stage" id="heroStage">
   <div class="hero-logo-video-wrap reveal" id="heroLogoWrap">
@@ -1446,15 +1439,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     jargon.forEach(el=>{
       el.addEventListener('click', (e)=>{
         e.stopPropagation();
-        if(el.classList.contains('humanized')) return;
-        el.classList.add('humanized');
-        const plain = el.dataset.plain;
-        if(plain){
-          const tip = document.createElement('span');
-          tip.className = 'jargon-tip';
-          tip.textContent = plain;
-          el.appendChild(tip);
-        }
+        el.classList.toggle('humanized');
       });
     });
   }
