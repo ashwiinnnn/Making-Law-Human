@@ -464,10 +464,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .cite b{color:var(--ink);font-weight:700;}
 
 .demo{background:var(--ink);color:var(--paper-2);padding:120px 0;border-top:1px solid var(--line);position:relative;overflow:hidden;}
-.demo::before{
-  content:'';position:absolute;top:10%;right:-12%;width:440px;height:440px;border-radius:50%;
-  background:radial-gradient(circle,rgba(194,65,12,.15),transparent 70%);pointer-events:none;z-index:0;
-}
 .demo .wrap-wide{position:relative;z-index:1;}
 .demo .eyebrow{color:var(--red);}
 .demo h2{color:var(--paper);}
@@ -663,12 +659,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .mission:hover .mission-spotlight{opacity:1;}
 .mission-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;}
 .mission blockquote{font-family:var(--display);font-size:clamp(30px,5.4vw,58px);font-weight:800;letter-spacing:-0.02em;max-width:16ch;margin:0 auto 32px;line-height:1.18;color:#fff;}
-.mission-mark-text{background:none;color:#fff;padding:0 8px;font-style:normal;position:relative;display:inline-block;}
-.mission-mark-text::before{
-  content:'';position:absolute;left:-6%;right:-6%;top:6%;bottom:0;z-index:-1;
-  background-repeat:no-repeat;background-size:100% 100%;filter:url(#crayonRough);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 60'%3E%3Cpath d='M5,16 C55,4 100,22 145,10 C175,3 210,14 235,12 C230,24 234,36 233,46 C190,54 130,42 90,50 C55,56 20,48 6,52 C3,40 6,28 5,16Z' fill='%239e1b1b' opacity='0.9'/%3E%3C/svg%3E");
-}
+.mission-mark-text{background:var(--yellow);color:var(--ink);padding:0 6px;border-radius:2px;font-style:normal;}
 .mission blockquote .w{display:inline-block;opacity:0;transform:translateY(14px);filter:blur(4px);transition:opacity .6s ease,transform .6s ease,filter .6s ease;}
 .mission.in blockquote .w{opacity:1;transform:translateY(0);filter:blur(0);}
 .mission cite{position:relative;z-index:1;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8c8a84;font-style:normal;}
@@ -701,6 +692,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
 
   .intro{padding:64px 16px 56px;}
   .intro h1{font-size:clamp(28px,8vw,38px);line-height:1.18;}
+  .intro h1 .strike{white-space:nowrap;display:inline-block;}
   .intro p.sub{font-size:15px;}
   .intro-cta{margin-top:26px;}
 
@@ -854,6 +846,19 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     <span style="left:93%;top:30%;" data-plain="In practice" data-def="True by conduct and outcome, even without formal legal recognition.">De Facto</span>
     <span style="left:26%;top:92%;" data-plain="At first glance" data-def="Enough evidence to support a claim unless someone proves otherwise.">Prima Facie</span>
     <span style="left:66%;top:10%;" data-plain="Buyer beware" data-def="The buyer takes the risk; the seller has no duty to point out defects.">Caveat Emptor</span>
+    <span style="left:16%;top:6%;" data-plain="By that fact itself">Ipso Facto</span>
+    <span style="left:73%;top:6%;" data-plain="In private, not open court">In Camera</span>
+    <span style="left:2%;top:70%;" data-plain="Already decided, can't be reopened">Res Judicata</span>
+    <span style="left:95%;top:66%;" data-plain="With only one side present">Ex Parte</span>
+    <span style="left:8%;top:14%;" data-plain="Without which, not">Sine Qua Non</span>
+    <span style="left:57%;top:4%;" data-plain="Produce the body, in court">Habeas Corpus</span>
+    <span style="left:34%;top:44%;" data-plain="Friend of the court">Amicus Curiae</span>
+    <span style="left:75%;top:52%;" data-plain="Truth-telling, jury screening">Voir Dire</span>
+    <span style="left:18%;top:92%;" data-plain="By itself">Per Se</span>
+    <span style="left:88%;top:90%;" data-plain="Among other things">Inter Alia</span>
+    <span style="left:2%;top:88%;" data-plain="For this one purpose only">Ad Hoc</span>
+    <span style="left:96%;top:14%;" data-plain="Method of operating">Modus Operandi</span>
+    <span style="left:40%;top:96%;" data-plain="Right to bring a case">Locus Standi</span>
   </div>
   <div class="hero-logo-stage" id="heroStage">
   <div class="hero-logo-video-wrap reveal" id="heroLogoWrap">
@@ -1367,7 +1372,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
         </div>
       </div>
     </div>
-    <div class="cite" style="margin-top:34px;">Methodology notes, the Experiment 001 protocol, and raw materials are available on request. This project welcomes replication, correction, and disagreement; the numbers on this page are a starting point, not a conclusion.</div>
+    <div class="cite" style="margin-top:34px;">Methodology notes, the Experiment 001 protocol, and raw materials are available on request. The numbers on this page are a starting point, not a conclusion.</div>
   </div>
 </section>
 
