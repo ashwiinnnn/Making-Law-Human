@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Making Law Human</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Kalam:wght@400;700&display=swap');
 
 :root{
   --paper:#ffffff;
@@ -375,10 +375,6 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .layer p{font-size:17px;color:var(--ink-dim);max-width:52ch;line-height:1.75;}
 
 #ai{background:var(--ink);color:var(--paper-2);border-top:none;position:relative;overflow:hidden;}
-#ai::before{
-  content:'';position:absolute;top:-20%;right:-10%;width:520px;height:520px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,138,18,.16),transparent 70%);pointer-events:none;z-index:0;
-}
 #ai .wrap-wide{position:relative;z-index:1;}
 #ai .eyebrow{color:var(--red);}
 #ai h2{color:var(--paper);}
@@ -638,6 +634,23 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .about-teaser .role{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-bottom:14px;text-transform:uppercase;letter-spacing:.03em;}
 .about-teaser p{font-size:16px;color:var(--ink-dim);max-width:60ch;line-height:1.7;margin-bottom:16px;}
 @media (max-width:520px){.about-teaser{grid-template-columns:1fr;}}
+.researcher-statement{
+  font-family:var(--sans);font-weight:600;font-style:normal;
+  font-size:clamp(20px,2.5vw,25px);line-height:1.5;color:var(--ink);
+  max-width:44ch;margin:8px 0 40px;padding-bottom:36px;border-bottom:1px solid var(--line);
+}
+.qmark-mini{
+  display:inline-block;font-family:'Kalam',cursive;font-weight:700;color:var(--red);
+  margin-left:3px;animation:qMiniBob 2.6s ease-in-out infinite;
+}
+@keyframes qMiniBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
+@media (prefers-reduced-motion: reduce){.qmark-mini{animation:none;}}
+.crayon-underline{position:relative;font-style:normal;}
+.crayon-underline::after{
+  content:'';position:absolute;left:-2%;right:-2%;bottom:-4px;height:8px;
+  background-repeat:no-repeat;background-size:100% 100%;filter:url(#crayonRough);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 12'%3E%3Cpath d='M2,6 C25,1 45,10 70,5 C95,0.5 120,9 148,5' stroke='%239e1b1b' stroke-width='4.5' fill='none' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+}
 .researcher{display:grid;grid-template-columns:110px 1fr;gap:36px;align-items:start;margin-top:24px;}
 .researcher-mark{width:84px;height:84px;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:26px;font-weight:600;background:var(--paper);}
 .researcher h4{font-family:var(--display);font-size:20px;font-weight:600;margin-bottom:6px;}
@@ -646,28 +659,71 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .rbadge{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;border:1px solid var(--line);padding:6px 12px;border-radius:14px;color:var(--ink-dim);}
 .rbadge svg{width:13px;height:13px;flex-shrink:0;opacity:.75;}
 @media (max-width:520px){.researcher{grid-template-columns:1fr;}}
-
-.mission{
-  text-align:center;padding:170px 24px;background:#0a0a0a;position:relative;overflow:hidden;
-  background-image:radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
-  background-size:36px 36px;
+@media (max-width:640px){
+  .researcher-statement{max-width:none;}
+  .researcher-mark{width:60px;height:60px;font-size:19px;}
 }
-.mission-spotlight{
-  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .4s ease;
-  background:radial-gradient(circle 420px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.07),transparent 70%);
-}
-.mission:hover .mission-spotlight{opacity:1;}
-.mission-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;}
-.mission blockquote{font-family:var(--display);font-size:clamp(30px,5.4vw,58px);font-weight:800;letter-spacing:-0.02em;max-width:16ch;margin:0 auto 32px;line-height:1.18;color:#fff;}
-.mission-mark-text{background:var(--yellow);color:var(--ink);padding:0 6px;border-radius:2px;font-style:normal;}
-.mission blockquote .w{display:inline-block;opacity:0;transform:translateY(14px);filter:blur(4px);transition:opacity .6s ease,transform .6s ease,filter .6s ease;}
-.mission.in blockquote .w{opacity:1;transform:translateY(0);filter:blur(0);}
-.mission cite{position:relative;z-index:1;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8c8a84;font-style:normal;}
-.mission-note{position:relative;z-index:1;font-family:var(--mono);font-size:10.5px;color:#6a6864;margin-top:18px;letter-spacing:.03em;}
-.mission-mark{position:relative;z-index:1;margin-top:56px;opacity:.85;}
-.mission-mark img{height:16px;width:auto;filter:brightness(0) invert(1);opacity:.55;}
 
-footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim);letter-spacing:.08em;text-transform:uppercase;border-top:1px solid var(--line);font-family:var(--mono);}
+.closer{
+  text-align:center;padding:160px 24px 130px;background:var(--paper);position:relative;
+  border-top:1px solid var(--line);
+}
+.closer .eyebrow{text-align:center;}
+.closer-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;}
+.closer-rule{width:56px;height:2px;background:var(--red);margin:0 auto 40px;}
+
+.closer-quote{
+  font-family:var(--display);font-size:clamp(30px,5.2vw,52px);font-weight:800;letter-spacing:-0.015em;
+  max-width:19ch;margin:0 auto 34px;line-height:1.5;color:var(--ink);
+  opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease;
+}
+.closer-quote.in{opacity:1;transform:translateY(0);}
+
+.closer-cite{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);
+  opacity:0;transition:opacity .8s ease .2s;display:block;margin-bottom:8px;
+}
+.closer-quote.in ~ .closer-cite{opacity:1;}
+.closer-note{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);opacity:.7;
+  opacity:0;transition:opacity .8s ease .3s;
+}
+.closer-quote.in ~ .closer-note{opacity:.7;}
+
+.circle-wrap{position:relative;display:inline-block;padding:0 3px;cursor:help;}
+.crayon-circle{position:absolute;left:-9%;right:-9%;top:-16%;bottom:-12%;width:118%;height:128%;z-index:-1;overflow:visible;pointer-events:none;}
+.crayon-circle path{fill:none;stroke:var(--red);stroke-linecap:round;stroke-linejoin:round;filter:url(#crayonRough);}
+.crayon-circle .pass1{stroke-width:5;stroke-dasharray:640;stroke-dashoffset:640;opacity:.9;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1) .9s;}
+.crayon-circle .pass2{stroke-width:3.5;stroke-dasharray:640;stroke-dashoffset:640;opacity:.5;mix-blend-mode:multiply;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1) 1.15s;}
+.closer-quote.in .crayon-circle path{stroke-dashoffset:0;}
+
+.circle-wrap .note-arrow{
+  position:absolute;top:50%;right:100%;width:60px;height:28px;
+  margin-right:2px;transform:translateY(-58%);overflow:visible;pointer-events:none;
+}
+.circle-wrap .note-arrow path{fill:none;stroke:var(--red);stroke-linecap:round;stroke-linejoin:round;filter:url(#crayonRough);}
+.circle-wrap .note-arrow .arrow-shaft{stroke-width:2.4;stroke-dasharray:70;stroke-dashoffset:70;transition:stroke-dashoffset .4s cubic-bezier(.2,.8,.2,1);}
+.circle-wrap .note-arrow .arrow-head{stroke-width:2.4;stroke-dasharray:22;stroke-dashoffset:22;transition:stroke-dashoffset .2s ease .34s;}
+.circle-wrap:hover .note-arrow .arrow-shaft,.circle-wrap:focus .note-arrow .arrow-shaft{stroke-dashoffset:0;}
+.circle-wrap:hover .note-arrow .arrow-head,.circle-wrap:focus .note-arrow .arrow-head{stroke-dashoffset:0;}
+.margin-note{
+  position:absolute;top:50%;right:calc(100% + 58px);width:140px;
+  transform:translateY(-50%) translateX(8px);
+  font-family:var(--display);font-style:italic;font-weight:600;font-size:14px;
+  color:var(--red);line-height:1.35;text-align:right;opacity:0;pointer-events:none;
+  transition:opacity .3s ease .3s,transform .3s ease .3s;
+}
+.margin-note.visible{opacity:1;transform:translateY(-50%) translateX(0);}
+@media (max-width:640px){
+  .circle-wrap .note-arrow{top:100%;right:auto;left:50%;margin-right:0;width:50px;height:24px;
+    transform:translateX(-50%) rotate(90deg) scale(.85);}
+  .margin-note{top:auto;bottom:auto;right:auto;left:50%;width:auto;max-width:220px;
+    margin-top:56px;text-align:center;transform:translateX(-50%) translateY(6px);}
+  .margin-note.visible{transform:translateX(-50%) translateY(0);}
+}
+footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);background:var(--paper-2);display:flex;justify-content:center;}
+.footer-inner{display:flex;align-items:center;justify-content:center;}
+.footer-inner .brand-mark-text{font-size:14px;}
+
+.tab-panel{display:block;}
 
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
@@ -769,9 +825,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   .exp-grid{grid-template-columns:1fr;}
   .exp-meta{gap:22px;}
 
-  .about-teaser,.researcher{grid-template-columns:1fr;gap:16px;}
-  .researcher-mark{width:60px;height:60px;font-size:19px;}
-  .researcher h4{font-size:18px;}
+  .about-teaser{grid-template-columns:1fr;gap:16px;}
 
   .exhibit-head{grid-template-columns:28px 1fr 18px;gap:14px;padding:20px 0;}
   .exhibit h4{font-size:16px;}
@@ -779,8 +833,8 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   .exhibit-body-inner{padding-left:42px;font-size:14.5px;}
   .exhibit-chevron{font-size:17px;}
 
-  .mission{padding:96px 18px;}
-  .mission blockquote{font-size:clamp(24px,8vw,34px);max-width:14ch;}
+  .closer{padding:90px 18px 80px;}
+  .closer-heading{font-size:clamp(24px,8vw,32px);}
 
   .cite{font-size:10.5px;}
 }
@@ -807,22 +861,24 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
 </svg>
 <div id="progress"></div>
 
-<nav class="tabnav">
+<nav class="tabnav" id="siteNav">
   <div class="tabnav-inner">
-    <a href="#top" class="brand-mark" aria-label="Making Law Human home"><span class="brand-mark-text">making law <em>human</em></span></a>
+    <a href="#top" class="brand-mark" data-tab="top" aria-label="Making Law Human home"><span class="brand-mark-text">making law <em>human</em></span></a>
     <div class="tabnav-links">
-    <a href="#origin">The Problem</a>
-    <a href="#experiment">The Experiment</a>
-    <a href="#framework">The Framework</a>
-    <a href="#ai">The AI Question</a>
-    <a href="#colors">Color</a>
-    <a href="#index">The Index</a>
-    <a href="#museum">Posts</a>
-    <a href="#researcher">Researcher</a>
+    <a href="#top" data-tab="top" class="current">Home</a>
+    <a href="#origin" data-tab="origin">The Problem</a>
+    <a href="#experiment" data-tab="experiment">The Experiment</a>
+    <a href="#framework" data-tab="framework">The Framework</a>
+    <a href="#ai" data-tab="ai">The AI Question</a>
+    <a href="#colors" data-tab="colors">Color</a>
+    <a href="#index" data-tab="index">The Index</a>
+    <a href="#museum" data-tab="museum">Posts</a>
+    <a href="#researcher" data-tab="researcher">Researcher</a>
     </div>
   </div>
 </nav>
 
+<div class="tab-panel active" id="panel-top">
 <div class="hero" id="top">
   <div class="hero-noise"></div>
   <div class="hero-jargon" id="heroJargon">
@@ -884,7 +940,42 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   <div class="intro-inner">
     <h1 class="reveal">Nobody reads<br>the <span class="strike">terms and conditions</span>.<br>They read what's <mark>left of them.</mark></h1>
     <p class="sub reveal">A research project on why law is unreadable by design, and what happens when someone actually sits down and redesigns it. Built from a year of field notes, by someone who has been angry about a contract more than once.</p>
+  </div>
+</div>
 
+<section id="rt" class="tight">
+  <div class="wrap reveal">
+    <span class="eyebrow">Try It Yourself</span>
+    <h2>Drag the word. Watch the dispute grow.</h2>
+    <p class="lede">"Reasonable time" is not a timeline, it is a guessing game. Two weeks to you. Six months to them. Move the slider to see how the same clause reads to two different parties.</p>
+    <div class="rt-box">
+      <div class="rt-clause">"Delivery shall occur within a <span class="fill" id="rtWord">reasonable time</span> of signing."</div>
+      <input type="range" id="rtSlider" min="0" max="100" value="15">
+      <div class="rt-labels"><span>2 weeks</span><span>6 months</span></div>
+      <div class="rt-meter"><div class="rt-meter-fill" id="rtFill"></div></div>
+      <div class="rt-meter-label" id="rtLabel">Dispute likelihood: low. Both sides roughly agree what "reasonable" means here.</div>
+    </div>
+  </div>
+</section>
+
+<section id="questions" class="tight">
+  <div class="wrap reveal">
+    <span class="eyebrow">The Project Asks, It Does Not Answer</span>
+    <h2>Every question becomes a research path.</h2>
+    <div class="questions">
+      <div class="question"><span>01</span>Why do contracts hide the most important sentence?</div>
+      <div class="question"><span>02</span>Why does &ldquo;reasonable time&rdquo; create unreasonable disputes?</div>
+      <div class="question"><span>03</span>Can color reduce legal anxiety?</div>
+      <div class="question"><span>04</span>Why are people scared to ask lawyers questions?</div>
+      <div class="question"><span>05</span>Can AI draft empathy?</div>
+    </div>
+  </div>
+</section>
+</div><!-- /panel-top -->
+
+<section id="origin" class="tab-panel tight">
+  <div class="wrap reveal">
+    <span class="eyebrow">The Problem</span>
     <div class="redesign-block reveal">
       <div class="redesign-bar">
         <span class="filetitle">Same clause, two documents</span>
@@ -908,30 +999,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
       </div>
       <div class="redesign-caption">// same legal substance. one version was written to protect the company from you. the other was written to actually reach you.</div>
     </div>
-  </div>
-</div>
 
-<section id="board" class="tight reveal pattern-dots">
-  <div class="wrap-wide">
-    <span class="eyebrow">Where To Start</span>
-    <h2>Eight ways into the same project.</h2>
-    <p class="lede">Pick a thread. Each one leads back to the same origin story, just from a different angle. There's no required order here, the site is built to be read in fragments, the way most people actually read anything.</p>
-    <div class="flip-grid">
-      <a href="#origin" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">01</span><span class="flip-title">The Problem</span></div><div class="flip-back"><span class="flip-desc">Origin story</span><span class="flip-arrow">&rarr;</span></div></div></a>
-      <a href="#experiment" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">02</span><span class="flip-title">The Experiment</span></div><div class="flip-back"><span class="flip-desc">30 readers, one clause</span><span class="flip-arrow">&rarr;</span></div></div></a>
-      <a href="#framework" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">03</span><span class="flip-title">The Framework</span></div><div class="flip-back"><span class="flip-desc">Six layers, tested</span><span class="flip-arrow">&rarr;</span></div></div></a>
-      <a href="#ai" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">04</span><span class="flip-title">The AI Question</span></div><div class="flip-back"><span class="flip-desc">Valid &ne; understood</span><span class="flip-arrow">&rarr;</span></div></div></a>
-      <a href="#colors" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">05</span><span class="flip-title">Color</span></div><div class="flip-back"><span class="flip-desc">Blue, red, yellow</span><span class="flip-arrow">&rarr;</span></div></div></a>
-      <a href="#index" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">06</span><span class="flip-title">The Index</span></div><div class="flip-back"><span class="flip-desc">Score your own document</span><span class="flip-arrow">&rarr;</span></div></div></a>
-      <a href="#museum" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">07</span><span class="flip-title">Posts</span></div><div class="flip-back"><span class="flip-desc">17 short pieces</span><span class="flip-arrow">&rarr;</span></div></div></a>
-      <a href="#researcher" class="flip-card"><div class="flip-inner"><div class="flip-front"><span class="flip-num">08</span><span class="flip-title">Researcher</span></div><div class="flip-back"><span class="flip-desc">Who's asking</span><span class="flip-arrow">&rarr;</span></div></div></a>
-    </div>
-  </div>
-</section>
-
-<section id="origin" class="tight">
-  <div class="wrap reveal">
-    <span class="eyebrow">Origin</span>
     <div class="origin-illus">
       <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three panels: signing up, nothing works, the buried clause">
         <g>
@@ -978,7 +1046,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   </div>
 </section>
 
-<section id="experiment" class="tight">
+<section id="experiment" class="tab-panel tight">
   <div class="wrap reveal">
     <span class="eyebrow">Experiment 001</span>
     <h2>Clause comprehension, tested.</h2>
@@ -999,35 +1067,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   </div>
 </section>
 
-<section id="rt" class="tight">
-  <div class="wrap reveal">
-    <span class="eyebrow">Try It Yourself</span>
-    <h2>Drag the word. Watch the dispute grow.</h2>
-    <p class="lede">"Reasonable time" is not a timeline, it is a guessing game. Two weeks to you. Six months to them. Move the slider to see how the same clause reads to two different parties.</p>
-    <div class="rt-box">
-      <div class="rt-clause">"Delivery shall occur within a <span class="fill" id="rtWord">reasonable time</span> of signing."</div>
-      <input type="range" id="rtSlider" min="0" max="100" value="15">
-      <div class="rt-labels"><span>2 weeks</span><span>6 months</span></div>
-      <div class="rt-meter"><div class="rt-meter-fill" id="rtFill"></div></div>
-      <div class="rt-meter-label" id="rtLabel">Dispute likelihood: low. Both sides roughly agree what "reasonable" means here.</div>
-    </div>
-  </div>
-</section>
-
-<section id="questions" class="tight">
-  <div class="wrap reveal">
-    <span class="eyebrow">The Project Asks, It Does Not Answer</span>
-    <h2>Every question becomes a research path.</h2>
-    <div class="questions">
-      <div class="question"><span>01</span>Why do contracts hide the most important sentence?</div>
-      <div class="question"><span>02</span>Why does &ldquo;reasonable time&rdquo; create unreasonable disputes?</div>
-      <div class="question"><span>03</span>Can color reduce legal anxiety?</div>
-      <div class="question"><span>04</span>Why are people scared to ask lawyers questions?</div>
-      <div class="question"><span>05</span>Can AI draft empathy?</div>
-    </div>
-  </div>
-</section>
-
+<div class="tab-panel" id="panel-framework">
 <section id="disciplines">
   <div class="wrap-wide reveal">
     <span class="eyebrow">Not Topics. Disciplines.</span>
@@ -1107,8 +1147,9 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     </div>
   </div>
 </section>
+</div><!-- /panel-framework -->
 
-<section id="ai">
+<section id="ai" class="tab-panel">
   <div class="wrap-wide reveal">
     <span class="eyebrow">The Central Question</span>
     <h2 style="max-width:22ch;">Can AI generate a legally correct document that a human cannot understand?</h2>
@@ -1190,7 +1231,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   </div>
 </section>
 
-<section id="colors" class="color-section blue reveal">
+<section id="colors" class="color-section blue reveal tab-panel">
   <div class="wrap-wide">
     <span class="eyebrow">Psychology of Color</span>
     <h2>Blue. The quiet overachiever.</h2>
@@ -1289,7 +1330,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   </div>
 </div>
 
-<section id="index">
+<section id="index" class="tab-panel">
   <div class="wrap-wide reveal">
     <span class="eyebrow">Introducing</span>
     <h2>The Human Law Index.</h2>
@@ -1379,6 +1420,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   </div>
 </section>
 
+<div class="tab-panel" id="panel-museum">
 <div class="museum reveal" id="museum">
   <section>
     <div class="wrap-wide">
@@ -1402,11 +1444,15 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
     </div>
   </div>
 </section>
+</div><!-- /panel-museum -->
 
-<section id="researcher">
+<section id="researcher" class="tab-panel">
   <div class="wrap-wide reveal">
     <span class="eyebrow">About</span>
     <h2>About the researcher.</h2>
+
+    <p class="researcher-statement reveal">Hi, I&rsquo;m Ashwin. I make legal things less <span class="crayon-underline">awkward</span> for real people<span class="qmark-mini" aria-hidden="true">?</span></p>
+
     <div class="researcher">
       <div class="researcher-mark">AG</div>
       <div>
@@ -1424,15 +1470,17 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   </div>
 </section>
 
-<div class="mission reveal pattern-dots">
-  <div class="wrap">
-    <blockquote>&ldquo;No one should feel <mark class="mission-mark-text">powerless</mark> reading documents about their own future.&rdquo;</blockquote>
-    <cite>The research mission, not a slogan</cite>
-    <div class="mission-note">This is an ongoing project.</div>
+<div class="closer reveal" id="missionSection">
+  <div class="closer-inner">
+    <div class="closer-rule"></div>
+    <blockquote class="closer-quote reveal" id="closerQuote">&ldquo;No one should feel <span class="circle-wrap" id="powerlessWrap" tabindex="0">powerless<svg class="crayon-circle" viewBox="0 0 200 90" preserveAspectRatio="none"><path class="pass1" d="M12,46 C8,18 45,4 100,4 C155,4 190,16 186,46 C182,74 145,86 98,86 C50,86 16,74 12,46 Z"/><path class="pass2" d="M14,44 C10,20 48,6 100,6 C152,6 188,18 184,44 C180,70 148,84 98,84 C48,84 18,70 14,44 Z"/></svg><svg class="note-arrow" viewBox="0 0 60 28" xmlns="http://www.w3.org/2000/svg"><path class="arrow-shaft" d="M4,18 C20,4 38,28 48,13"/><path class="arrow-head" d="M40,5 L50,13 L39,20"/></svg><span class="margin-note" id="marginNote">the whole point</span></span> reading documents about their own future.&rdquo;</blockquote>
+    <cite class="closer-cite">The research mission, not a slogan</cite>
+    <div class="closer-note">An independent, ongoing research project</div>
   </div>
 </div>
-
-<footer>Making Law Human</footer>
+<footer>
+  <div class="footer-inner"><span class="brand-mark-text">making law <em>human</em></span></div>
+</footer>
 
 <script>
 (function(){
@@ -1502,6 +1550,7 @@ footer{padding:48px 24px;text-align:center;font-size:10.5px;color:var(--ink-dim)
   if(scribble){
     setTimeout(()=> scribble.classList.add('in'), 700);
   }
+
   const cue = document.querySelector('.hero-scroll-cue');
   if(cue){
     cue.addEventListener('click', ()=>{
@@ -1676,6 +1725,56 @@ window.addEventListener('scroll', ()=>{
   const pct = (h.scrollTop)/(h.scrollHeight - h.clientHeight) * 100;
   document.getElementById('progress').style.width = pct + '%';
 });
+
+(function(){
+  // Maps a nav key (matches data-tab) to the section it should scroll to.
+  const panelIdFor = {
+    top:'panel-top',
+    origin:'origin',
+    experiment:'experiment',
+    framework:'panel-framework',
+    ai:'ai',
+    colors:'colors',
+    index:'index',
+    museum:'panel-museum',
+    researcher:'researcher'
+  };
+  const panels = {};
+  Object.keys(panelIdFor).forEach(key=>{ panels[key] = document.getElementById(panelIdFor[key]); });
+  const navLinks = document.querySelectorAll('a[data-tab]');
+
+  navLinks.forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const target = panels[a.dataset.tab];
+      if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+
+  // Highlight whichever section is currently in view as the "current" nav link.
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      const key = Object.keys(panels).find(k => panels[k] === entry.target);
+      if(!key) return;
+      navLinks.forEach(a=>{ a.classList.toggle('current', a.dataset.tab === key); });
+    });
+  }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+  Object.values(panels).forEach(p=>{ if(p) spy.observe(p); });
+})();
+
+(function(){
+  const wrap = document.getElementById('powerlessWrap');
+  const note = document.getElementById('marginNote');
+  if(!wrap || !note) return;
+  const show = ()=> note.classList.add('visible');
+  const hide = ()=> note.classList.remove('visible');
+  wrap.addEventListener('mouseenter', show);
+  wrap.addEventListener('mouseleave', hide);
+  wrap.addEventListener('focus', show);
+  wrap.addEventListener('blur', hide);
+  wrap.addEventListener('click', (e)=>{ e.preventDefault(); note.classList.toggle('visible'); });
+})();
 
 const reveals = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
