@@ -723,7 +723,8 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
 .footer-inner{display:flex;align-items:center;justify-content:center;}
 .footer-inner .brand-mark-text{font-size:14px;}
 
-.tab-panel{display:block;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
 
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
@@ -936,15 +937,17 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
   </div>
 </div>
 
-<div class="intro">
-  <div class="intro-inner">
-    <h1 class="reveal">Nobody reads<br>the <span class="strike">terms and conditions</span>.<br>They read what's <mark>left of them.</mark></h1>
-    <p class="sub reveal">A research project on why law is unreadable by design, and what happens when someone actually sits down and redesigns it. Built from a year of field notes, by someone who has been angry about a contract more than once.</p>
-  </div>
-</div>
+</div><!-- /panel-top -->
 
-<section id="rt" class="tight">
-  <div class="wrap reveal">
+<section id="origin" class="tab-panel tight">
+  <div class="intro">
+    <div class="intro-inner">
+      <h1 class="reveal">Nobody reads<br>the <span class="strike">terms and conditions</span>.<br>They read what's <mark>left of them.</mark></h1>
+      <p class="sub reveal">A research project on why law is unreadable by design, and what happens when someone actually sits down and redesigns it. Built from a year of field notes, by someone who has been angry about a contract more than once.</p>
+    </div>
+  </div>
+
+  <div class="wrap reveal" style="margin-top:88px;">
     <span class="eyebrow">Try It Yourself</span>
     <h2>Drag the word. Watch the dispute grow.</h2>
     <p class="lede">"Reasonable time" is not a timeline, it is a guessing game. Two weeks to you. Six months to them. Move the slider to see how the same clause reads to two different parties.</p>
@@ -956,10 +959,8 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       <div class="rt-meter-label" id="rtLabel">Dispute likelihood: low. Both sides roughly agree what "reasonable" means here.</div>
     </div>
   </div>
-</section>
 
-<section id="questions" class="tight">
-  <div class="wrap reveal">
+  <div class="wrap reveal" style="margin-top:88px;">
     <span class="eyebrow">The Project Asks, It Does Not Answer</span>
     <h2>Every question becomes a research path.</h2>
     <div class="questions">
@@ -970,11 +971,8 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       <div class="question"><span>05</span>Can AI draft empathy?</div>
     </div>
   </div>
-</section>
-</div><!-- /panel-top -->
 
-<section id="origin" class="tab-panel tight">
-  <div class="wrap reveal">
+  <div class="wrap reveal" style="margin-top:88px;">
     <span class="eyebrow">The Problem</span>
     <div class="redesign-block reveal">
       <div class="redesign-bar">
@@ -993,7 +991,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
         <div class="doc human" id="docBlockHuman" style="display:none;">
           <div class="doc-head">What this actually means</div>
           <p>This software <mark>only works with our own equipment.</mark> If you own a different brand, it will not connect, and we already know that.</p>
-          <p class="pull">If it breaks with other equipment, that's expected, not a malfunction, and you won't get a refund for finding that out.</p>
+          <p>If it breaks with other equipment, that's expected, not a malfunction, and you won't get a refund for finding that out.</p>
           <p>We are telling you this now, clearly, so you can check your equipment before you buy, not after.</p>
         </div>
       </div>
@@ -1035,12 +1033,12 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       </svg>
     </div>
     <div class="prose">
-      <p>Earlier this year, I signed up for what looked like the solution to all my DJ problems: a premium music subscription promising seamless software integration. Three clicks and 120 dollars later, I had a year long subscription and was feeling pretty good about my life choices.</p>
+      <p>In 2025, I signed up for what looked like the solution to all my DJ problems: a premium music subscription promising seamless software integration. Three clicks and 120 dollars later, I had a year long subscription and was feeling pretty good about my life choices.</p>
       <p>Until nothing worked.</p>
       <p>After twenty minutes of rage Googling, I found it. Buried in section sixteen of the terms: integration limited to one specific brand of equipment. Mine was not that brand. Not even close.</p>
       <p>The customer service rep asked if I had tried turning it off and on again, then delivered the real answer: it was clearly stated in the terms I agreed to. No refund. My 120 dollars, gone. My faith in the idea that anyone wrote those terms for me to actually read, also gone.</p>
       <p>I watched a friend do the same thing with her own contract months later: hands up after the fifth "notwithstanding the foregoing," the leap from "I don't understand any of this" to "so my payment is due on the 15th" landing like a small act of relief, not a formality.</p>
-      <p class="pull">That failure produced a question, not just a complaint: if a legally valid clause can remain practically invisible to the person agreeing to it, where does the failure actually occur? The reader, the lawyer, or the document itself?</p>
+      <p>That failure produced a question, not just a complaint: if a legally valid clause can remain practically invisible to the person agreeing to it, where does the failure actually occur? The reader, the lawyer, or the document itself?</p>
       <p>This project is an attempt to answer that question with something more durable than a strong opinion. What follows is the experiment, the framework it produced, and the open questions it has not resolved yet.</p>
     </div>
   </div>
@@ -1231,7 +1229,8 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
   </div>
 </section>
 
-<section id="colors" class="color-section blue reveal tab-panel">
+<div class="tab-panel" id="panel-colors">
+<section id="colors" class="color-section blue reveal">
   <div class="wrap-wide">
     <span class="eyebrow">Psychology of Color</span>
     <h2>Blue. The quiet overachiever.</h2>
@@ -1329,6 +1328,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
     </div>
   </div>
 </div>
+</div><!-- /panel-colors -->
 
 <section id="index" class="tab-panel">
   <div class="wrap-wide reveal">
@@ -1727,14 +1727,14 @@ window.addEventListener('scroll', ()=>{
 });
 
 (function(){
-  // Maps a nav key (matches data-tab) to the section it should scroll to.
+  // Maps a nav key (matches data-tab) to the panel it controls.
   const panelIdFor = {
     top:'panel-top',
     origin:'origin',
     experiment:'experiment',
     framework:'panel-framework',
     ai:'ai',
-    colors:'colors',
+    colors:'panel-colors',
     index:'index',
     museum:'panel-museum',
     researcher:'researcher'
@@ -1743,24 +1743,22 @@ window.addEventListener('scroll', ()=>{
   Object.keys(panelIdFor).forEach(key=>{ panels[key] = document.getElementById(panelIdFor[key]); });
   const navLinks = document.querySelectorAll('a[data-tab]');
 
+  function showTab(key){
+    const target = panels[key];
+    if(!target) return;
+    Object.values(panels).forEach(p=>{ if(p) p.classList.remove('active'); });
+    target.classList.add('active');
+    navLinks.forEach(a=>{ a.classList.toggle('current', a.dataset.tab === key); });
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+    target.querySelectorAll('.reveal').forEach(el=>{ el.classList.add('in'); });
+  }
+
   navLinks.forEach(a=>{
     a.addEventListener('click', (e)=>{
       e.preventDefault();
-      const target = panels[a.dataset.tab];
-      if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+      showTab(a.dataset.tab);
     });
   });
-
-  // Highlight whichever section is currently in view as the "current" nav link.
-  const spy = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting) return;
-      const key = Object.keys(panels).find(k => panels[k] === entry.target);
-      if(!key) return;
-      navLinks.forEach(a=>{ a.classList.toggle('current', a.dataset.tab === key); });
-    });
-  }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
-  Object.values(panels).forEach(p=>{ if(p) spy.observe(p); });
 })();
 
 (function(){
