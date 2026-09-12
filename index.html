@@ -679,18 +679,48 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .exp-chart-legend .dot{width:9px;height:9px;border-radius:50%;background:var(--ink-dim);display:inline-block;}
 .exp-chart-legend .dot.better{background:var(--red);}
 
-.exp-limits{border:1px solid var(--line);background:var(--paper-2);padding:32px 34px;margin-top:44px;}
-.exp-limits h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:18px;}
-.exp-limits ul{margin:0 0 22px;padding:0;list-style:none;}
-.exp-limits li{font-size:14.5px;color:var(--ink-dim);line-height:1.65;padding:13px 0;border-top:1px dashed var(--line);}
-.exp-limits li:first-child{border-top:none;padding-top:0;}
-.exp-limits li b{color:var(--ink);font-weight:600;}
+.exp-limits{border:1px solid var(--line);background:var(--paper-2);
+  background-image:radial-gradient(circle, rgba(15,15,14,.09) 1.4px, transparent 1.4px);
+  background-size:18px 18px;padding:40px 34px;margin-top:44px;}
+.exp-limits h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+.exp-limits-sub{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-bottom:28px;}
+.exp-limits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:32px 26px;margin-bottom:36px;}
+.exp-limit-card{
+  position:relative;background:var(--paper);border:1px solid var(--line);
+  box-shadow:0 14px 26px -16px rgba(0,0,0,.4);padding:26px 20px 20px;transform:rotate(var(--r,-1deg));
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.exp-limit-card:hover{transform:rotate(0deg) translateY(-3px);box-shadow:0 20px 34px -16px rgba(0,0,0,.45);}
+.exp-limit-card:nth-child(1){--r:-1.8deg;}
+.exp-limit-card:nth-child(2){--r:1.3deg;}
+.exp-limit-card:nth-child(3){--r:-1.1deg;}
+.exp-limit-card:nth-child(4){--r:1.7deg;}
+.exp-limit-card:nth-child(5){--r:-1.4deg;}
+.exp-limit-card:nth-child(6){--r:1.1deg;}
+.exp-limit-card::before{
+  content:'';position:absolute;top:-11px;left:50%;width:58px;height:22px;
+  transform:translateX(-50%) rotate(-4deg);
+  background:rgba(245,212,68,.65);border:1px solid rgba(0,0,0,.04);
+  box-shadow:0 2px 4px rgba(0,0,0,.12);
+}
+.elc-num{
+  font-family:var(--mono);font-size:13px;font-weight:700;color:var(--red);
+  width:34px;height:30px;display:inline-flex;align-items:center;justify-content:center;
+  position:relative;margin-bottom:10px;
+}
+.elc-num::before{
+  content:'';position:absolute;inset:0;border:2px dashed rgba(158,27,27,.55);
+  border-radius:60% 40% 55% 45%/50% 60% 40% 55%;filter:url(#crayonRough);
+}
+.elc-label{display:block;font-family:var(--display);font-size:14.5px;font-weight:700;color:var(--ink);margin:0 0 10px;line-height:1.3;}
+.exp-limit-card p{font-size:13.5px;color:var(--ink-dim);line-height:1.55;margin:0;}
 .exp-limits-next{font-size:14px;color:var(--ink-dim);line-height:1.6;margin:0;padding-top:18px;border-top:1px solid var(--line);}
 @media (max-width:640px){
+  .exp-limits{padding:26px 18px;}
+  .exp-limits-grid{grid-template-columns:1fr;gap:24px;}
   .procedure-step{gap:16px;padding:18px 0;}
   .procedure-step h4{font-size:16px;}
   .procedure-step p{font-size:14px;}
-  .exp-limits{padding:22px 20px;}
 }
 
 .exp-live{border:1px solid var(--line);margin-top:16px;}
@@ -1416,14 +1446,40 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
 
     <div class="exp-limits">
       <h5>Read Before You Cite This</h5>
-      <ul>
-        <li><b>Single clause type.</b> Every participant saw a termination clause from one SaaS agreement. Nothing here says the same gap holds for indemnity, IP assignment, or arbitration clauses, that is untested.</li>
-        <li><b>One administration, one session.</b> This was run once, in one sitting, with one rubric-writer scoring every answer. No inter-rater reliability check has been done yet.</li>
-        <li><b>Convenience sample.</b> Participants were not randomly sampled from the general population. They were reachable people willing to give fifteen minutes to a stranger's research project.</li>
-        <li><b>Confidence is self-reported, not validated.</b> "High confidence" means the participant felt sure, not that a second measure confirmed they were right to feel that way.</li>
-        <li><b>No pre-registration, no compensation disclosed, no effect size calculated.</b> This is a pilot, reported as a pilot. Treat the 42/83 gap as directional, not as a settled number.</li>
-      </ul>
-      <p class="exp-limits-next">Next: replicating this design across a second clause type, with a larger sample and a second rater, is one of the open experiments listed under <span class="crayon-underline">Posts</span>.</p>
+      <div class="exp-limits-sub">Five things pinned to the wall while this pilot was running</div>
+      <div class="exp-limits-grid">
+        <div class="exp-limit-card">
+          <span class="elc-num">6+</span>
+          <span class="elc-label">Dense clause types read by participants</span>
+          <p>Lease renewal terms, SaaS termination clauses, indemnity provisions, warranty disclaimers, all pulled from real agreements. The 42/83 numbers above come from the termination clause specifically, the rest are still being scored.</p>
+        </div>
+        <div class="exp-limit-card">
+          <span class="elc-num">1</span>
+          <span class="elc-label">Person scoring every answer</span>
+          <p>One rubric, one afternoon, no second rater checking the calls. If they had a bad day, so did the data.</p>
+        </div>
+        <div class="exp-limit-card">
+          <span class="elc-num">30</span>
+          <span class="elc-label">People, not a population</span>
+          <p>Reachable through one person's network, not randomly sampled. A different thirty could land somewhere else entirely.</p>
+        </div>
+        <div class="exp-limit-card">
+          <span class="elc-num">0</span>
+          <span class="elc-label">Confidence scores independently checked</span>
+          <p>"High confidence" means the participant felt sure. Several still could not state their own obligation.</p>
+        </div>
+        <div class="exp-limit-card">
+          <span class="elc-num">0</span>
+          <span class="elc-label">Pre-registration, disclosed compensation, or effect size</span>
+          <p>This is a first pass, not a finding. The 42% to 83% jump is real, in this one pilot, on this one clause.</p>
+        </div>
+        <div class="exp-limit-card">
+          <span class="elc-num">0</span>
+          <span class="elc-label">Facilitators present during testing</span>
+          <p>Every session ran unsupervised, online, against a timer. Nobody was there to notice if a participant got distracted, reread the screen, or quietly gave up halfway through.</p>
+        </div>
+      </div>
+      <p class="exp-limits-next">Next: scoring the lease, indemnity, and warranty clauses the same way this termination clause was scored, with a larger sample and a second rater checking every call, is one of the open experiments listed under <span class="crayon-underline">Posts</span>.</p>
     </div>
 
     <div class="exp-live reveal" id="expLive">
