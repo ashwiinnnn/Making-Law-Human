@@ -76,7 +76,7 @@ img,video{max-width:100%;}
 
 .hero{
   min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:100px 24px 90px;position:relative;text-align:center;overflow:hidden;
+  padding:120px 24px 90px;position:relative;text-align:center;overflow:hidden;
   background:#f7f4ee;
   --mx:50%; --my:38%;
 }
@@ -139,7 +139,7 @@ img,video{max-width:100%;}
 .hero-scroll-cue svg{width:14px;height:14px;animation:scrollBob 2s ease-in-out infinite;}
 @keyframes scrollBob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
 
-.intro{padding:120px 24px 96px;}
+.intro{padding:8px 24px 24px;}
 .intro-inner{max-width:var(--container);margin:0 auto;width:100%;}
 .intro .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:22px;}
 .intro h1{
@@ -183,18 +183,29 @@ img,video{max-width:100%;}
 }
 .intro-cta a.start-link:hover{color:var(--red);border-color:var(--red);}
 
-.highlight-teaser{margin-top:46px;padding-top:38px;border-top:1px solid var(--line);max-width:60ch;}
-.highlight-teaser-text{font-family:var(--legal);font-size:16.5px;line-height:2;color:var(--ink-dim);}
-.hl-word{cursor:pointer;padding:1px 3px;border-radius:2px;transition:background .2s ease,color .2s ease;}
-.hl-word:hover{background:var(--paper-2);}
-.hl-word.active{background:var(--yellow-tint);color:var(--ink);}
+.highlight-teaser{margin-top:46px;max-width:640px;border:1px solid var(--line);background:var(--paper);box-shadow:0 24px 48px -32px rgba(0,0,0,.28);}
+.ht-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:13px 22px;background:var(--paper-2);border-bottom:1px solid var(--line);}
+.ht-bar-tab{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--red);padding:3px 8px;border-radius:2px;}
+.ht-bar-label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);font-weight:600;}
+.ht-bar-tag{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--ink-dim);opacity:.65;margin-left:auto;}
+.ht-body{padding:30px 26px 26px;}
+.highlight-teaser-text{font-family:var(--legal);font-size:16.5px;line-height:1.95;color:var(--ink-dim);margin:0;text-align:left;}
+.hl-word{cursor:pointer;padding:1px 3px;border-radius:2px;border-bottom:1.5px dotted var(--line);transition:background .2s ease,color .2s ease,border-color .2s ease;}
+.hl-word:hover{background:var(--paper-2);border-color:var(--ink-dim);}
+.hl-word.active{background:var(--yellow-tint);color:var(--ink);border-bottom-color:transparent;}
 .hl-word.active.hl-key{background:var(--content-yellow);color:var(--ink);font-weight:600;}
-.highlight-teaser-hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-top:14px;}
-.highlight-teaser-note{font-family:var(--display);font-style:italic;font-weight:500;font-size:16px;color:var(--red);margin-top:10px;min-height:24px;opacity:0;transform:translateY(4px);transition:opacity .3s ease,transform .3s ease;}
+.ht-divider{height:1px;background:var(--line);margin:22px 0 18px;}
+.highlight-teaser-hint{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-dim);}
+.ht-hint-icon{font-size:12px;}
+.highlight-teaser-note{font-family:var(--display);font-style:italic;font-weight:500;font-size:16px;color:var(--red);margin-top:12px;min-height:24px;opacity:0;transform:translateY(4px);transition:opacity .3s ease,transform .3s ease;}
 .highlight-teaser-note.show{opacity:1;transform:translateY(0);}
 @media (max-width:640px){
-  .highlight-teaser{margin-top:32px;padding-top:26px;}
-  .highlight-teaser-text{font-size:14.5px;line-height:1.9;}
+  .highlight-teaser{margin-top:32px;}
+  .ht-bar{padding:11px 16px;gap:10px;}
+  .ht-bar-tag{margin-left:0;width:100%;}
+  .ht-body{padding:22px 18px 20px;}
+  .highlight-teaser-text{font-size:14.5px;line-height:1.85;}
 }
 
 .redesign-block{margin-top:64px;border:1px solid var(--line);}
@@ -833,7 +844,6 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
 @media (max-width:640px){
   .hli-cat-groups{grid-template-columns:1fr;gap:36px;}
   .wrap,.wrap-wide{padding:0 18px;}
-  p{text-align:left;}
 
   .tabnav-inner{padding:0 14px;}
   .brand-mark{padding-right:10px;margin-right:6px;}
@@ -846,7 +856,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
   .hero-subline{font-size:16px;max-width:30ch;margin-top:22px;}
   .hero-scroll-cue{padding:20px 0 22px;}
 
-  .intro{padding:64px 16px 56px;}
+  .intro{padding:8px 16px 20px;}
   .intro h1{font-size:clamp(28px,8vw,38px);line-height:1.18;}
   .intro h1 .strike{white-space:nowrap;display:inline-block;}
   .intro p.sub{font-size:15px;}
@@ -863,7 +873,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
   section.tight{padding:52px 0;}
   .eyebrow{font-size:10px;margin-bottom:14px;}
   h2{font-size:clamp(24px,7.5vw,32px);max-width:none;margin-bottom:16px;}
-  .lede{font-size:15px;margin-bottom:30px;text-align:left;}
+  .lede{font-size:15px;margin-bottom:30px;}
 
   .board-meta{gap:22px 28px;padding-bottom:24px;}
   .board-meta b{font-size:20px;}
@@ -989,7 +999,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
     <span style="left:38%;top:8%;" data-plain="Until now" data-def="Refers to everything that happened before this point in the document.">Heretofore</span>
     <span style="left:55%;top:92%;" data-plain="Cover the cost if it goes wrong" data-def="A promise to compensate someone for loss or damage caused by a specified event.">Indemnify</span>
     <span style="left:6%;top:46%;" data-plain="Fair pay for work done" data-def="Payment owed for services rendered, even without a formal contract price.">Quantum Meruit</span>
-    <span style="left:90%;top:46%;" data-plain="Don't be late" data-def="A deadline treated as strict; missing it can void the whole agreement.">Time Is of the Essence</span>
+    <span style="left:90%;top:46%;" data-plain="Do not be late" data-def="A deadline treated as strict; missing it can void the whole agreement.">Time Is of the Essence</span>
     <span style="left:22%;top:26%;" data-plain="With necessary changes" data-def="Apply the same rule elsewhere, adjusting only what obviously needs to change.">Mutatis Mutandis</span>
     <span style="left:70%;top:24%;" data-plain="Genuine" data-def="Done honestly and in good faith, without intent to deceive.">Bona Fide</span>
     <span style="left:30%;top:66%;" data-plain="Following" data-def="Acting in accordance with a specific law, clause, or rule.">Pursuant To</span>
@@ -998,13 +1008,13 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
     <span style="left:82%;top:62%;" data-plain="Despite" data-def="This clause overrides any conflicting term written elsewhere in the document.">Notwithstanding</span>
     <span style="left:46%;top:18%;" data-plain="Forever" data-def="An obligation or right with no fixed end date, it just keeps going.">In Perpetuity</span>
     <span style="left:48%;top:80%;" data-plain="One of a kind" data-def="So unique that no existing legal category fully covers it.">Sui Generis</span>
-    <span style="left:3%;top:30%;" data-plain="Can't go back on your word" data-def="You're legally barred from contradicting something you already said or did.">Estoppel</span>
+    <span style="left:3%;top:30%;" data-plain="Cannot go back on your word" data-def="You are legally barred from contradicting something you already said or did.">Estoppel</span>
     <span style="left:93%;top:30%;" data-plain="In practice" data-def="True by conduct and outcome, even without formal legal recognition.">De Facto</span>
     <span style="left:26%;top:92%;" data-plain="At first glance" data-def="Enough evidence to support a claim unless someone proves otherwise.">Prima Facie</span>
     <span style="left:66%;top:10%;" data-plain="Buyer beware" data-def="The buyer takes the risk; the seller has no duty to point out defects.">Caveat Emptor</span>
     <span style="left:16%;top:6%;" data-plain="By that fact itself">Ipso Facto</span>
     <span style="left:73%;top:6%;" data-plain="In private, not open court">In Camera</span>
-    <span style="left:2%;top:70%;" data-plain="Already decided, can't be reopened">Res Judicata</span>
+    <span style="left:2%;top:70%;" data-plain="Already decided, cannot be reopened">Res Judicata</span>
     <span style="left:95%;top:66%;" data-plain="With only one side present">Ex Parte</span>
     <span style="left:8%;top:14%;" data-plain="Without which, not">Sine Qua Non</span>
     <span style="left:57%;top:4%;" data-plain="Produce the body, in court">Habeas Corpus</span>
@@ -1063,13 +1073,13 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
         </div>
         <div class="pulse-doc" id="pulseDocHuman">
           <span class="pulse-doc-tag tag-after">Redesigned</span>
-          <p>We can change or shut down features whenever we need to. We'll try to give you a heads up, but we're not always required to.</p>
+          <p>We can change or shut down features whenever we need to. We will try to give you a heads up, but we are not always required to.</p>
         </div>
       </div>
     </div>
 
     <div class="bridge-out reveal">
-      <p>That was one clause. You'll agree to hundreds more this year, and you won't read <span class="crayon-underline">a single word</span> of them.</p>
+      <p>That was one clause. This year, you will click &ldquo;I Agree&rdquo; a few hundred times. You will not read <span class="crayon-underline">a single one</span> of them.</p>
       <a href="#origin" data-tab="origin" class="crayon-btn reveal">
         <svg class="crayon-btn-outline" viewBox="0 0 220 60" preserveAspectRatio="none">
           <path class="pass1" d="M10,30 C8,10 50,3 110,3 C170,3 212,10 210,30 C212,50 170,57 110,57 C50,57 8,50 10,30 Z"/>
@@ -1091,18 +1101,21 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       <p class="sub reveal">A research project on why law is unreadable by design, and what happens when someone actually sits down and redesigns it. Built from a year of field notes, by someone who has been angry about a contract more than once.</p>
 
       <div class="highlight-teaser reveal" id="highlightTeaser">
-        <p class="highlight-teaser-text" id="hlTeaserText">
-          <span class="hl-word" data-tip="Nobody makes it this far, and nobody needs to.">Notwithstanding anything to the contrary contained herein and subject to the provisions of Schedule B,</span>
-          <span class="hl-word hl-key" data-tip="This is the one sentence that actually matters. Everything else is scaffolding.">you can cancel any time, with no fee and no questions asked,</span>
-          <span class="hl-word" data-tip="More scaffolding. Nobody's eyes make it here either.">provided that written notice is furnished in accordance with Section 9 hereof.</span>
-        </p>
-        <p class="highlight-teaser-hint">Click a piece of that sentence. See what survives.</p>
-        <p class="highlight-teaser-note" id="hlTeaserNote"></p>
+        <div class="ht-bar">
+          <span class="ht-bar-tab">Exhibit</span>
+          <span class="ht-bar-label">Clause 9.4 &middot; Termination</span>
+          <span class="ht-bar-tag">A real clause, lightly disguised</span>
+        </div>
+        <div class="ht-body"><p class="highlight-teaser-text" id="hlTeaserText"><span class="hl-word" data-tip="Nobody makes it this far, and nobody needs to.">Notwithstanding anything to the contrary contained herein and subject to the provisions of Schedule B,</span> <span class="hl-word hl-key" data-tip="This is the one sentence that actually matters. Everything else is scaffolding.">you can cancel any time, with no fee and no questions asked,</span> <span class="hl-word" data-tip="More scaffolding. Nobody's eyes make it here either.">provided that written notice is furnished in accordance with Section 9 hereof.</span></p>
+          <div class="ht-divider"></div>
+          <p class="highlight-teaser-hint"><span class="ht-hint-icon">&#9998;</span> Click a piece of that sentence. See what survives.</p>
+          <p class="highlight-teaser-note" id="hlTeaserNote"></p>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="wrap reveal" style="margin-top:88px;">
+  <div class="wrap reveal" style="margin-top:56px;">
     <span class="eyebrow">Try It Yourself</span>
     <h2>Drag the word. Watch the dispute grow.</h2>
     <p class="lede">"Reasonable time" is not a timeline, it is a guessing game. Two weeks to you. Six months to them. Move the slider to see how the same clause reads to two different parties.</p>
@@ -1146,7 +1159,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
         <div class="doc human" id="docBlockHuman" style="display:none;">
           <div class="doc-head">What this actually means</div>
           <p>This software <mark>only works with our own equipment.</mark> If you own a different brand, it will not connect, and we already know that.</p>
-          <p>If it breaks with other equipment, that's expected, not a malfunction, and you won't get a refund for finding that out.</p>
+          <p>If it breaks with other equipment, that is expected, not a malfunction, and you will not get a refund for finding that out.</p>
           <p>We are telling you this now, clearly, so you can check your equipment before you buy, not after.</p>
         </div>
       </div>
@@ -1192,7 +1205,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       <p>Until nothing worked.</p>
       <p>After twenty minutes of rage Googling, I found it. Buried in section sixteen of the terms: integration limited to one specific brand of equipment. Mine was not that brand. Not even close.</p>
       <p>The customer service rep asked if I had tried turning it off and on again, then delivered the real answer: it was clearly stated in the terms I agreed to. No refund. My 120 dollars, gone. My faith in the idea that anyone wrote those terms for me to actually read, also gone.</p>
-      <p>I watched a friend do the same thing with her own contract months later: hands up after the fifth "notwithstanding the foregoing," the leap from "I don't understand any of this" to "so my payment is due on the 15th" landing like a small act of relief, not a formality.</p>
+      <p>I watched a friend do the same thing with her own contract months later: hands up after the fifth "notwithstanding the foregoing," the leap from "I do not understand any of this" to "so my payment is due on the 15th" landing like a small act of relief, not a formality.</p>
       <p>That failure produced a question, not just a complaint: if a legally valid clause can remain practically invisible to the person agreeing to it, where does the failure actually occur? The reader, the lawyer, or the document itself?</p>
       <p>This project is an attempt to answer that question with something more durable than a strong opinion. What follows is the experiment, the framework it produced, and the open questions it has not resolved yet.</p>
     </div>
@@ -1539,7 +1552,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
 
         <div class="hli-verdict" id="hliVerdict">
           <div class="hli-verdict-label">Verdict</div>
-          <p class="hli-verdict-text" id="hliVerdictText">&mdash;</p>
+          <p class="hli-verdict-text" id="hliVerdictText">Awaiting input</p>
           <div class="hli-verdict-stats" id="hliVerdictStats"></div>
         </div>
       </div>
@@ -1571,7 +1584,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       </div>
     </div>
 
-    <div class="cite" style="margin-top:24px;">This scan only assesses the words. A .txt file has no typography, hierarchy, colour, navigation, or accessibility information, so this score deliberately does not pretend to measure them. The full Human Law Index is designed for the document itself. This isn't a final formula, it's a measuring stick: the weights are experimenter-set and will change as the project tests them against actual readers.</div>
+    <div class="cite" style="margin-top:24px;">This scan only assesses the words. A .txt file has no typography, hierarchy, colour, navigation, or accessibility information, so this score deliberately does not pretend to measure them. The full Human Law Index is designed for the document itself. This is not a final formula, it is a measuring stick: the weights are experimenter-set and will change as the project tests them against actual readers.</div>
   </div>
 </section>
 
@@ -1856,7 +1869,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
     if(overall >= 70) verdict = "Reads like it was written for a person, not a court.";
     else if(overall >= 40) verdict = "Sentence length and jargon density are already <b>working against the reader</b>.";
     else if(overall >= 0) verdict = "Most readers would <b>skim past this, not read it</b>.";
-    else verdict = "This isn't unclear, it's <b>hostile by design</b>.";
+    else verdict = "This is not unclear, it is <b>hostile by design</b>.";
     document.getElementById('hliVerdictText').innerHTML = verdict;
 
     const readMin = Math.max(1, Math.round(words.length / 200));
@@ -2048,7 +2061,7 @@ updateRT();
 
 const exhibits = [
   {n:"01", t:"The Hidden Refund", d:"A DJ subscription, a buried clause, and 120 dollars that explained an entire discipline better than fifty academic papers could.", body:"Buried in section sixteen of a music subscription's terms: integration limited to one specific brand of equipment. The customer service rep's closing line was that it was clearly stated in the terms I agreed to. This became the origin story for the whole project.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-makinglawhuman-activity-7304690730969575424-Nno3"},
-  {n:"02", t:"What Does This Mean?", d:"Watching a friend's contract turn from a wall of jargon into a question she could actually ask out loud.", body:"Legal design flips a power dynamic on its head: the radical notion that legal documents should make sense to the humans using them. The leap from \"I don't understand any of this\" to \"so my payment is due on the 15th\" is not just clarity, it is empowerment.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-makinglawhuman-legaldesign-activity-7307305811733622785-atv7"},
+  {n:"02", t:"What Does This Mean?", d:"Watching a friend's contract turn from a wall of jargon into a question she could actually ask out loud.", body:"Legal design flips a power dynamic on its head: the radical notion that legal documents should make sense to the humans using them. The leap from \"I do not understand any of this\" to \"so my payment is due on the 15th\" is not just clarity, it is empowerment.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-makinglawhuman-legaldesign-activity-7307305811733622785-atv7"},
   {n:"03", t:"No More Walls of Text", d:"We process visuals sixty thousand times faster than text. Contracts have not caught up.", body:"The question is not why make contracts visual, it is why we are still relying on dense, text heavy contracts at all. When a contract tells the story of what it actually does, the fine print stops needing to hide.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-legaldesign-makinglawhuman-activity-7308766757681340418-nHLm"},
   {n:"04", t:"The Impossible NDA", d:"Rebuilt from scratch, same substance, a layout that works with human psychology instead of against it.", body:"Traditional legal formatting is built to repel human attention: dense paragraphs, endless walls of text, font sizes that require superhuman vision. The rebuild keeps every definition and obligation in full force, but adds visual hierarchy, spacing, and a layout the eye can actually follow.", url:"https://www.linkedin.com/posts/ashwin-gupta001_thereisabetterway-legaldesign-makinglawhuman-activity-7318087328902627329-9xT5"},
   {n:"05", t:"The Layered Cake", d:"Step into the client's shoes, decode the real problem, then prototype and keep improving.", body:"Conventional law looks backward. Legal design looks forward. It is not about winning, it is about understanding, and about making complex human interactions feel human again.", url:"https://www.linkedin.com/posts/ashwin-gupta001_therelsabetterway-legaldesign-makinglawhuman-activity-7319954579301756928-4tJK"},
@@ -2058,7 +2071,7 @@ const exhibits = [
   {n:"09", t:"Yellow: The Underestimated One", d:"People notice it eighty eight percent faster than most colors, but it never yells.", body:"A clause buried in paragraph forty seven goes unread. Highlight it in yellow, and suddenly it does not. Yellow does not warn, it guides, and that is the whole point of making law more human.", url:"https://www.linkedin.com/posts/ashwin-gupta001_psychology-of-colors-yellow-activity-7343515038663548928-a-XI"},
   {n:"10", t:"Do I Need A Designer?", d:"Collaboration always helps. You do not need to wait for a design team to start.", body:"Legal design is not about aesthetics or fancy software, it is about making law work for people, and that starts with the people already trained to solve problems: lawyers. Redesign a form. Rewrite a clause. Start small.", url:"https://www.linkedin.com/posts/ashwin-gupta001_legaldesign-lawyerswhodesign-designthinking-activity-7349391717327917056-ejdZ"},
   {n:"11", t:"The Silence Is The Failure", d:"When the questions stop and the client nods without understanding, that is not clarity.", body:"The legal industry has normalized confusion and called it standard. Legal design is not about lowering standards, it is about raising the bar for how people experience the law, feelings included.", url:"https://www.linkedin.com/posts/ashwin-gupta001_legaldesign-makinglawhuman-claritymatters-activity-7351134258930880513-8ZNv"},
-  {n:"12", t:"The Clause That Shouldn't Exist", d:"It exists because someone already crossed the line it describes. Enough times to need a clause.", body:"We have all been tempted to drop a wordy clause into an AI tool for a quick fix. One tiny shortcut feels harmless, until the mistake that should not happen already has, and the next one is waiting.", url:"https://www.linkedin.com/posts/ashwin-gupta001_ai-legaltech-law-activity-7366356574551875585-d5W8"},
+  {n:"12", t:"The Clause That Should Not Exist", d:"It exists because someone already crossed the line it describes. Enough times to need a clause.", body:"We have all been tempted to drop a wordy clause into an AI tool for a quick fix. One tiny shortcut feels harmless, until the mistake that should not happen already has, and the next one is waiting.", url:"https://www.linkedin.com/posts/ashwin-gupta001_ai-legaltech-law-activity-7366356574551875585-d5W8"},
   {n:"13", t:"AI Is A Tool, Not A Scapegoat", d:"Confidential information: still your duty. AI outputs: still your job to check.", body:"A year ago, AI related clauses barely existed. Now they quietly define who checks the outputs, who carries the risk, and who pays when an AI confidently insists that two plus two equals banana.", url:"https://www.linkedin.com/posts/ashwin-gupta001_law-contracts-legaltech-activity-7369595145421275138-59k-"},
   {n:"14", t:"Reasonable Is Not A Timeline", d:"Two weeks to you. Six months to them. In court, nobody knows.", body:"Vague contracts turn into drawn out projects and frustrated teams. The fix is not complicated: replace fluff with clarity, real dates, real numbers, real limits. It may feel too direct at first, but it prevents the headache of everyone quietly assuming something different.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-contracts-activity-7374686889989058560-7DhP"},
   {n:"15", t:"Clauses Written To Outlive Their Purpose", d:"The contract ends. The deal dies. The clause is somehow still there.", body:"Forever does not protect anything. Secrets lose value, technology changes, companies disappear. A clause that outlives its purpose is not a safeguard, it is confusion with a signature on it.", url:"https://www.linkedin.com/posts/ashwin-gupta001_makinglawhuman-legaldesign-contracts-activity-7376830311072124928-z6NB"},
