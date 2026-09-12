@@ -183,6 +183,20 @@ img,video{max-width:100%;}
 }
 .intro-cta a.start-link:hover{color:var(--red);border-color:var(--red);}
 
+.highlight-teaser{margin-top:46px;padding-top:38px;border-top:1px solid var(--line);max-width:60ch;}
+.highlight-teaser-text{font-family:var(--legal);font-size:16.5px;line-height:2;color:var(--ink-dim);}
+.hl-word{cursor:pointer;padding:1px 3px;border-radius:2px;transition:background .2s ease,color .2s ease;}
+.hl-word:hover{background:var(--paper-2);}
+.hl-word.active{background:var(--yellow-tint);color:var(--ink);}
+.hl-word.active.hl-key{background:var(--content-yellow);color:var(--ink);font-weight:600;}
+.highlight-teaser-hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-top:14px;}
+.highlight-teaser-note{font-family:var(--display);font-style:italic;font-weight:500;font-size:16px;color:var(--red);margin-top:10px;min-height:24px;opacity:0;transform:translateY(4px);transition:opacity .3s ease,transform .3s ease;}
+.highlight-teaser-note.show{opacity:1;transform:translateY(0);}
+@media (max-width:640px){
+  .highlight-teaser{margin-top:32px;padding-top:26px;}
+  .highlight-teaser-text{font-size:14.5px;line-height:1.9;}
+}
+
 .redesign-block{margin-top:64px;border:1px solid var(--line);}
 .redesign-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--line);background:var(--paper-2);flex-wrap:wrap;gap:12px;}
 .redesign-bar .filetitle{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);}
@@ -665,12 +679,12 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 }
 
 .closer{
-  text-align:center;padding:160px 24px 130px;background:var(--paper);position:relative;
+  text-align:center;padding:72px 24px 96px;background:var(--paper);position:relative;
   border-top:1px solid var(--line);
 }
 .closer .eyebrow{text-align:center;}
 .closer-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;}
-.closer-rule{width:56px;height:2px;background:var(--red);margin:0 auto 40px;}
+.closer-rule{width:56px;height:2px;background:var(--red);margin:0 auto 28px;}
 
 .closer-quote{
   font-family:var(--display);font-size:clamp(30px,5.2vw,52px);font-weight:800;letter-spacing:-0.015em;
@@ -687,6 +701,91 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
   opacity:0;transition:opacity .8s ease .3s;
 }
 .closer-quote.in ~ .closer-note{opacity:.7;}
+
+.pulse-widget{margin-bottom:0;width:100%;max-width:760px;}
+.bridge-in{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--ink-dim);margin:0 0 26px;text-align:center;}
+.crayon-underline-blue{position:relative;font-style:normal;color:var(--ink);font-weight:600;}
+.crayon-underline-blue::after{
+  content:'';position:absolute;left:-3%;right:-3%;bottom:-4px;height:8px;
+  background-repeat:no-repeat;background-size:100% 100%;filter:url(#crayonRough);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 12'%3E%3Cpath d='M2,6 C25,1 45,10 70,5 C95,0.5 120,9 148,5' stroke='%231d4ed8' stroke-width='4.5' fill='none' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+}
+.bridge-out{margin-top:40px;padding-top:34px;border-top:1px solid var(--line);}
+.bridge-out p{font-size:15px;line-height:1.6;color:var(--ink-dim);max-width:52ch;margin:0 auto 26px;text-align:center;}
+.bridge-out .crayon-underline::after{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 12'%3E%3Cpath d='M2,6 C25,1 45,10 70,5 C95,0.5 120,9 148,5' stroke='%23f5d444' stroke-width='6' fill='none' stroke-linecap='round' opacity='0.9'/%3E%3C/svg%3E");
+}
+.bridge-out .crayon-underline{color:var(--ink);font-weight:600;}
+
+.crayon-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:15px 32px;text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink);transform:rotate(-0.6deg);transition:color .2s ease;
+}
+.crayon-btn-outline{position:absolute;inset:0;overflow:visible;pointer-events:none;}
+.crayon-btn-outline path{fill:none;stroke:var(--blue);stroke-linecap:round;stroke-linejoin:round;filter:url(#crayonRough);}
+.crayon-btn-outline .pass1{stroke-width:3.4;stroke-dasharray:560;stroke-dashoffset:560;opacity:.9;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1) .25s;}
+.crayon-btn-outline .pass2{stroke-width:2.2;stroke-dasharray:560;stroke-dashoffset:560;opacity:.4;mix-blend-mode:multiply;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1) .5s;}
+.crayon-btn.in .crayon-btn-outline path{stroke-dashoffset:0;}
+.crayon-btn-text{position:relative;z-index:1;}
+.crayon-btn .arrow-icon{position:relative;z-index:1;transition:transform .2s ease;}
+.crayon-btn:hover{color:var(--blue);}
+.crayon-btn:hover .arrow-icon{transform:translateX(4px);}
+.crayon-btn:hover .crayon-btn-outline path{stroke:var(--red);}
+.pulse-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);text-align:center;margin-bottom:14px;}
+.pulse-viewport{position:relative;height:80px;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#fff;box-shadow:0 20px 40px -28px rgba(0,0,0,.25);}
+.pulse-amp{height:100%;transition:transform .45s ease;transform-origin:50% 50%;transform:scaleY(1);}
+.pulse-amp.mode-anxious{transform:scaleY(1.9);}
+.pulse-amp.mode-calm{transform:scaleY(.5);}
+.pulse-scroll{height:100%;width:1200px;animation:pulseScroll 3.6s linear infinite;}
+.pulse-scroll.speed-fast{animation-duration:1.1s;}
+.pulse-scroll.speed-slow{animation-duration:5.5s;}
+.pulse-scroll svg{height:100%;width:100%;display:block;}
+.pulse-scroll path{fill:none;stroke:var(--ink);stroke-width:2;transition:stroke .4s ease;vector-effect:non-scaling-stroke;}
+.pulse-scroll.mode-anxious path{stroke:var(--red);}
+.pulse-scroll.mode-calm path{stroke:#8a9a8f;}
+@keyframes pulseScroll{from{transform:translateX(0);}to{transform:translateX(-600px);}}
+.pulse-readout{position:absolute;top:8px;left:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);background:rgba(255,255,255,.85);padding:2px 6px;border-radius:2px;}
+.pulse-docs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px;}
+.pulse-doc{background:var(--paper);padding:20px 22px;position:relative;transition:background .25s ease;cursor:default;}
+.pulse-doc:hover{background:var(--paper-2);}
+.pulse-doc-tag{position:absolute;top:12px;right:16px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:2px;}
+.tag-before{background:var(--paper-2);color:var(--ink-dim);border:1px solid var(--line);}
+.tag-after{background:var(--yellow-tint);color:var(--ink);}
+#pulseDocLegal p{font-family:var(--display);font-size:14.5px;line-height:1.6;color:var(--ink-dim);margin-top:20px;}
+#pulseDocHuman p{font-family:var(--display);font-size:14.5px;line-height:1.6;color:var(--ink);margin-top:20px;}
+@media (max-width:640px){
+  .pulse-docs{grid-template-columns:1fr;}
+}
+
+.redact-wrap{position:relative;max-width:640px;text-align:center;padding-top:8px;}
+.redact-quote{font-family:var(--display);font-weight:600;font-size:clamp(22px,3.6vw,32px);line-height:1.4;color:var(--ink);margin:0;}
+.rdw{position:relative;display:inline-block;color:transparent;transition:color .05s linear;}
+.rdw::before{content:"";position:absolute;inset:-2px -3px;background:var(--ink);border-radius:1px;transform:scaleX(1);transform-origin:left;transition:transform .5s cubic-bezier(.7,0,.15,1);}
+.redact-wrap.declassified .rdw{color:var(--ink);transition:color 0s linear .35s;}
+.redact-wrap.declassified .rdw::before{transform:scaleX(0);}
+.redact-wrap .rdw:nth-child(1)::before{transition-delay:.05s;}
+.redact-wrap .rdw:nth-child(2)::before{transition-delay:.11s;}
+.redact-wrap .rdw:nth-child(3)::before{transition-delay:.17s;}
+.redact-wrap .rdw:nth-child(4)::before{transition-delay:.23s;}
+.redact-wrap .rdw:nth-child(5)::before{transition-delay:.29s;}
+.redact-wrap .rdw:nth-child(6)::before{transition-delay:.35s;}
+.redact-wrap .rdw:nth-child(7)::before{transition-delay:.41s;}
+.redact-wrap .rdw:nth-child(8)::before{transition-delay:.47s;}
+.redact-wrap .rdw:nth-child(9)::before{transition-delay:.53s;}
+.redact-wrap .rdw:nth-child(10)::before{transition-delay:.59s;}
+.redact-wrap .rdw:nth-child(11)::before{transition-delay:.65s;}
+.declassify-btn{margin-top:28px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper);background:var(--ink);border:none;padding:10px 22px;border-radius:2px;cursor:pointer;transition:background .25s ease,transform .15s ease;}
+.declassify-btn:hover{background:var(--red);}
+.declassify-btn:active{transform:scale(.96);}
+.redact-wrap.declassified .declassify-btn{opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.stamp{position:absolute;top:-6px;right:6px;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);border:2.5px solid var(--red);padding:5px 12px;border-radius:3px;transform:rotate(-11deg) scale(2.4);opacity:0;transition:transform 0s,opacity 0s;pointer-events:none;}
+.redact-wrap.declassified .stamp{transform:rotate(-11deg) scale(1);opacity:1;transition:transform .5s cubic-bezier(.2,1.4,.4,1) .75s,opacity .15s ease .75s;}
+.redact-wrap .closer-cite{display:block;margin-top:22px;opacity:0;transition:opacity .5s ease .95s;}
+.redact-wrap.declassified .closer-cite{opacity:.75;}
+@media (max-width:560px){
+  .stamp{position:static;display:inline-block;margin-top:14px;transform:rotate(-6deg) scale(1.6)!important;}
+  .redact-wrap.declassified .stamp{transform:rotate(-6deg) scale(1)!important;}
+}
 
 .circle-wrap{position:relative;display:inline-block;padding:0 3px;cursor:help;}
 .crayon-circle{position:absolute;left:-9%;right:-9%;top:-16%;bottom:-12%;width:118%;height:128%;z-index:-1;overflow:visible;pointer-events:none;}
@@ -834,7 +933,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
   .exhibit-body-inner{padding-left:42px;font-size:14.5px;}
   .exhibit-chevron{font-size:17px;}
 
-  .closer{padding:90px 18px 80px;}
+  .closer{padding:52px 18px 64px;}
   .closer-heading{font-size:clamp(24px,8vw,32px);}
 
   .cite{font-size:10.5px;}
@@ -937,13 +1036,69 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
   </div>
 </div>
 
+<div class="closer reveal" id="missionSection">
+  <div class="closer-inner">
+    <div class="closer-rule"></div>
+
+    <p class="bridge-in reveal">That headline has a <span class="crayon-underline-blue">pulse.</span> Literally.</p>
+
+    <div class="pulse-widget reveal" id="pulseWidget">
+      <div class="pulse-eyebrow">Hover each side. Watch your reading pulse.</div>
+
+      <div class="pulse-viewport">
+        <div class="pulse-amp" id="pulseAmp">
+          <div class="pulse-scroll" id="pulseScroll">
+            <svg id="pulseSvg" viewBox="0 0 1200 80" preserveAspectRatio="none">
+              <path id="pulsePath"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="pulse-readout" id="pulseReadout">Reading pulse: normal</div>
+      </div>
+
+      <div class="pulse-docs">
+        <div class="pulse-doc" id="pulseDocLegal">
+          <span class="pulse-doc-tag tag-before">The fine print</span>
+          <p>The Company reserves the right, in its sole and absolute discretion, to modify, suspend, or discontinue any aspect of the Service at any time, without liability, and without obligation to provide notice to any user affected thereby.</p>
+        </div>
+        <div class="pulse-doc" id="pulseDocHuman">
+          <span class="pulse-doc-tag tag-after">Redesigned</span>
+          <p>We can change or shut down features whenever we need to. We'll try to give you a heads up, but we're not always required to.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bridge-out reveal">
+      <p>That was one clause. You'll agree to hundreds more this year, and you won't read <span class="crayon-underline">a single word</span> of them.</p>
+      <a href="#origin" data-tab="origin" class="crayon-btn reveal">
+        <svg class="crayon-btn-outline" viewBox="0 0 220 60" preserveAspectRatio="none">
+          <path class="pass1" d="M10,30 C8,10 50,3 110,3 C170,3 212,10 210,30 C212,50 170,57 110,57 C50,57 8,50 10,30 Z"/>
+          <path class="pass2" d="M12,29 C10,12 52,5 110,5 C168,5 210,12 208,29 C210,48 168,55 110,55 C52,55 10,48 12,29 Z"/>
+        </svg>
+        <span class="crayon-btn-text">Start with The Problem</span>
+        <svg class="arrow-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
 </div><!-- /panel-top -->
 
 <section id="origin" class="tab-panel tight">
   <div class="intro">
     <div class="intro-inner">
-      <h1 class="reveal">Nobody reads<br>the <span class="strike">terms and conditions</span>.<br>They read what's <mark>left of them.</mark></h1>
+      <h1 class="reveal">Nobody reads<br>the <span class="strike">terms and conditions</span>.<br>They read whatever we <mark>highlight for them.</mark></h1>
       <p class="sub reveal">A research project on why law is unreadable by design, and what happens when someone actually sits down and redesigns it. Built from a year of field notes, by someone who has been angry about a contract more than once.</p>
+
+      <div class="highlight-teaser reveal" id="highlightTeaser">
+        <p class="highlight-teaser-text" id="hlTeaserText">
+          <span class="hl-word" data-tip="Nobody makes it this far, and nobody needs to.">Notwithstanding anything to the contrary contained herein and subject to the provisions of Schedule B,</span>
+          <span class="hl-word hl-key" data-tip="This is the one sentence that actually matters. Everything else is scaffolding.">you can cancel any time, with no fee and no questions asked,</span>
+          <span class="hl-word" data-tip="More scaffolding. Nobody's eyes make it here either.">provided that written notice is furnished in accordance with Section 9 hereof.</span>
+        </p>
+        <p class="highlight-teaser-hint">Click a piece of that sentence. See what survives.</p>
+        <p class="highlight-teaser-note" id="hlTeaserNote"></p>
+      </div>
     </div>
   </div>
 
@@ -1470,14 +1625,6 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
   </div>
 </section>
 
-<div class="closer reveal" id="missionSection">
-  <div class="closer-inner">
-    <div class="closer-rule"></div>
-    <blockquote class="closer-quote reveal" id="closerQuote">&ldquo;No one should feel <span class="circle-wrap" id="powerlessWrap" tabindex="0">powerless<svg class="crayon-circle" viewBox="0 0 200 90" preserveAspectRatio="none"><path class="pass1" d="M12,46 C8,18 45,4 100,4 C155,4 190,16 186,46 C182,74 145,86 98,86 C50,86 16,74 12,46 Z"/><path class="pass2" d="M14,44 C10,20 48,6 100,6 C152,6 188,18 184,44 C180,70 148,84 98,84 C48,84 18,70 14,44 Z"/></svg><svg class="note-arrow" viewBox="0 0 60 28" xmlns="http://www.w3.org/2000/svg"><path class="arrow-shaft" d="M4,18 C20,4 38,28 48,13"/><path class="arrow-head" d="M40,5 L50,13 L39,20"/></svg><span class="margin-note" id="marginNote">the whole point</span></span> reading documents about their own future.&rdquo;</blockquote>
-    <cite class="closer-cite">The research mission, not a slogan</cite>
-    <div class="closer-note">An independent, ongoing research project</div>
-  </div>
-</div>
 <footer>
   <div class="footer-inner"><span class="brand-mark-text">making law <em>human</em></span></div>
 </footer>
@@ -1557,6 +1704,26 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       document.getElementById('board')?.scrollIntoView({behavior:'smooth'});
     });
   }
+})();
+
+(function(){
+  const words = document.querySelectorAll('.hl-word');
+  const note = document.getElementById('hlTeaserNote');
+  if(!words.length || !note) return;
+  words.forEach(w=>{
+    w.addEventListener('click', ()=>{
+      const wasActive = w.classList.contains('active');
+      words.forEach(x=>x.classList.remove('active'));
+      note.classList.remove('show');
+      if(!wasActive){
+        w.classList.add('active');
+        setTimeout(()=>{
+          note.textContent = w.dataset.tip;
+          note.classList.add('show');
+        }, 80);
+      }
+    });
+  });
 })();
 
 (function(){
@@ -1759,6 +1926,49 @@ window.addEventListener('scroll', ()=>{
       showTab(a.dataset.tab);
     });
   });
+})();
+
+(function(){
+  const pathEl = document.getElementById('pulsePath');
+  const amp = document.getElementById('pulseAmp');
+  const scroll = document.getElementById('pulseScroll');
+  const readout = document.getElementById('pulseReadout');
+  const legalDoc = document.getElementById('pulseDocLegal');
+  const humanDoc = document.getElementById('pulseDocHuman');
+  if(!pathEl || !amp || !scroll || !legalDoc || !humanDoc) return;
+
+  function buildPath(periods, periodWidth, h){
+    let d = `M0,${h}`;
+    for(let i=0;i<periods;i++){
+      const x = i*periodWidth;
+      d += ` L${x+20},${h} L${x+26},${h-20} L${x+32},${h+30} L${x+38},${h-25} L${x+44},${h+8} L${x+50},${h} L${x+periodWidth},${h}`;
+    }
+    return d;
+  }
+  pathEl.setAttribute('d', buildPath(12, 100, 40));
+
+  function setMode(mode){
+    amp.classList.remove('mode-anxious','mode-calm');
+    scroll.classList.remove('mode-anxious','mode-calm','speed-fast','speed-slow');
+    if(mode === 'anxious'){
+      amp.classList.add('mode-anxious');
+      scroll.classList.add('mode-anxious','speed-fast');
+      if(readout) readout.textContent = 'Reading pulse: spiking';
+    } else if(mode === 'calm'){
+      amp.classList.add('mode-calm');
+      scroll.classList.add('mode-calm','speed-slow');
+      if(readout) readout.textContent = 'Reading pulse: steady';
+    } else {
+      if(readout) readout.textContent = 'Reading pulse: normal';
+    }
+  }
+
+  legalDoc.addEventListener('mouseenter', ()=> setMode('anxious'));
+  legalDoc.addEventListener('mouseleave', ()=> setMode('idle'));
+  legalDoc.addEventListener('touchstart', ()=> setMode('anxious'), {passive:true});
+  humanDoc.addEventListener('mouseenter', ()=> setMode('calm'));
+  humanDoc.addEventListener('mouseleave', ()=> setMode('idle'));
+  humanDoc.addEventListener('touchstart', ()=> setMode('calm'), {passive:true});
 })();
 
 (function(){
