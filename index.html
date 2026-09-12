@@ -183,14 +183,14 @@ img,video{max-width:100%;}
 }
 .intro-cta a.start-link:hover{color:var(--red);border-color:var(--red);}
 
-.highlight-teaser{margin-top:46px;max-width:640px;border:1px solid var(--line);background:var(--paper);box-shadow:0 24px 48px -32px rgba(0,0,0,.28);}
+.highlight-teaser{margin-top:46px;width:100%;border:1px solid var(--line);background:var(--paper);box-shadow:0 24px 48px -32px rgba(0,0,0,.28);}
 .ht-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-  padding:13px 22px;background:var(--paper-2);border-bottom:1px solid var(--line);}
+  padding:18px 48px;background:var(--paper-2);border-bottom:1px solid var(--line);}
 .ht-bar-tab{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--red);padding:3px 8px;border-radius:2px;}
 .ht-bar-label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);font-weight:600;}
 .ht-bar-tag{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--ink-dim);opacity:.65;margin-left:auto;}
-.ht-body{padding:30px 26px 26px;}
-.highlight-teaser-text{font-family:var(--legal);font-size:16.5px;line-height:1.95;color:var(--ink-dim);margin:0;text-align:left;}
+.ht-body{padding:44px 48px 40px;}
+.highlight-teaser-text{font-family:var(--legal);font-size:19px;line-height:1.95;color:var(--ink-dim);margin:0;max-width:78ch;text-align:left;}
 .hl-word{cursor:pointer;padding:1px 3px;border-radius:2px;border-bottom:1.5px dotted var(--line);transition:background .2s ease,color .2s ease,border-color .2s ease;}
 .hl-word:hover{background:var(--paper-2);border-color:var(--ink-dim);}
 .hl-word.active{background:var(--yellow-tint);color:var(--ink);border-bottom-color:transparent;}
@@ -243,7 +243,7 @@ img,video{max-width:100%;}
 
 .redesign-caption{padding:0 40px 32px;font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);line-height:1.6;}
 
-section{padding:120px 0;border-top:1px solid var(--line);}
+section{padding:92px 0;border-top:1px solid var(--line);}
 #origin{background:var(--gold-tint);border-top:none;}
 #rt{background:var(--red-tint);border-top:none;}
 .pattern-dots{
@@ -251,7 +251,7 @@ section{padding:120px 0;border-top:1px solid var(--line);}
   background-size:20px 20px;
 }
 #board{background:var(--paper-2);}
-section.tight{padding:88px 0;}
+section.tight{padding:68px 0;}
 .eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:block;text-align:left;}
 .eyebrow::after{
   content:'';display:block;width:56px;height:10px;margin-top:8px;background-repeat:repeat-x;background-size:16px 10px;opacity:.85;
@@ -405,7 +405,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 #ai h2{color:var(--paper);}
 #ai .lede{color:#a6a49d;}
 
-.color-section{padding:100px 0;border-top:1px solid var(--line);position:relative;}
+.color-section{padding:76px 0;border-top:1px solid var(--line);position:relative;}
 .color-section::before{
   content:'';position:absolute;top:0;left:0;right:0;height:11px;background-repeat:repeat-x;background-size:22px 11px;opacity:.85;
 }
@@ -453,6 +453,8 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .color-section.yellow .avoid-list div{border-color:rgba(15,15,14,.2);color:rgba(15,15,14,.75);}
 .color-section.blue .cite,.color-section.red .cite{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.78);}
 .color-section.blue .cite b,.color-section.red .cite b{color:#fff;}
+.color-section-note{font-size:14px;max-width:60ch;color:rgba(255,255,255,.82);}
+.color-section.yellow .color-section-note{color:rgba(15,15,14,.72);}
 .color-section.yellow .cite{border-color:rgba(15,15,14,.25);color:rgba(15,15,14,.65);}
 .color-section.blue .color-body p,.color-section.red .color-body p{color:rgba(255,255,255,.92);}
 .color-section.yellow .color-body p{color:rgba(15,15,14,.85);}
@@ -484,7 +486,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .cite{font-family:var(--mono);font-size:11px;color:var(--ink-dim);border-top:1px dashed var(--line);padding-top:12px;margin-top:18px;max-width:64ch;line-height:1.7;}
 .cite b{color:var(--ink);font-weight:700;}
 
-.demo{background:var(--ink);color:var(--paper-2);padding:120px 0;border-top:1px solid var(--line);position:relative;overflow:hidden;}
+.demo{background:var(--ink);color:var(--paper-2);padding:92px 0;border-top:1px solid var(--line);position:relative;overflow:hidden;}
 .demo .wrap-wide{position:relative;z-index:1;}
 .demo .eyebrow{color:var(--red);}
 .demo h2{color:var(--paper);}
@@ -652,6 +654,94 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 .exp-table th{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:400;}
 .exp-table td.better{color:var(--red);font-weight:700;}
 .exp-meta{display:flex;gap:40px;flex-wrap:wrap;margin:32px 0;font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);}
+
+.procedure{border-top:1px solid var(--line);margin:8px 0 40px;}
+.procedure-step{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:flex-start;}
+.procedure-step .ps-num{
+  font-family:var(--mono);font-size:11px;color:var(--red);width:32px;height:28px;flex-shrink:0;
+  display:inline-flex;align-items:center;justify-content:center;position:relative;transform:rotate(-3deg);margin-top:2px;
+}
+.procedure-step .ps-num::before{
+  content:'';position:absolute;inset:0;border:2px dashed rgba(158,27,27,.55);
+  border-radius:60% 40% 55% 45%/50% 60% 40% 55%;filter:url(#crayonRough);
+}
+.procedure-step h4{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:4px;}
+.procedure-step p{font-size:15px;color:var(--ink-dim);line-height:1.65;max-width:62ch;}
+
+.exp-chart{margin:44px 0 8px;}
+.exp-chart-row{margin-bottom:14px;}
+.exp-chart-label{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;}
+.exp-chart-track{height:10px;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.exp-chart-fill{height:100%;background:var(--ink-dim);border-radius:6px;transition:width 1s cubic-bezier(.2,.8,.2,1);}
+.exp-chart-fill.better{background:var(--red);}
+.exp-chart-legend{display:flex;gap:22px;margin-top:18px;font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.04em;}
+.exp-chart-legend span{display:inline-flex;align-items:center;gap:7px;}
+.exp-chart-legend .dot{width:9px;height:9px;border-radius:50%;background:var(--ink-dim);display:inline-block;}
+.exp-chart-legend .dot.better{background:var(--red);}
+
+.exp-limits{border:1px solid var(--line);background:var(--paper-2);padding:32px 34px;margin-top:44px;}
+.exp-limits h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:18px;}
+.exp-limits ul{margin:0 0 22px;padding:0;list-style:none;}
+.exp-limits li{font-size:14.5px;color:var(--ink-dim);line-height:1.65;padding:13px 0;border-top:1px dashed var(--line);}
+.exp-limits li:first-child{border-top:none;padding-top:0;}
+.exp-limits li b{color:var(--ink);font-weight:600;}
+.exp-limits-next{font-size:14px;color:var(--ink-dim);line-height:1.6;margin:0;padding-top:18px;border-top:1px solid var(--line);}
+@media (max-width:640px){
+  .procedure-step{gap:16px;padding:18px 0;}
+  .procedure-step h4{font-size:16px;}
+  .procedure-step p{font-size:14px;}
+  .exp-limits{padding:22px 20px;}
+}
+
+.exp-live{border:1px solid var(--line);margin-top:16px;}
+.exp-live-h{font-family:var(--display);font-size:22px;font-weight:700;padding:0 28px;margin-top:2px;}
+.exp-live-eyebrow::after{margin-top:4px !important;}
+.exp-live-sub{font-size:14.5px;color:var(--ink-dim);padding:0 28px;margin:8px 0 0;max-width:60ch;line-height:1.6;}
+.exp-live-stage{padding:28px;}
+.exp-live-start{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--paper);background:var(--ink);border:none;padding:14px 26px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;transition:background .2s ease;
+}
+.exp-live-start:hover{background:var(--red);}
+.exp-live-start .arrow{transition:transform .2s ease;}
+.exp-live-start:hover .arrow{transform:translateX(3px);}
+
+.exp-live-tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:10px;border:1px solid var(--line);color:var(--ink-dim);margin-bottom:16px;}
+.exp-live-timer{font-family:var(--mono);font-size:13px;color:var(--red);font-weight:700;float:right;}
+.exp-live-clause{font-family:var(--legal);font-size:17px;line-height:1.8;color:var(--ink);
+  background:var(--paper-2);border:1px solid var(--line);padding:22px 24px;margin-bottom:22px;clear:both;}
+.exp-live-next{
+  font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--ink);background:transparent;border:1.5px solid var(--ink);padding:12px 22px;cursor:pointer;
+  transition:.2s ease;
+}
+.exp-live-next:hover{background:var(--ink);color:var(--paper);}
+.exp-live-q{font-family:var(--display);font-weight:600;font-size:17px;margin-bottom:16px;}
+.exp-live-opts{display:flex;flex-direction:column;gap:10px;}
+.exp-live-opt{
+  text-align:left;font-family:var(--sans);font-size:15px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);padding:14px 18px;cursor:pointer;
+  transition:background .15s ease,border-color .15s ease;
+}
+.exp-live-opt:hover{background:var(--paper-2);border-color:var(--ink-dim);}
+.exp-live-result{padding:4px 0 0;}
+.exp-live-verdict{font-family:var(--display);font-weight:800;font-size:22px;margin-bottom:6px;}
+.exp-live-verdict.correct{color:var(--red);}
+.exp-live-verdict.wrong{color:var(--ink-dim);}
+.exp-live-compare{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin:18px 0;}
+.exp-live-compare-cell{background:var(--paper);flex:1;padding:16px 18px;}
+.exp-live-compare-cell b{display:block;font-family:var(--display);font-size:24px;font-weight:800;}
+.exp-live-compare-cell span{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.04em;}
+.exp-live-note{font-size:14px;color:var(--ink-dim);line-height:1.6;max-width:60ch;}
+.exp-live-restart{margin-top:18px;font-family:var(--mono);font-size:11px;color:var(--ink-dim);background:none;border:none;text-decoration:underline;cursor:pointer;padding:0;}
+@media (max-width:640px){
+  .exp-live-h,.exp-live-sub{padding:0 18px;}
+  .exp-live > .eyebrow{margin:20px 0 0 18px !important;}
+  .exp-live-stage{padding:18px;}
+  .exp-live-compare{flex-direction:column;}
+}
 .exp-meta b{color:var(--ink);display:block;font-size:22px;font-family:var(--display);font-weight:600;}
 
 .about-teaser{display:grid;grid-template-columns:100px 1fr;gap:32px;align-items:start;margin-top:32px;}
@@ -690,7 +780,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 }
 
 .closer{
-  text-align:center;padding:88px 24px 96px;background:var(--paper);position:relative;
+  text-align:center;padding:64px 24px 76px;background:var(--paper);position:relative;
 }
 .closer .eyebrow{text-align:center;}
 .closer-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;}
@@ -900,6 +990,8 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
 
   section{padding:64px 0;}
   section.tight{padding:52px 0;}
+  .color-section{padding:56px 0;}
+  .demo{padding:56px 0;}
   .eyebrow{font-size:10px;margin-bottom:14px;}
   h2{font-size:clamp(24px,7.5vw,32px);max-width:none;margin-bottom:16px;}
   .lede{font-size:15px;margin-bottom:30px;}
@@ -1269,6 +1361,30 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       <div><b>2</b>conditions, between-subjects</div>
       <div><b>3</b>measures: accuracy, time, confidence</div>
     </div>
+
+    <div class="procedure">
+      <div class="procedure-step">
+        <span class="ps-num">01</span>
+        <div><h4>Recruit</h4><p>Thirty adults with no legal training or background were recruited through a personal and professional network, screened only to exclude anyone with formal legal education or contract-drafting experience.</p></div>
+      </div>
+      <div class="procedure-step">
+        <span class="ps-num">02</span>
+        <div><h4>Assign</h4><p>Each participant was randomly assigned to one of two between-subjects conditions: the clause as originally written, or the redesigned version carrying identical legal substance.</p></div>
+      </div>
+      <div class="procedure-step">
+        <span class="ps-num">03</span>
+        <div><h4>Present</h4><p>Participants read their assigned clause once, on a single screen, with no ability to scroll back or reread once they began answering.</p></div>
+      </div>
+      <div class="procedure-step">
+        <span class="ps-num">04</span>
+        <div><h4>Test</h4><p>Immediately after reading, each participant was asked, unprompted and against the clock, to state in their own words what they were obligated to do under the clause.</p></div>
+      </div>
+      <div class="procedure-step">
+        <span class="ps-num">05</span>
+        <div><h4>Score</h4><p>Answers were scored against a fixed rubric for correctness, timed from first view to submitted answer, and followed by a single self-reported confidence rating.</p></div>
+      </div>
+    </div>
+
     <div class="exp-table-wrap"><table class="exp-table">
       <thead><tr><th>Condition</th><th>Correctly identified obligation</th><th>Average time to answer</th><th>Self-reported confidence</th></tr></thead>
       <tbody>
@@ -1276,7 +1392,48 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
         <tr><td>Redesigned clause, same substance</td><td class="better">83%</td><td class="better">58s</td><td class="better">High</td></tr>
       </tbody>
     </table></div>
-    <div class="cite">Pilot study, single clause type, single session, not yet peer reviewed. Reported here as a preliminary observation to be replicated at larger scale, not as a generalized finding about legal drafting. <b>Methodology and raw protocol available on request.</b></div>
+
+    <div class="exp-chart">
+      <span class="eyebrow" style="margin-top:40px;">Results, Visualized</span>
+      <div class="exp-chart-row">
+        <div class="exp-chart-label"><span>Correctly identified obligation</span><span>42%</span></div>
+        <div class="exp-chart-track"><div class="exp-chart-fill" style="width:42%;"></div></div>
+      </div>
+      <div class="exp-chart-row">
+        <div class="exp-chart-label"><span>&nbsp;</span><span>83%</span></div>
+        <div class="exp-chart-track"><div class="exp-chart-fill better" style="width:83%;"></div></div>
+      </div>
+      <div class="exp-chart-row" style="margin-top:32px;">
+        <div class="exp-chart-label"><span>Average time to answer</span><span>2m 15s</span></div>
+        <div class="exp-chart-track"><div class="exp-chart-fill" style="width:100%;"></div></div>
+      </div>
+      <div class="exp-chart-row">
+        <div class="exp-chart-label"><span>&nbsp;</span><span>58s</span></div>
+        <div class="exp-chart-track"><div class="exp-chart-fill better" style="width:43%;"></div></div>
+      </div>
+      <div class="exp-chart-legend"><span><i class="dot"></i>As written</span><span><i class="dot better"></i>Redesigned</span></div>
+    </div>
+
+    <div class="exp-limits">
+      <h5>Read Before You Cite This</h5>
+      <ul>
+        <li><b>Single clause type.</b> Every participant saw a termination clause from one SaaS agreement. Nothing here says the same gap holds for indemnity, IP assignment, or arbitration clauses, that is untested.</li>
+        <li><b>One administration, one session.</b> This was run once, in one sitting, with one rubric-writer scoring every answer. No inter-rater reliability check has been done yet.</li>
+        <li><b>Convenience sample.</b> Participants were not randomly sampled from the general population. They were reachable people willing to give fifteen minutes to a stranger's research project.</li>
+        <li><b>Confidence is self-reported, not validated.</b> "High confidence" means the participant felt sure, not that a second measure confirmed they were right to feel that way.</li>
+        <li><b>No pre-registration, no compensation disclosed, no effect size calculated.</b> This is a pilot, reported as a pilot. Treat the 42/83 gap as directional, not as a settled number.</li>
+      </ul>
+      <p class="exp-limits-next">Next: replicating this design across a second clause type, with a larger sample and a second rater, is one of the open experiments listed under <span class="crayon-underline">Posts</span>.</p>
+    </div>
+
+    <div class="exp-live reveal" id="expLive">
+      <span class="eyebrow exp-live-eyebrow" style="margin:28px 0 0 28px;">Try It Yourself</span>
+      <h3 class="exp-live-h">Take the actual test.</h3>
+      <p class="exp-live-sub">You'll be randomly assigned one of the two conditions above, exactly like a real participant. Read the clause once, then answer.</p>
+      <div class="exp-live-stage" id="expStage">
+        <button class="exp-live-start" id="expStart" type="button">Start the test <span class="arrow">&rarr;</span></button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1462,7 +1619,7 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
       <div class="color-stat"><svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg><span class="num" data-count="70">0</span>%<span class="cap">Associated blue with reliability, informal survey</span></div>
       <div class="color-stat"><svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span class="num" data-count="550">0</span> m/s<span class="cap">Median recognition time, internal test set</span></div>
     </div>
-    <p style="font-size:14px;color:var(--ink-dim);max-width:60ch;">Most documents fail because they treat color as decoration, not communication architecture. Use blue for structure. Save red for focus.</p>
+    <p class="color-section-note">Most documents fail because they treat color as decoration, not communication architecture. Use blue for structure. Save red for focus.</p>
     <div class="cite">Directional support: colour-memory associations documented in Dzulkifli &amp; Mustafar (2013) and Hall &amp; Hanna (2004); figures above are this project's own small-sample testing, not drawn from those studies.</div>
   </div>
 </section>
@@ -2070,6 +2227,113 @@ window.addEventListener('scroll', ()=>{
   wrap.addEventListener('focus', show);
   wrap.addEventListener('blur', hide);
   wrap.addEventListener('click', (e)=>{ e.preventDefault(); note.classList.toggle('visible'); });
+})();
+
+(function(){
+  const startBtn = document.getElementById('expStart');
+  const stage = document.getElementById('expStage');
+  if(!startBtn || !stage) return;
+
+  const conditions = {
+    written: {
+      tag: 'You were assigned: As written',
+      clause: "Client shall provide Provider with no less than thirty (30) days' prior written notice of intent to terminate this Agreement, said notice to be delivered in accordance with Section 14, absent which this Agreement shall automatically renew for a successive term of twelve (12) months on terms otherwise unchanged herein.",
+      cohortTime: 135, cohortAcc: 42
+    },
+    redesigned: {
+      tag: 'You were assigned: Redesigned',
+      clause: "If you want to cancel, tell us in writing at least 30 days before your renewal date. If you do not, your plan will automatically renew for another year.",
+      cohortTime: 58, cohortAcc: 83
+    }
+  };
+
+  const options = [
+    {id:'a', text:"I must give at least 30 days' written notice before my renewal date if I want to cancel.", correct:true},
+    {id:'b', text:"I can cancel any time without giving notice.", correct:false},
+    {id:'c', text:"I must pay a cancellation fee if I want to end the agreement early.", correct:false},
+    {id:'d', text:"The agreement ends automatically after 12 months no matter what I do.", correct:false}
+  ];
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  let timerInterval, startTime, chosenKey;
+
+  function renderReading(){
+    chosenKey = Math.random() < 0.5 ? 'written' : 'redesigned';
+    const cond = conditions[chosenKey];
+    startTime = performance.now();
+    stage.innerHTML = `
+      <span class="exp-live-tag">${cond.tag}</span>
+      <span class="exp-live-timer" id="expTimer">0.0s</span>
+      <div class="exp-live-clause">${cond.clause}</div>
+      <button class="exp-live-next" id="expNext" type="button">I know my obligation &rarr;</button>
+    `;
+    const timerEl = document.getElementById('expTimer');
+    timerInterval = setInterval(()=>{
+      const elapsed = (performance.now() - startTime) / 1000;
+      if(timerEl) timerEl.textContent = elapsed.toFixed(1) + 's';
+    }, 100);
+    document.getElementById('expNext').addEventListener('click', renderQuiz);
+  }
+
+  function renderQuiz(){
+    const shuffled = shuffle(options);
+    stage.innerHTML = `
+      <span class="exp-live-timer" id="expTimer2">0.0s</span>
+      <div class="exp-live-q">What is your obligation under that clause?</div>
+      <div class="exp-live-opts">
+        ${shuffled.map(o => `<button class="exp-live-opt" data-correct="${o.correct}" type="button">${o.text}</button>`).join('')}
+      </div>
+    `;
+    const timerEl2 = document.getElementById('expTimer2');
+    const tick = setInterval(()=>{
+      const elapsed = (performance.now() - startTime) / 1000;
+      if(timerEl2) timerEl2.textContent = elapsed.toFixed(1) + 's';
+    }, 100);
+    stage.querySelectorAll('.exp-live-opt').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        clearInterval(tick);
+        clearInterval(timerInterval);
+        const finalTime = (performance.now() - startTime) / 1000;
+        const wasCorrect = btn.dataset.correct === 'true';
+        renderResult(wasCorrect, finalTime);
+      });
+    });
+  }
+
+  function renderResult(wasCorrect, finalTime){
+    const cond = conditions[chosenKey];
+    const label = chosenKey === 'written' ? 'As written' : 'Redesigned';
+    const beatCohort = finalTime < cond.cohortTime;
+    stage.innerHTML = `
+      <div class="exp-live-result">
+        <div class="exp-live-verdict ${wasCorrect ? 'correct' : 'wrong'}">${wasCorrect ? 'Correct.' : 'Not quite.'}</div>
+        <div class="exp-live-compare">
+          <div class="exp-live-compare-cell"><b>${finalTime.toFixed(1)}s</b><span>Your time</span></div>
+          <div class="exp-live-compare-cell"><b>${cond.cohortTime}s</b><span>Pilot average, ${label}</span></div>
+          <div class="exp-live-compare-cell"><b>${cond.cohortAcc}%</b><span>Pilot accuracy, ${label}</span></div>
+        </div>
+        <p class="exp-live-note">${wasCorrect
+          ? (chosenKey === 'written'
+              ? "You read the dense version correctly, and faster or slower than most of the pilot cohort did. Most people in this condition did not."
+              : "You read the redesigned version, which is what most of the pilot cohort also got right, and quickly.")
+          : (chosenKey === 'written'
+              ? "You just became part of the 58% who could not, unprompted, state their own obligation from that version. That is the whole finding, happening to you in real time."
+              : "Even the redesigned version can be misread once. Reread it above, the words carrying the actual obligation are short on purpose.")}</p>
+        <button class="exp-live-restart" id="expRestart" type="button">Run it again, different condition possible &#8635;</button>
+      </div>
+    `;
+    document.getElementById('expRestart').addEventListener('click', renderReading);
+  }
+
+  startBtn.addEventListener('click', renderReading);
 })();
 
 const reveals = document.querySelectorAll('.reveal');
