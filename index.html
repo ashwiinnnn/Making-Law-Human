@@ -405,6 +405,36 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
 #ai h2{color:var(--paper);}
 #ai .lede{color:#a6a49d;}
 
+.ai-cancannot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#333230;border:1px solid #333230;margin-top:48px;}
+.ai-cc-col{background:#141412;padding:28px 26px;}
+.ai-cc-tag{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;}
+.ai-cc-can .ai-cc-tag{color:#6ea86e;}
+.ai-cc-cannot .ai-cc-tag{color:var(--red);}
+.ai-cc-item{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:#c1bfb8;line-height:1.55;padding:11px 0;border-top:1px solid #262521;}
+.ai-cc-item:first-of-type{border-top:none;padding-top:0;}
+.ai-cc-mark{flex-shrink:0;font-weight:700;font-size:13px;width:18px;text-align:center;}
+.ai-cc-can .ai-cc-mark{color:#6ea86e;}
+.ai-cc-cannot .ai-cc-mark{color:var(--red);}
+
+.ai-layers{margin-top:8px;}
+.ai-layers-h{font-family:var(--display);font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-0.015em;color:var(--paper);max-width:20ch;line-height:1.2;margin-bottom:16px;}
+.ai-layer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#333230;border:1px solid #333230;margin-top:32px;}
+.ai-layer-card{background:#141412;padding:24px 22px;position:relative;}
+.al-n{font-family:var(--mono);font-size:10.5px;color:#8c8a84;letter-spacing:.05em;}
+.ai-layer-card h4{font-family:var(--display);font-size:18px;font-weight:700;color:var(--paper);margin:8px 0 8px;}
+.al-tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:10px;margin-bottom:12px;}
+.ai-layer-card.ai-strong .al-tag{background:rgba(110,168,110,.15);color:#8fc98f;border:1px solid rgba(110,168,110,.35);}
+.ai-layer-card.ai-weak .al-tag{background:rgba(158,27,27,.15);color:#e08a8a;border:1px solid rgba(158,27,27,.4);}
+.ai-layer-card.ai-mixed .al-tag{background:rgba(245,212,68,.12);color:#e8c765;border:1px solid rgba(245,212,68,.35);}
+.ai-layer-card p{font-size:13.5px;color:#a6a49d;line-height:1.55;margin:0;}
+@media (max-width:780px){
+  .ai-cancannot{grid-template-columns:1fr;}
+  .ai-layer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:480px){
+  .ai-layer-grid{grid-template-columns:1fr;}
+}
+
 .color-section{padding:76px 0;border-top:1px solid var(--line);position:relative;}
 .color-section::before{
   content:'';position:absolute;top:0;left:0;right:0;height:11px;background-repeat:repeat-x;background-size:22px 11px;opacity:.85;
@@ -708,6 +738,11 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;background:var(--re
   width:34px;height:30px;display:inline-flex;align-items:center;justify-content:center;
   position:relative;margin-bottom:10px;
 }
+.elc-num.elc-none{width:56px;font-size:10px;letter-spacing:.03em;text-transform:uppercase;}
+.elc-status{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;padding:5px 12px;border-radius:12px;margin-bottom:14px;}
+.elc-status-warn{background:var(--red-tint);color:var(--red);border:1px solid rgba(158,27,27,.3);}
+.exp-limits-ftr{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);font-style:normal;margin:0 0 20px;}
 .elc-num::before{
   content:'';position:absolute;inset:0;border:2px dashed rgba(158,27,27,.55);
   border-radius:60% 40% 55% 45%/50% 60% 40% 55%;filter:url(#crayonRough);
@@ -1464,21 +1499,22 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
           <p>Reachable through one person's network, not randomly sampled. A different thirty could land somewhere else entirely.</p>
         </div>
         <div class="exp-limit-card">
-          <span class="elc-num">0</span>
-          <span class="elc-label">Confidence scores independently checked</span>
-          <p>"High confidence" means the participant felt sure. Several still could not state their own obligation.</p>
+          <span class="elc-status elc-status-warn">Self-scored</span>
+          <span class="elc-label">Confidence was not independently checked</span>
+          <p>"High confidence" means the participant felt sure. Several still could not state their own obligation. Nobody cross-checked that feeling against a second measure.</p>
         </div>
         <div class="exp-limit-card">
-          <span class="elc-num">0</span>
-          <span class="elc-label">Pre-registration, disclosed compensation, or effect size</span>
-          <p>This is a first pass, not a finding. The 42% to 83% jump is real, in this one pilot, on this one clause.</p>
+          <span class="elc-status elc-status-warn">Pilot stage</span>
+          <span class="elc-label">Not pre-registered, compensation undisclosed</span>
+          <p>This is a first pass, not a finding. The 42% to 83% jump is real, in this one pilot, on this one clause, but no effect size has been calculated yet.</p>
         </div>
         <div class="exp-limit-card">
-          <span class="elc-num">0</span>
-          <span class="elc-label">Facilitators present during testing</span>
-          <p>Every session ran unsupervised, online, against a timer. Nobody was there to notice if a participant got distracted, reread the screen, or quietly gave up halfway through.</p>
+          <span class="elc-status elc-status-warn">Unsupervised</span>
+          <span class="elc-label">No facilitator present during testing</span>
+          <p>Every session ran online, against a timer, with nobody watching. If a participant got distracted, reread the screen, or quietly gave up, that was not caught.</p>
         </div>
       </div>
+      <p class="exp-limits-ftr">Everything above happened as described, this is a record of what the pilot did <i>not</i> yet control for.</p>
       <p class="exp-limits-next">Next: scoring the lease, indemnity, and warranty clauses the same way this termination clause was scored, with a larger sample and a second rater checking every call, is one of the open experiments listed under <span class="crayon-underline">Posts</span>.</p>
     </div>
 
@@ -1654,6 +1690,37 @@ footer{padding:34px 24px;text-align:center;border-top:1px solid var(--line);back
     <p class="lede" style="color:#a6a49d;max-width:62ch;">Most work at the intersection of AI and law asks whether a model can draft accurately. Accuracy is close to solved. The unexamined question is whether accuracy and comprehensibility are even the same axis, or whether a contract can be perfectly enforceable and perfectly opaque at the same time.</p>
     <p style="font-family:var(--display);font-style:italic;font-weight:500;font-size:24px;max-width:24ch;line-height:1.45;margin-top:12px;color:var(--paper);">AI can draft a perfect contract. It will never know what it feels like to be on the other side of one.</p>
     <p style="color:#a6a49d;font-size:15px;max-width:62ch;margin-top:22px;">This project treats that gap, between legal validity and human comprehension, as the actual research object. The Human Law Index below is a first attempt to measure it directly rather than assume a well-drafted clause and a well-understood clause are the same thing.</p>
+
+    <div class="ai-cancannot">
+      <div class="ai-cc-col ai-cc-can">
+        <span class="ai-cc-tag">What AI Is Actually Good At</span>
+        <div class="ai-cc-item"><span class="ai-cc-mark">&#10003;</span>Drafting a clause that is legally valid, on the first try, in seconds.</div>
+        <div class="ai-cc-item"><span class="ai-cc-mark">&#10003;</span>Simplifying sentence structure and defining jargon, when it is explicitly asked to.</div>
+        <div class="ai-cc-item"><span class="ai-cc-mark">&#10003;</span>Generating dozens of alternate phrasings of the same clause for a human to compare.</div>
+        <div class="ai-cc-item"><span class="ai-cc-mark">&#10003;</span>Catching internal inconsistencies across a long document faster than any human reviewer.</div>
+      </div>
+      <div class="ai-cc-col ai-cc-cannot">
+        <span class="ai-cc-tag">What It Structurally Cannot Do</span>
+        <div class="ai-cc-item"><span class="ai-cc-mark">&#10007;</span>Know whether a specific, anxious reader will actually believe what it just wrote.</div>
+        <div class="ai-cc-item"><span class="ai-cc-mark">&#10007;</span>Predict what a stressed human will still remember a week after reading it once.</div>
+        <div class="ai-cc-item"><span class="ai-cc-mark">&#10007;</span>Feel the real-world friction that makes a technically clear obligation hard to actually comply with.</div>
+        <div class="ai-cc-item"><span class="ai-cc-mark">&#10007;</span>Decide, on its own, that legal validity was never the only bar a document had to clear.</div>
+      </div>
+    </div>
+
+    <div class="ai-layers">
+      <span class="eyebrow" style="margin-top:56px;">Mapped Against The Framework</span>
+      <h3 class="ai-layers-h">Run the same six layers against an AI draft.</h3>
+      <p class="lede" style="color:#a6a49d;max-width:64ch;">The Human Law Framework on the Framework page was built to test any document, human-written or not. Here is where an AI-drafted clause tends to land on each layer.</p>
+      <div class="ai-layer-grid">
+        <div class="ai-layer-card ai-strong"><span class="al-n">01</span><h4>Notice</h4><span class="al-tag">Strong</span><p>Can bold key terms, add headers, flag sections automatically, if the prompt asks for it.</p></div>
+        <div class="ai-layer-card ai-strong"><span class="al-n">02</span><h4>Understand</h4><span class="al-tag">Strong</span><p>Can simplify sentence structure and define jargon on request, reliably and fast.</p></div>
+        <div class="ai-layer-card ai-weak"><span class="al-n">03</span><h4>Trust</h4><span class="al-tag">Weak</span><p>Cannot know if a specific reader, alone and confused at midnight, will believe what it wrote.</p></div>
+        <div class="ai-layer-card ai-mixed"><span class="al-n">04</span><h4>Decide</h4><span class="al-tag">Mixed</span><p>Can lay out the options clearly. Cannot know which one actually serves this reader's situation.</p></div>
+        <div class="ai-layer-card ai-weak"><span class="al-n">05</span><h4>Remember</h4><span class="al-tag">Weak</span><p>Has no model of what a stressed human retains a week later, only what reads clearly right now.</p></div>
+        <div class="ai-layer-card ai-mixed"><span class="al-n">06</span><h4>Comply</h4><span class="al-tag">Mixed</span><p>Can state the rule precisely. Cannot see the real-world friction that makes following it hard.</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
