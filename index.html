@@ -2260,12 +2260,42 @@ window.addEventListener('scroll', ()=>{
     target.querySelectorAll('.reveal').forEach(el=>{ el.classList.add('in'); });
   }
 
+  const titles = {
+    top:'Making Law Human',
+    origin:'The Problem | Making Law Human',
+    experiment:'The Experiment | Making Law Human',
+    framework:'The Framework | Making Law Human',
+    ai:'The AI Question | Making Law Human',
+    colors:'Color | Making Law Human',
+    index:'The Index | Making Law Human',
+    museum:'Posts | Making Law Human',
+    researcher:'Researcher | Making Law Human'
+  };
+  function keyFromHash(){
+    const k = decodeURIComponent(location.hash.replace('#',''));
+    return panels[k] ? k : 'top';
+  }
+  function go(key){
+    showTab(key);
+    document.title = titles[key] || titles.top;
+  }
+
+  // Clicking a tab: update the address bar link (e.g. index.html#experiment) and show that tab
   navLinks.forEach(a=>{
     a.addEventListener('click', (e)=>{
       e.preventDefault();
-      showTab(a.dataset.tab);
+      const key = a.dataset.tab;
+      history.pushState(null, '', '#' + key);
+      go(key);
     });
   });
+
+  // Back/forward buttons and manually edited links
+  window.addEventListener('popstate', ()=>go(keyFromHash()));
+  window.addEventListener('hashchange', ()=>go(keyFromHash()));
+
+  // Opening a shared link (e.g. index.html#experiment) lands directly on that tab
+  go(keyFromHash());
 })();
 
 (function(){
